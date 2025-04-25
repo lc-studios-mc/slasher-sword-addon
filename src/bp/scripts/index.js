@@ -3,3 +3,5 @@
  * We shouldn't write any business logic here.
  * So, we only import other modules that do the actual stuff.
  */
+
+import "./item_extender/internal.js";

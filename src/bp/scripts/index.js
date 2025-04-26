@@ -4,4 +4,5 @@
  * So, we only import other modules that do the actual stuff.
  */
 
+import "./patches/player.js";
 import "./item_extender/internal.js";

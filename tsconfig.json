@@ -5,6 +5,7 @@
     "rootDir": "src/bp/scripts/",
     "target": "es2023",
     "lib": ["es2023"],
+    "types": ["@minecraft/server"],
     "module": "nodenext",
     "moduleResolution": "nodenext",
     "forceConsistentCasingInFileNames": true,
@@ -12,8 +13,9 @@
     "noEmit": true,
 
     "strict": true,
+    "strictNullChecks": false,
     "noImplicitAny": false,
-    "useUnknownInCatchVariables": true,
+    "useUnknownInCatchVariables": false,
 
     "skipLibCheck": true
   },

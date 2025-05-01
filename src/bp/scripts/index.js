@@ -6,3 +6,4 @@
 
 import "./patches/player.js";
 import "./item_extender/internal.js";
+import "./slasher/slasher.js";

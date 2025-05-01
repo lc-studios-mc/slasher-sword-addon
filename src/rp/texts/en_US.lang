@@ -1,0 +1,6 @@
+item.lc:slasher.name=Slasher
+entity.lc:slasher_beam_fast_atk.name=Slasher Beam
+entity.lc:slasher_beam_charged_atk.name=Slasher Beam
+entity.lc:ground_impact_particle_spawner.name=Impact
+
+slasher.repairNeeded=§cREPAIR NEEDED

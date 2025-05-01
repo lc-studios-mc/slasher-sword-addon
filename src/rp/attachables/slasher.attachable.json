@@ -1,0 +1,72 @@
+{
+  "format_version": "1.10.0",
+  "minecraft:attachable": {
+    "description": {
+      "identifier": "lc:slasher",
+      "materials": {
+        "default": "entity_emissive_alpha"
+      },
+      "textures": {
+        "default": "textures/slasher/slasher"
+      },
+      "geometry": {
+        "fp": "geometry.slasher.fp",
+        "tp": "geometry.slasher.tp"
+      },
+      "animations": {
+        // Animation Controllers
+        "ctrl.fp": "controller.animation.slasher.fp.main",
+
+        // Animations
+        "anim.fp.pick": "animation.slasher.fp.pick",
+        "anim.fp.general": "animation.slasher.fp.general",
+        "anim.fp.blade_cycle": "animation.slasher.fp.blade_cycle",
+        "anim.fp.fast_atk_1": "animation.slasher.fp.fast_atk_1",
+        "anim.fp.fast_atk_2": "animation.slasher.fp.fast_atk_2",
+        "anim.fp.charging_start": "animation.slasher.fp.charging_start",
+        "anim.fp.charging_hold": "animation.slasher.fp.charging_hold",
+        "anim.fp.charged_atk_start": "animation.slasher.fp.charged_atk_start",
+        "anim.fp.charged_atk_hold": "animation.slasher.fp.charged_atk_hold",
+        "anim.fp.dash": "animation.slasher.fp.dash",
+        "anim.fp.dash_charged_atk_start": "animation.slasher.fp.dash_charged_atk_start",
+        "anim.fp.charged_atk_end": "animation.slasher.fp.charged_atk_end",
+        "anim.fp.plunge_windup": "animation.slasher.fp.plunge_windup",
+        "anim.fp.plunge_fall": "animation.slasher.fp.plunge_fall",
+        "anim.fp.plunge_impact": "animation.slasher.fp.plunge_impact",
+        "anim.misc.blade_cycle": "animation.slasher.misc.blade_cycle"
+      },
+      "scripts": {
+        "animate": ["ctrl.fp", "anim.misc.blade_cycle"],
+        "initialize": [
+          "v.blade_speed = 0;",
+          "v.blade_speed_a = 0;",
+          "v.blade_cycle_anim_time = 0;"
+        ],
+        "pre_animation": [
+          "v.is_fp = c.is_first_person;",
+          "v.fp_anim_blend_weight = v.is_fp ? 1 : 0.01;",
+
+          // Cooldowns used to trigger animations
+          "v.pick = q.cooldown_time_remaining('slasher_pick') > 0;",
+          "v.fast_atk_1_cd = q.cooldown_time_remaining('slasher_fast_atk_1') > 0;",
+          "v.fast_atk_2_cd = q.cooldown_time_remaining('slasher_fast_atk_2') > 0;",
+          "v.charging_start = q.cooldown_time_remaining('slasher_charging_start') > 0;",
+          "v.charging_cancel = q.cooldown_time_remaining('slasher_charging_cancel') > 0;",
+          "v.dash = q.cooldown_time_remaining('slasher_dash') > 0;",
+          "v.charged_atk_start = q.cooldown_time_remaining('slasher_charged_atk_start') > 0;",
+          "v.charged_atk_continue = q.cooldown_time_remaining('slasher_charged_atk_continue') > 0;",
+          "v.charged_atk_hold = q.cooldown_time_remaining('slasher_charged_atk_hold') > 0;",
+          "v.charged_atk_end = q.cooldown_time_remaining('slasher_charged_atk_end') > 0;",
+          "v.plunge_windup = q.cooldown_time_remaining('slasher_plunge_windup') > 0;",
+          "v.plunge_fall = q.cooldown_time_remaining('slasher_plunge_fall') > 0;",
+          "v.plunge_impact = q.cooldown_time_remaining('slasher_plunge_impact') > 0;",
+
+          // Saw cycle
+          "v.blade_speed = Math.lerp(v.blade_speed, v.blade_speed_a, 3.4 * q.delta_time);",
+          "v.blade_cycle_anim_time = v.blade_cycle_anim_time + (q.delta_time * v.blade_speed);"
+        ]
+      },
+      "render_controllers": ["controller.render.slasher"]
+    }
+  }
+}

@@ -33,6 +33,14 @@
         },
         "max_durability": 900
       },
+      "minecraft:repairable": {
+        "repair_items": [
+          {
+            "items": ["lc:slasher_blade"],
+            "repair_amount": 150
+          }
+        ]
+      },
       "minecraft:hand_equipped": true,
       "minecraft:allow_off_hand": false,
       "minecraft:use_modifiers": {

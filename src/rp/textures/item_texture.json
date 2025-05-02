@@ -4,6 +4,9 @@
   "texture_data": {
     "slasher_icon": {
       "textures": "textures/slasher/icon"
+    },
+    "slasher_blade_icon": {
+      "textures": "textures/slasher/blade_icon"
     }
   }
 }

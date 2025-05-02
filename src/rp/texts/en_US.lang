@@ -1,4 +1,5 @@
 item.lc:slasher.name=Slasher
+item.lc:slasher_blade.name=Slasher Blade
 entity.lc:slasher_beam_fast_atk.name=Slasher Beam
 entity.lc:slasher_beam_charged_atk.name=Slasher Beam
 entity.lc:ground_impact_particle_spawner.name=Impact

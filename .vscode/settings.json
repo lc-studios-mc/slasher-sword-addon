@@ -6,5 +6,8 @@
   "files.eol": "\n",
   "files.associations": {
     "*.json": "jsonc"
+  },
+  "search.exclude": {
+    "**/dist": true
   }
 }

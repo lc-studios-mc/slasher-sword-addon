@@ -201,6 +201,15 @@ class Slasher extends ItemExtender {
     if (!comp) throw new Error("Durability component does not exist");
     return comp;
   }
+
+  /** @returns {boolean} Whether the user is sneaking. */
+  isSneaking() {
+    const isSneakInputButtonPressed =
+      this.user.inputInfo.getButtonState(mc.InputButton.Sneak) ===
+      mc.ButtonState.Pressed;
+
+    return this.user.isSneaking || isSneakInputButtonPressed;
+  }
 }
 
 /**
@@ -655,10 +664,7 @@ class ChargedAtkState extends SlasherState {
 
   /** @param {number} atkTick */
   onTickChargedAtk(atkTick) {
-    const lockon =
-      atkTick === 0 &&
-      this.slasher.user.inputInfo.getButtonState(mc.InputButton.Sneak) ===
-        mc.ButtonState.Pressed;
+    const lockon = atkTick === 0 && this.slasher.isSneaking();
 
     const targets = this.getEntitiesInAtkRange(lockon);
 
@@ -909,9 +915,7 @@ class LockonAtkState extends SlasherState {
 
   onTick_2() {
     const shouldStartEnding =
-      this.targets.length <= 0 ||
-      this.slasher.user.inputInfo.getButtonState(mc.InputButton.Sneak) ===
-        mc.ButtonState.Released;
+      this.targets.length <= 0 || !this.slasher.isSneaking();
 
     if (shouldStartEnding) {
       this.slasher.playSound3DAnd2D("slasher.chainsaw.finish", 10, {

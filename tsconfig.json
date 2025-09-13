@@ -1,0 +1,15 @@
+{
+	"extends": "./tsconfig.base.json",
+	"compilerOptions": {
+		"target": "es2023",
+		"lib": ["es2023"],
+		"types": [],
+		"module": "preserve",
+		"moduleResolution": "bundler",
+		"rootDir": "src/bp/scripts",
+		"paths": {
+			"@/*": ["./src/bp/scripts/*"]
+		}
+	},
+	"include": ["src/bp/scripts/**/*"]
+}

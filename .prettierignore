@@ -1,3 +1,3 @@
-**/*-lock.json
-**/*.animation.json
-**/*.geo.json
+*-lock.*
+*.animation.json
+*.geo.json

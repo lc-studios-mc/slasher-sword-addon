@@ -1,6 +1,5 @@
 {
-  "endOfLine": "lf",
-  "useTabs": false,
-  "tabWidth": 2,
-  "printWidth": 80
+	"endOfLine": "lf",
+	"useTabs": true,
+	"printWidth": 80
 }

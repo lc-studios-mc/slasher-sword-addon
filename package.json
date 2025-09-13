@@ -3,6 +3,16 @@
 	"private": true,
 	"scripts": {},
 	"type": "module",
-	"dependencies": {},
-	"devDependencies": {}
+	"dependencies": {
+		"@minecraft/server": "2.1.0",
+		"gl-matrix": "^3.4.4"
+	},
+	"devDependencies": {
+		"@lc-studios-js/mcpacker": "^0.0.2",
+		"@types/node": "^22.18.3",
+		"dotenv-cli": "^10.0.0",
+		"prettier": "^3.6.2",
+		"shx": "^0.4.0",
+		"typescript": "^5.9.2"
+	}
 }

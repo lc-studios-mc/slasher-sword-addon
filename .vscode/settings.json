@@ -1,13 +1,18 @@
 {
-  "editor.defaultFormatter": "esbenp.prettier-vscode",
-  "editor.formatOnSave": true,
-  "editor.insertSpaces": true,
-  "editor.tabSize": 2,
-  "files.eol": "\n",
-  "files.associations": {
-    "*.json": "jsonc"
-  },
-  "search.exclude": {
-    "**/dist": true
-  }
+	"[markdown][yaml]": {
+		"editor.insertSpaces": true,
+		"editor.tabSize": 2
+	},
+	"editor.defaultFormatter": "esbenp.prettier-vscode",
+	"editor.formatOnSave": true,
+	"editor.insertSpaces": false,
+	"editor.rulers": [100],
+	"files.eol": "\n",
+	"files.associations": {
+		"*.json": "jsonc",
+		"package.json": "json"
+	},
+	"search.exclude": {
+		"**/dist": true
+	}
 }

@@ -101,14 +101,16 @@ const createManifests = (args) => {
 			: "Extremely mobile chainsaw-sword.";
 
 	const bpHeaderUuid = args.dev
-		? "bc68b824-f338-472d-8b8e-942d2b34ca0d"
-		: "b5822a30-5be0-4699-a298-315ab9a21042";
+		? "485c46e9-d0b8-4096-a1ba-3256e39fec22"
+		: "0d19b652-8f94-4f2d-8ada-5b3fb0c0016d";
 
 	const rpHeaderUuid = args.dev
-		? "717e0c75-1e5c-4bc8-a543-baeaa203a5e1"
-		: "fbc36a82-3f2d-423f-974d-99c9e63b9c2e";
+		? "86381a73-c102-4442-869d-58b337fee4dd"
+		: "9564065f-9d6c-4773-9f9c-02d427822a22";
 
 	const scriptingApiVersion = getScriptinApiVersion();
+
+	const packVersionArray = [0, 0, +version.array.join("")];
 
 	const bpManifest = {
 		format_version: 2,
@@ -116,19 +118,19 @@ const createManifests = (args) => {
 			description,
 			name: `Slasher Sword §7${version.text}`,
 			uuid: bpHeaderUuid,
-			version: version.array,
+			version: packVersionArray,
 			min_engine_version: MIN_ENGINE_VERSION,
 		},
 		modules: [
 			{
 				type: "data",
-				uuid: "2457184f-4079-4124-9f7f-809f055252dd",
+				uuid: "dbe96061-4ef7-4676-a326-c81ad2eae8a5",
 				version: [0, 0, 1],
 			},
 			{
 				language: "javascript",
 				type: "script",
-				uuid: "0d359555-6f1f-4b60-998b-c935e22ac452",
+				uuid: "3b93e646-03a5-4c8f-85a5-5a9fe5c8a9f5",
 				version: [0, 0, 1],
 				entry: "scripts/main.js",
 			},
@@ -156,13 +158,13 @@ const createManifests = (args) => {
 			description: `(Resource Pack) ${description}`,
 			name: `Slasher Sword §7${version.text} [RP]`,
 			uuid: rpHeaderUuid,
-			version: version.array,
+			version: packVersionArray,
 			min_engine_version: MIN_ENGINE_VERSION,
 		},
 		modules: [
 			{
 				type: "resources",
-				uuid: "d219deb9-19e5-43c5-b879-393d9fc525c9",
+				uuid: "e78cfcdc-55b7-445d-932f-eae3d61c2757",
 				version: [0, 0, 1],
 			},
 		],
@@ -197,8 +199,8 @@ const getOutDir = (args) => {
 	const version = createPackVersion(args);
 
 	return {
-		bpOutDir: path.join("dist", version.text.replaceAll(" ", "_"), "SlasherSword_BP"),
-		rpOutDir: path.join("dist", version.text.replaceAll(" ", "_"), "SlasherSword_RP"),
+		bpOutDir: path.join("dist", version.text.replaceAll(" ", "_"), "slasher_sword_bp"),
+		rpOutDir: path.join("dist", version.text.replaceAll(" ", "_"), "slasher_sword_rp"),
 	};
 };
 

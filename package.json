@@ -1,7 +1,12 @@
 {
 	"name": "slasher-sword-addon",
 	"private": true,
-	"scripts": {},
+	"scripts": {
+		"dev": "dotenv -- mcpacker --dev --watch",
+		"lint": "tsc",
+		"clean": "shx rm -rf dist",
+		"format": "prettier --write ."
+	},
 	"type": "module",
 	"dependencies": {
 		"@minecraft/server": "2.1.0",

@@ -1,0 +1,11 @@
+{
+	"[markdown][yaml]": {
+		"editor.insertSpaces": true,
+		"editor.tabSize": 2
+	},
+	"files.eol": "\n",
+	"editor.insertSpaces": false,
+	"editor.defaultFormatter": "esbenp.prettier-vscode",
+	"editor.formatOnSave": true,
+	"editor.rulers": [100]
+}

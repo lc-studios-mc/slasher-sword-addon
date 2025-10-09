@@ -1,0 +1,22 @@
+{
+	"private": true,
+	"type": "module",
+	"scripts": {
+		"lint": "tsc -p tsconfig.json && tsc -p ganban/tsconfig.json",
+		"build:dev": "dotenv -v DEV=true -v WATCH=true -- tsx ganban/ganban.ts",
+		"clean": "shx rm -rf dist",
+		"format": "prettier --write ."
+	},
+	"dependencies": {
+		"@minecraft/server": "2.2.0"
+	},
+	"devDependencies": {
+		"@types/node": "^22.18.8",
+		"dotenv-cli": "^10.0.0",
+		"ganban": "^0.2.0",
+		"prettier": "^3.6.2",
+		"shx": "^0.4.0",
+		"tsx": "^4.20.6",
+		"typescript": "^5.9.3"
+	}
+}

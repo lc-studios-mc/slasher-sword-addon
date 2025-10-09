@@ -1,7 +1,0 @@
-item.lc:slasher.name=スラッシャー
-item.lc:slasher_blade.name=スラッシャーの刃
-entity.lc:slasher_beam_fast_atk.name=斬撃
-entity.lc:slasher_beam_charged_atk.name=斬撃
-entity.lc:ground_impact_particle_spawner.name=衝撃派
-
-slasher.repairNeeded=§c修繕が必要です

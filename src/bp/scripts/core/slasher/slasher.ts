@@ -1,11 +1,9 @@
 import * as mc from "@minecraft/server";
-import { ItemHookHandlerBase } from "@/core/item_hook/handler_class";
-import { registerItemHookProfile } from "@/core/item_hook/processing";
+import { ItemHookHandlerBase, registerItemHookProfile } from "@/core/item_hook";
 
 registerItemHookProfile({
 	itemType: "slasher:slasher",
 	createHandler: (ctx) => new SlasherHandler(ctx),
 });
 
-class SlasherHandler extends ItemHookHandlerBase {
-}
+class SlasherHandler extends ItemHookHandlerBase {}

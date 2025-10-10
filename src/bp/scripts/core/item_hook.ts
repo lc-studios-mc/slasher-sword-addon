@@ -51,14 +51,17 @@ const isItemHookValid = (itemHook: ItemHook, currentItem?: mc.ItemStack): boolea
 	return true;
 };
 
-const removeItemHook = (itemHook: ItemHook): void => {
-	ITEM_HOOKS_BY_PLAYER.delete(itemHook.ctx.player);
-	itemHook.handler.onRemove();
+const removeItemHook = (player: mc.Player, itemHook?: ItemHook): void => {
+	try {
+		itemHook = itemHook ?? ITEM_HOOKS_BY_PLAYER.get(player);
+		itemHook?.handler.onRemove();
+	} finally {
+		ITEM_HOOKS_BY_PLAYER.delete(player);
+	}
 };
 
 const onTickPlayer = (player: mc.Player): void => {
-	if (!isEntityAlive(player)) return;
-
+	const isAlive = isEntityAlive(player);
 	const equippable = player.getComponent("equippable")!;
 	const mainhandSlot = equippable.getEquipmentSlot(mc.EquipmentSlot.Mainhand);
 	const mainhandItem = mainhandSlot.getItem();
@@ -66,15 +69,15 @@ const onTickPlayer = (player: mc.Player): void => {
 
 	let itemHook = ITEM_HOOKS_BY_PLAYER.get(player);
 
-	if (itemHook && !isItemHookValid(itemHook, mainhandItem)) {
-		removeItemHook(itemHook);
+	if (itemHook && (!isAlive || !isItemHookValid(itemHook, mainhandItem))) {
+		removeItemHook(player, itemHook);
 		itemHook = undefined;
 	}
 
 	if (!mainhandItem) return;
 
 	if (!itemHook) {
-		if (!itemHookProfile) return;
+		if (!isAlive || !itemHookProfile) return;
 
 		const internalVars: ItemHookInternalVariables = {
 			currentTick: 0,
@@ -111,6 +114,11 @@ mc.world.afterEvents.worldLoad.subscribe(() => {
 		const players = mc.world.getPlayers();
 		for (const player of players) onTickPlayer(player);
 	}, 1);
+});
+
+mc.world.afterEvents.entityDie.subscribe((e) => {
+	if (!(e.deadEntity instanceof mc.Player)) return;
+	removeItemHook(e.deadEntity);
 });
 
 export abstract class ItemHookHandlerBase implements ItemHookHandler {

@@ -1,0 +1,30 @@
+{
+	"format_version": "1.8.0",
+	"animations": {
+		"animation.slasher.slasher.fp.general": {
+			"loop": true,
+			"blend_weight": "v.fp_anim_blend_weight ?? 1",
+			"bones": {
+				"fp_mainhand_g": {
+					"rotation": [0, 0, -90],
+					"position": [5, -2, 4]
+				},
+				"slasher": {
+					"rotation": [0, 0, 0]
+				},
+				"fp_arms": {
+					"rotation": [2.5, -5, 0],
+					"position": [-12.5, -9.75, -20]
+				},
+				"fp_mainhand": {
+					"rotation": [8.5176, -11.63367, 7.91786],
+					"position": [0.25, 0, 0]
+				},
+				"fp_offhand_g": {
+					"rotation": [39.06259, 5.72869, 100.56237],
+					"position": [-0.75, -3.75, 3.5]
+				}
+			}
+		}
+	}
+}

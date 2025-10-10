@@ -1,0 +1,33 @@
+{
+	"format_version": "1.10.0",
+	"minecraft:attachable": {
+		"description": {
+			"identifier": "slasher:slasher",
+			"materials": {
+				"default": "entity_emissive_alpha"
+			},
+			"textures": {
+				"default": "textures/slasher/slasher"
+			},
+			"geometry": {
+				"fp": "geometry.slasher.slasher.fp",
+				"tp": "geometry.slasher.slasher.tp"
+			},
+			"animations": {
+				"anim.fp.general": "animation.slasher.slasher.fp.general",
+
+				"anim.tp.general": "animation.slasher.slasher.tp.general"
+			},
+			"scripts": {
+				"animate": [
+					{ "anim.fp.general": "c.is_first_person" },
+					{ "anim.tp.general": "!c.is_first_person" }
+				]
+			},
+			"render_controllers": [
+				{ "controller.render.slasher.slasher_attachable.fp": "c.is_first_person" },
+				{ "controller.render.slasher.slasher_attachable.tp": "!c.is_first_person" }
+			]
+		}
+	}
+}

@@ -1,0 +1,18 @@
+{
+	"format_version": "1.21.110",
+	"minecraft:item": {
+		"description": {
+			"identifier": "slasher:slasher",
+			"menu_category": {
+				"category": "equipment"
+			}
+		},
+		"components": {
+			"minecraft:icon": "slasher:slasher",
+			"minecraft:rarity": "epic",
+			"minecraft:display_name": {
+				"value": "slasher:slasher"
+			}
+		}
+	}
+}

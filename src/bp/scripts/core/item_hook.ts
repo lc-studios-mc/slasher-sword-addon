@@ -20,6 +20,9 @@ export type ItemHookHandler = {
 	readonly onCreate: () => void;
 	readonly onRemove: () => void;
 	readonly onTick: (currentItem: mc.ItemStack) => void;
+	readonly canUse: (event: mc.ItemStartUseAfterEvent) => boolean;
+	readonly onStartUse: (event: mc.ItemStartUseAfterEvent) => void;
+	readonly onStopUse: (event: mc.ItemStopUseAfterEvent) => void;
 };
 
 type ItemHookInternalVariables = {
@@ -124,6 +127,25 @@ mc.world.afterEvents.entityDie.subscribe((e) => {
 	removeItemHook(e.deadEntity);
 });
 
+mc.world.afterEvents.itemStartUse.subscribe((e) => {
+	const itemHook = ITEM_HOOKS_BY_PLAYER.get(e.source);
+	if (!itemHook) return;
+
+	const canUse = itemHook.handler.canUse(e);
+	if (!canUse) return;
+
+	itemHook.internalVars.isUsing = true;
+	itemHook.handler.onStartUse(e);
+});
+
+mc.world.afterEvents.itemStopUse.subscribe((e) => {
+	const itemHook = ITEM_HOOKS_BY_PLAYER.get(e.source);
+	if (!itemHook) return;
+
+	itemHook.internalVars.isUsing = false;
+	itemHook.handler.onStopUse(e);
+});
+
 export abstract class ItemHookHandlerBase implements ItemHookHandler {
 	constructor(readonly ctx: ItemHookContext) {}
 
@@ -136,6 +158,14 @@ export abstract class ItemHookHandlerBase implements ItemHookHandler {
 	onRemove(): void {}
 
 	onTick(currentItem: mc.ItemStack): void {}
+
+	canUse(event: mc.ItemStartUseAfterEvent): boolean {
+		return true;
+	}
+
+	onStartUse(event: mc.ItemStartUseAfterEvent): void {}
+
+	onStopUse(event: mc.ItemStopUseAfterEvent): void {}
 
 	// Re-export some ctx properties for ease of use by child classes
 

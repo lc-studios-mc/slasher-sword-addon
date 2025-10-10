@@ -2,3 +2,4 @@
 // modules that contain the actual business logic.
 
 import "./core/item_hook/processing";
+import "./core/slasher/slasher";

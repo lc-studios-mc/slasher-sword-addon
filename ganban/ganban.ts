@@ -70,6 +70,7 @@ const resourcePackManifest = {
 			version: addonVersionArray,
 		},
 	],
+	capabilities: ["pbr"],
 };
 
 const buildConfig: BuildConfig = {

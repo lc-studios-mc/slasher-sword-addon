@@ -1,3 +1,4 @@
+import { isEntityAlive } from "@/utils/entity";
 import * as mc from "@minecraft/server";
 
 export type ItemHookProfile = {
@@ -9,8 +10,8 @@ export type ItemHookContext = {
 	readonly player: mc.Player;
 	readonly slotIndex: number;
 	readonly itemStack: mc.ItemStack;
-	readonly currentTick: number;
-	readonly isUsing: boolean;
+	readonly getCurrentTick: () => number;
+	readonly isUsing: () => boolean;
 };
 
 export type ItemHookHandler = {
@@ -51,10 +52,13 @@ const isItemHookValid = (itemHook: ItemHook, currentItem?: mc.ItemStack): boolea
 };
 
 const removeItemHook = (itemHook: ItemHook): void => {
+	ITEM_HOOKS_BY_PLAYER.delete(itemHook.ctx.player);
 	itemHook.handler.onRemove();
 };
 
 const onTickPlayer = (player: mc.Player): void => {
+	if (!isEntityAlive(player)) return;
+
 	const equippable = player.getComponent("equippable")!;
 	const mainhandSlot = equippable.getEquipmentSlot(mc.EquipmentSlot.Mainhand);
 	const mainhandItem = mainhandSlot.getItem();
@@ -81,12 +85,8 @@ const onTickPlayer = (player: mc.Player): void => {
 			player,
 			slotIndex: player.selectedSlotIndex,
 			itemStack: mainhandItem,
-			get currentTick() {
-				return internalVars.currentTick;
-			},
-			get isUsing() {
-				return internalVars.isUsing;
-			},
+			getCurrentTick: () => internalVars.currentTick,
+			isUsing: () => internalVars.isUsing,
 		};
 
 		const handler = itemHookProfile.createHandler(ctx);
@@ -96,6 +96,8 @@ const onTickPlayer = (player: mc.Player): void => {
 			handler,
 			internalVars,
 		};
+
+		ITEM_HOOKS_BY_PLAYER.set(player, itemHook);
 	}
 
 	if (!itemHook) return;

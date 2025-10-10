@@ -17,6 +17,7 @@ export type ItemHookContext = {
 export type ItemHookHandler = {
 	readonly ctx: ItemHookContext;
 	readonly isValid: (currentItem?: mc.ItemStack) => boolean;
+	readonly onCreate: () => void;
 	readonly onRemove: () => void;
 	readonly onTick: (currentItem: mc.ItemStack) => void;
 };
@@ -101,6 +102,8 @@ const onTickPlayer = (player: mc.Player): void => {
 		};
 
 		ITEM_HOOKS_BY_PLAYER.set(player, itemHook);
+
+		handler.onCreate();
 	}
 
 	if (!itemHook) return;
@@ -127,6 +130,8 @@ export abstract class ItemHookHandlerBase implements ItemHookHandler {
 	isValid(currentItem?: mc.ItemStack): boolean {
 		return true;
 	}
+
+	onCreate(): void {}
 
 	onRemove(): void {}
 

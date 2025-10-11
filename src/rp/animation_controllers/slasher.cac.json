@@ -28,7 +28,7 @@
 				"speed_slash_1": {
 					"animations": ["anim.fp.speed_slash_1"],
 					"transitions": [
-						{ "pick": "!v.cd_speed_slash_1 || v.cd_pick" },
+						{ "pick": "v.cd_pick" },
 						{ "speed_slash_2": "v.cd_speed_slash_2" },
 						{ "charge_2": "v.cd_charge" }
 					]
@@ -37,7 +37,7 @@
 				"speed_slash_2": {
 					"animations": ["anim.fp.speed_slash_2"],
 					"transitions": [
-						{ "pick": "!v.cd_speed_slash_2 || v.cd_pick" },
+						{ "pick": "v.cd_pick" },
 						{ "speed_slash_1": "v.cd_speed_slash_1" },
 						{ "charge_2": "v.cd_charge" }
 					]
@@ -47,6 +47,8 @@
 					"animations": ["anim.fp.charge_1"],
 					"transitions": [
 						{ "pick": "v.cd_charge_cancel || v.cd_pick" },
+						{ "speed_slash_1": "v.cd_speed_slash_1" },
+						{ "speed_slash_2": "v.cd_speed_slash_2" },
 						{ "power_slash": "v.cd_power_slash" }
 					]
 				},
@@ -55,6 +57,8 @@
 					"animations": ["anim.fp.charge_2"],
 					"transitions": [
 						{ "pick": "v.cd_charge_cancel || v.cd_pick" },
+						{ "speed_slash_1": "v.cd_speed_slash_1" },
+						{ "speed_slash_2": "v.cd_speed_slash_2" },
 						{ "power_slash": "v.cd_power_slash" }
 					]
 				},

@@ -23,6 +23,8 @@ export type ItemHookHandler = {
 	readonly canUse: (event: mc.ItemStartUseAfterEvent) => boolean;
 	readonly onStartUse: (event: mc.ItemStartUseAfterEvent) => void;
 	readonly onStopUse: (event: mc.ItemStopUseAfterEvent) => void;
+	readonly onHitBlock: (event: mc.EntityHitBlockAfterEvent) => void;
+	readonly onHitEntity: (event: mc.EntityHitEntityAfterEvent) => void;
 };
 
 type ItemHookInternalVariables = {
@@ -146,26 +148,40 @@ mc.world.afterEvents.itemStopUse.subscribe((e) => {
 	itemHook.handler.onStopUse(e);
 });
 
+mc.world.afterEvents.entityHitBlock.subscribe((e) => {
+	if (!(e.damagingEntity instanceof mc.Player)) return;
+
+	const itemHook = ITEM_HOOKS_BY_PLAYER.get(e.damagingEntity);
+	if (!itemHook) return;
+
+	itemHook.handler.onHitBlock(e);
+});
+
+mc.world.afterEvents.entityHitEntity.subscribe((e) => {
+	if (!(e.damagingEntity instanceof mc.Player)) return;
+
+	const itemHook = ITEM_HOOKS_BY_PLAYER.get(e.damagingEntity);
+	if (!itemHook) return;
+
+	itemHook.handler.onHitEntity(e);
+});
+
 export abstract class ItemHookHandlerBase implements ItemHookHandler {
 	constructor(readonly ctx: ItemHookContext) {}
 
 	isValid(currentItem?: mc.ItemStack): boolean {
 		return true;
 	}
-
 	onCreate(): void {}
-
 	onRemove(): void {}
-
 	onTick(currentItem: mc.ItemStack): void {}
-
 	canUse(event: mc.ItemStartUseAfterEvent): boolean {
 		return true;
 	}
-
 	onStartUse(event: mc.ItemStartUseAfterEvent): void {}
-
 	onStopUse(event: mc.ItemStopUseAfterEvent): void {}
+	onHitBlock(event: mc.EntityHitBlockAfterEvent): void {}
+	onHitEntity(event: mc.EntityHitEntityAfterEvent): void {}
 
 	// Re-export some ctx properties for ease of use by child classes
 

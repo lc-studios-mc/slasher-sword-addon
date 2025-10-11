@@ -89,7 +89,7 @@
 				}
 			},
 			"timeline": {
-				"0.0": "v.blade_speed_mod = 0;"
+				"0.2292": "v.blade_speed_mod = 0;"
 			}
 		},
 		"animation.slasher.slasher.fp.blade_cycle": {
@@ -351,7 +351,7 @@
 				}
 			},
 			"timeline": {
-				"0.0": "v.blade_speed_mod = 10;"
+				"0.0": "v.blade_speed_mod = 20;"
 			}
 		},
 		"animation.slasher.slasher.fp.speed_slash_2": {
@@ -401,7 +401,7 @@
 				}
 			},
 			"timeline": {
-				"0.0": "v.blade_speed_mod = 10;"
+				"0.0": "v.blade_speed_mod = 20;"
 			}
 		},
 		"animation.slasher.slasher.fp.charge_1": {
@@ -467,7 +467,7 @@
 				}
 			},
 			"timeline": {
-				"0.0": "v.blade_speed_mod = 10;"
+				"0.0": "v.blade_speed_mod = 15;"
 			}
 		},
 		"animation.slasher.slasher.fp.charge_2": {
@@ -524,7 +524,7 @@
 				}
 			},
 			"timeline": {
-				"0.0": "v.blade_speed_mod = 10;"
+				"0.0": "v.blade_speed_mod = 15;"
 			}
 		},
 		"animation.slasher.slasher.fp.power_slash": {
@@ -594,7 +594,7 @@
 				}
 			},
 			"timeline": {
-				"0.0": "v.blade_speed_mod = 15;"
+				"0.0": "v.blade_speed_mod = 20;"
 			}
 		}
 	}

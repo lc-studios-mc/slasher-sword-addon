@@ -1,4 +1,4 @@
-import { isEntityAlive } from "@/utils/entity";
+import { isEntityAlive } from "@/lib/entity_utils";
 import * as mc from "@minecraft/server";
 
 export type ItemHookProfile = {

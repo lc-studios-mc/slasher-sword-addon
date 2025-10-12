@@ -39,6 +39,10 @@
 					{
 						"effect": "trail",
 						"locator": "beam_trail_locator_2"
+					},
+					{
+						"effect": "trail",
+						"locator": "beam_trail_locator_3"
 					}
 				]
 			}

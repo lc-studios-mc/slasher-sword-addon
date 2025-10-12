@@ -40,7 +40,8 @@
 					],
 					"locators": {
 						"beam_trail_locator_1": [13, 0, 4],
-						"beam_trail_locator_2": [-13, 0, 4]
+						"beam_trail_locator_2": [-13, 0, 4],
+						"beam_trail_locator_3": [0, 0, -2]
 					}
 				}
 			]

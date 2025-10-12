@@ -48,7 +48,7 @@ export class IdleState extends SlasherState {
 	}
 }
 
-export class SpeedSlashState extends SlasherState {
+class SpeedSlashState extends SlasherState {
 	ticksUntilExit = 10;
 
 	constructor(
@@ -71,6 +71,8 @@ export class SpeedSlashState extends SlasherState {
 	override onTick(_currentItem: mc.ItemStack): void {
 		if (this.ticksUntilExit > 0) {
 			this.ticksUntilExit--;
+		} else if (this.s.isUsing) {
+			this.s.changeState(new ChargeState(this.s));
 		} else {
 			this.s.startItemCooldown("slasher_pick");
 			this.s.changeState(new IdleState(this.s));
@@ -94,7 +96,7 @@ export class SpeedSlashState extends SlasherState {
 	}
 }
 
-export class ChargeState extends SlasherState {
+class ChargeState extends SlasherState {
 	ticksUntilCompleteCharge = 5; // Charge duration
 
 	override onTick(_currentItem: mc.ItemStack): void {

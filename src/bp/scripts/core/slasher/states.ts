@@ -2,6 +2,7 @@ import * as mc from "@minecraft/server";
 import type { SlasherHandler } from "./handler";
 import { randf } from "@/lib/math_utils";
 import { vec2 } from "gl-matrix";
+import { shootPowerSlashBeam } from "./beam";
 
 export abstract class SlasherState {
 	private _currentTick = 0;
@@ -237,6 +238,8 @@ class PowerSlashState extends SlasherState {
 			location: this.s.player.location,
 			volume: 1.4,
 		});
+
+		shootPowerSlashBeam(this.s.player);
 
 		this.ticksUntilAllowRecharge = this.slashDuration;
 		this.ticksUntilExit = this.slashDurationFull;

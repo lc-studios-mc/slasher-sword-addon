@@ -50,7 +50,7 @@ export class IdleState extends SlasherState {
 }
 
 class SpeedSlashState extends SlasherState {
-	ticksUntilExit = 10;
+	private ticksUntilExit = 10;
 
 	constructor(
 		s: SlasherHandler,
@@ -103,20 +103,56 @@ class SpeedSlashState extends SlasherState {
 }
 
 class ChargeState extends SlasherState {
-	ticksUntilCompleteCharge = 5; // Charge duration
+	private readonly actionbarFrames_progress = [
+		"§c>      X      <",
+		"§c>     X     <",
+		"§c>    X    <",
+		"§c>   X   <",
+		"§c>  X  <",
+		"§c> X <",
+	] as const;
 
-	override onTick(_currentItem: mc.ItemStack): void {
-		if (this.ticksUntilCompleteCharge > 0) {
-			this.ticksUntilCompleteCharge--;
-		}
+	private readonly actionbarFrames_completed = [
+		// Flashy
+		"§b>X<",
+		"§e>X<",
+	] as const;
 
-		if (!this.s.isUsing) {
-			this.releaseOrCancel();
-		}
-	}
+	private ticksUntilCompleteCharge = 6; // Charge duration
+	private ticksUntilNextChargeSoundLoop = 1;
 
 	override onEnter(): void {
 		this.s.startItemCooldown("slasher_charge");
+	}
+
+	override onTick(_currentItem: mc.ItemStack): void {
+		// Main charge logic
+		if (this.ticksUntilCompleteCharge > 0) {
+			this.ticksUntilCompleteCharge--;
+		}
+		if (!this.s.isUsing) {
+			this.releaseOrCancel();
+			return;
+		}
+
+		// Sound
+		if (this.ticksUntilNextChargeSoundLoop > 0) {
+			this.ticksUntilNextChargeSoundLoop--;
+		} else {
+			this.s.playSound({ soundId_3d: "slasher.charge_loop" });
+			this.ticksUntilNextChargeSoundLoop = 7;
+		}
+
+		// Actionbar frames
+		if (this.ticksUntilCompleteCharge > 0) {
+			this.s.player.onScreenDisplay.setActionBar(
+				this.actionbarFrames_progress[this.currentTick % this.actionbarFrames_progress.length]!,
+			);
+		} else {
+			this.s.player.onScreenDisplay.setActionBar(
+				this.actionbarFrames_completed[this.currentTick % this.actionbarFrames_completed.length]!,
+			);
+		}
 	}
 
 	override onStopUse(_event: mc.ItemStopUseAfterEvent): void {
@@ -125,14 +161,82 @@ class ChargeState extends SlasherState {
 		}
 	}
 
-	releaseOrCancel(): void {
+	private releaseOrCancel(): void {
 		if (this.ticksUntilCompleteCharge <= 0) {
-			// TODO: Enter Power Slash
-		} else {
-			this.s.startItemCooldown("slasher_charge", 0);
-
-			// Speed slash on cancel; player can spam speed slash by rapidly clicking RMB
-			this.s.changeState(new SpeedSlashState(this.s, 0));
+			this.s.player.onScreenDisplay.setActionBar("§c< X >");
+			this.s.changeState(new PowerSlashState(this.s));
+			return;
 		}
+
+		// On cancel
+		this.s.player.onScreenDisplay.setActionBar("§8---");
+		this.s.startItemCooldown("slasher_charge", 0);
+		this.s.changeState(new SpeedSlashState(this.s, 0)); // Player can spam speed slash by rapidly clicking RMB
+	}
+}
+
+class PowerSlashState extends SlasherState {
+	private readonly dashDuration = 3;
+	private readonly slashDuration = 6;
+	private readonly slashDurationFull = 12;
+
+	private ticksUntilSlash = -1;
+	private ticksUntilAllowRecharge = -1;
+	private ticksUntilExit = -1;
+
+	override onEnter(): void {
+		if (!this.testDashInput()) {
+			this.slash();
+			return;
+		}
+
+		this.s.startItemCooldown("slasher_charge_dash");
+
+		this.s.playSound({ soundId_3d: "slasher.dash", location: this.s.player.location, volume: 1.2 });
+
+		this.ticksUntilSlash = this.dashDuration;
+	}
+
+	override onTick(_currentItem: mc.ItemStack): void {
+		if (this.ticksUntilSlash > 0) {
+			this.ticksUntilSlash--;
+		} else if (this.ticksUntilSlash === 0) {
+			this.slash();
+		}
+
+		if (this.ticksUntilExit > 0) {
+			this.ticksUntilExit--;
+		} else if (this.ticksUntilExit === 0) {
+			this.ticksUntilExit = -1;
+
+			this.s.startItemCooldown("slasher_pick");
+			this.s.changeState(new IdleState(this.s));
+		}
+
+		if (this.ticksUntilAllowRecharge > 0) {
+			this.ticksUntilAllowRecharge--;
+		} else if (this.ticksUntilAllowRecharge === 0 && this.s.isUsing) {
+			this.s.changeState(new ChargeState(this.s));
+		}
+	}
+
+	private testDashInput(): boolean {
+		return false; // TODO: Dash input
+	}
+
+	private slash(): void {
+		this.ticksUntilSlash = -1;
+
+		this.s.startItemCooldown("slasher_power_slash");
+
+		this.s.playSound({
+			soundId_2d: "slasher.power_slash.2d",
+			soundId_3d: "slasher.power_slash",
+			location: this.s.player.location,
+			volume: 1.4,
+		});
+
+		this.ticksUntilAllowRecharge = this.slashDuration;
+		this.ticksUntilExit = this.slashDurationFull;
 	}
 }

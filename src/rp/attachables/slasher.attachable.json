@@ -7,7 +7,7 @@
 				"default": "entity_emissive_alpha"
 			},
 			"textures": {
-				"default": "textures/slasher/slasher"
+				"default": "textures/slasher/slasher/slasher"
 			},
 			"geometry": {
 				"fp": "geometry.slasher.slasher.fp",

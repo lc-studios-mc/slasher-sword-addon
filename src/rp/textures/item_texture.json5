@@ -3,7 +3,7 @@
 	texture_name: "atlas.items",
 	texture_data: {
 		"slasher:slasher": {
-			textures: "textures/slasher/slasher_icon",
+			textures: "textures/slasher/slasher/slasher_icon",
 		},
 	},
 }

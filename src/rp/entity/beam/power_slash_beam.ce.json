@@ -19,7 +19,11 @@
 			},
 			"scripts": {
 				"scale": "v.is_visible ? 1 : 0",
-				"animate": ["anim.base_rotation", "anim.spin", { "anim.trail": "v.is_visible" }],
+				"animate": [
+					"anim.base_rotation",
+					{ "anim.spin": "v.is_visible" },
+					{ "anim.trail": "v.is_visible" }
+				],
 				"pre_animation": [
 					"v.is_visible = q.property('slasher:is_visible');",
 					"v.rotation_x = q.property('slasher:rotation_x');",

@@ -17,12 +17,12 @@
 		},
 		"animation.slasher.power_slash_beam.spin": {
 			"loop": true,
-			"animation_length": 2.2083,
+			"animation_length": 1.7083,
 			"bones": {
 				"roll": {
 					"rotation": {
 						"0.0": [0, 0, 0],
-						"2.2083": [0, 0, -360]
+						"1.7083": [0, 0, -360]
 					}
 				}
 			}

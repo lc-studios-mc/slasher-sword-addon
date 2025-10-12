@@ -129,22 +129,12 @@
 
 		"slasher.speed_slash": {
 			category: "hostile",
-			max_distance: 15.0,
+			max_distance: 8.0,
 			min_distance: null,
 			sounds: [
 				{
 					name: "sounds/slasher/speed_slash",
-					volume: 1.0,
-				},
-			],
-		},
-
-		"slasher.speed_slash.2d": {
-			category: "music",
-			sounds: [
-				{
-					name: "sounds/slasher/speed_slash",
-					volume: 1.0,
+					volume: 0.9,
 				},
 			],
 		},

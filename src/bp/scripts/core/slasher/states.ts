@@ -1,6 +1,7 @@
 import * as mc from "@minecraft/server";
 import type { SlasherHandler } from "./handler";
 import { randf } from "@/lib/math_utils";
+import { vec2 } from "gl-matrix";
 
 export abstract class SlasherState {
 	private _currentTick = 0;
@@ -104,7 +105,6 @@ class SpeedSlashState extends SlasherState {
 
 class ChargeState extends SlasherState {
 	private readonly actionbarFrames_progress = [
-		"§c>      X      <",
 		"§c>     X     <",
 		"§c>    X    <",
 		"§c>   X   <",
@@ -221,7 +221,8 @@ class PowerSlashState extends SlasherState {
 	}
 
 	private testDashInput(): boolean {
-		return false; // TODO: Dash input
+		const movementVector = this.s.player.inputInfo.getMovementVector();
+		return movementVector.y > 0.3 && Math.abs(movementVector.x) < 0.3;
 	}
 
 	private slash(): void {

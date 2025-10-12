@@ -183,10 +183,11 @@ export abstract class ItemHookHandlerBase implements ItemHookHandler {
 	onHitBlock(event: mc.EntityHitBlockAfterEvent): void {}
 	onHitEntity(event: mc.EntityHitEntityAfterEvent): void {}
 
-	// Re-export some ctx properties for ease of use by child classes
-
 	get player(): mc.Player {
 		return this.ctx.player;
+	}
+	get dimension(): mc.Dimension {
+		return this.ctx.player.dimension;
 	}
 	get slotIndex(): number {
 		return this.ctx.slotIndex;

@@ -1,0 +1,7 @@
+{
+	"format_version": "1.16.100",
+	"minecraft:texture_set": {
+		"color": "power_slash_beam",
+		"metalness_emissive_roughness": "power_slash_beam_mer"
+	}
+}

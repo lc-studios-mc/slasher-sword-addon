@@ -10,7 +10,9 @@
 						{ "general": "q.all_animations_finished" },
 						{ "speed_slash_1": "v.cd_speed_slash_1" },
 						{ "speed_slash_2": "v.cd_speed_slash_2" },
-						{ "charge_1": "v.cd_charge" }
+						{ "charge_1": "v.cd_charge" },
+						{ "charge_dash": "v.cd_charge_dash" },
+						{ "power_slash": "v.cd_power_slash" }
 					]
 				},
 
@@ -20,7 +22,9 @@
 						{ "pick": "v.cd_pick" },
 						{ "speed_slash_1": "v.cd_speed_slash_1" },
 						{ "speed_slash_2": "v.cd_speed_slash_2" },
-						{ "charge_1": "v.cd_charge" }
+						{ "charge_1": "v.cd_charge" },
+						{ "charge_dash": "v.cd_charge_dash" },
+						{ "power_slash": "v.cd_power_slash" }
 					],
 					"blend_transition": 0.08
 				},
@@ -49,6 +53,7 @@
 						{ "pick": "v.cd_charge_cancel || v.cd_pick" },
 						{ "speed_slash_1": "v.cd_speed_slash_1" },
 						{ "speed_slash_2": "v.cd_speed_slash_2" },
+						{ "charge_dash": "v.cd_charge_dash" },
 						{ "power_slash": "v.cd_power_slash" }
 					]
 				},
@@ -59,6 +64,15 @@
 						{ "pick": "v.cd_charge_cancel || v.cd_pick" },
 						{ "speed_slash_1": "v.cd_speed_slash_1" },
 						{ "speed_slash_2": "v.cd_speed_slash_2" },
+						{ "charge_dash": "v.cd_charge_dash" },
+						{ "power_slash": "v.cd_power_slash" }
+					]
+				},
+
+				"charge_dash": {
+					"animations": ["anim.fp.charge_dash"],
+					"transitions": [
+						{ "pick": "v.cd_charge_cancel || v.cd_pick" },
 						{ "power_slash": "v.cd_power_slash" }
 					]
 				},

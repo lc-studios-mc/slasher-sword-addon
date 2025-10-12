@@ -527,9 +527,55 @@
 				"0.0": "v.blade_speed_mod = 15;"
 			}
 		},
+		"animation.slasher.slasher.fp.charge_dash": {
+			"loop": "hold_on_last_frame",
+			"animation_length": 0.25,
+			"blend_weight": "v.fp_anim_blend_weight ?? 1",
+			"bones": {
+				"fp_mainhand_g": {
+					"rotation": [0, 0, -90],
+					"position": [5, -2, 4]
+				},
+				"slasher": {
+					"rotation": [0, 0, 0]
+				},
+				"fp_arms": {
+					"rotation": {
+						"0.0": {
+							"post": [-7.95067, -34.75886, -97.07263],
+							"lerp_mode": "catmullrom"
+						},
+						"0.0417": {
+							"post": [-7.16657, -34.48408, -94.05297],
+							"lerp_mode": "catmullrom"
+						},
+						"0.1875": [-16.21878, -35.06728, -100.09817]
+					},
+					"position": {
+						"0.0": {
+							"post": [-12, -9.25, -19.25],
+							"lerp_mode": "catmullrom"
+						},
+						"0.0417": {
+							"post": [-11.5, -9, -19.75],
+							"lerp_mode": "catmullrom"
+						},
+						"0.1875": [-13.25, -11.5, -19.25]
+					}
+				},
+				"fp_mainhand": {
+					"rotation": [35.3, 4.67, 19.56],
+					"position": [0.25, 0, 0]
+				},
+				"fp_offhand_g": {
+					"rotation": [-3.21, 28.11, 101.93],
+					"position": [-4.25, -5.25, 3.5]
+				}
+			}
+		},
 		"animation.slasher.slasher.fp.power_slash": {
 			"loop": "hold_on_last_frame",
-			"animation_length": 0.3958,
+			"animation_length": 0.75,
 			"blend_weight": "v.fp_anim_blend_weight ?? 1",
 			"bones": {
 				"fp_mainhand_g": {
@@ -546,14 +592,14 @@
 							"lerp_mode": "catmullrom"
 						},
 						"0.0625": {
-							"post": [105.72632, -34.34098, -138.60621],
+							"post": [123.71, -32.47, -142.78],
 							"lerp_mode": "catmullrom"
 						},
-						"0.2292": {
+						"0.3125": {
 							"post": [157.51013, -27.45449, -142.07294],
 							"lerp_mode": "catmullrom"
 						},
-						"0.3958": [182.63462, -38.03008, -110.62116]
+						"0.4792": [182.63462, -38.03008, -110.62116]
 					},
 					"position": {
 						"0.0": {
@@ -561,14 +607,14 @@
 							"lerp_mode": "catmullrom"
 						},
 						"0.0625": {
-							"post": [10.5, -1, -19],
+							"post": [13.11, -0.48, -18.84],
 							"lerp_mode": "catmullrom"
 						},
-						"0.2292": {
+						"0.3125": {
 							"post": [15.5, -3, -18],
 							"lerp_mode": "catmullrom"
 						},
-						"0.3958": [16.5, -18.5, -16]
+						"0.4792": [16.5, -18.5, -16]
 					}
 				},
 				"fp_mainhand": {

@@ -23,6 +23,7 @@
 				"anim.fp.speed_slash_2": "animation.slasher.slasher.fp.speed_slash_2",
 				"anim.fp.charge_1": "animation.slasher.slasher.fp.charge_1",
 				"anim.fp.charge_2": "animation.slasher.slasher.fp.charge_2",
+				"anim.fp.charge_dash": "animation.slasher.slasher.fp.charge_dash",
 				"anim.fp.power_slash": "animation.slasher.slasher.fp.power_slash",
 
 				"anim.tp.general": "animation.slasher.slasher.tp.general"
@@ -48,6 +49,7 @@
 					"v.cd_speed_slash_2 = q.cooldown_time_remaining('slasher_speed_slash_2') > 0;",
 					"v.cd_charge = q.cooldown_time_remaining('slasher_charge') > 0;",
 					"v.cd_charge_cancel = q.cooldown_time_remaining('slasher_charge_cancel') > 0;",
+					"v.cd_charge_dash = q.cooldown_time_remaining('slasher_charge_dash') > 0;",
 					"v.cd_power_slash = q.cooldown_time_remaining('slasher_power_slash') > 0;",
 
 					// Blade cycle

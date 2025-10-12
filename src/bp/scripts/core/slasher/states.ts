@@ -1,5 +1,6 @@
 import * as mc from "@minecraft/server";
 import type { SlasherHandler } from "./handler";
+import { randf } from "@/lib/math_utils";
 
 export abstract class SlasherState {
 	private _currentTick = 0;
@@ -66,6 +67,11 @@ class SpeedSlashState extends SlasherState {
 			this.s.startItemCooldown("slasher_speed_slash_1", 0);
 			this.s.startItemCooldown("slasher_speed_slash_2", this.ticksUntilExit);
 		}
+
+		this.s.playSound({
+			soundId_3d: "slasher.speed_slash",
+			pitch: randf(0.96, 1.06),
+		});
 	}
 
 	override onTick(_currentItem: mc.ItemStack): void {

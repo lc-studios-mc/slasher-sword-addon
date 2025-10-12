@@ -5,6 +5,8 @@ import {
 	type ItemHookContext,
 } from "@/core/item_hook";
 import { IdleState, type SlasherState } from "./states";
+import { vec3 } from "gl-matrix";
+import { GlVector3 } from "@/lib/vec";
 
 registerItemHookProfile({
 	itemType: "slasher:slasher",
@@ -57,5 +59,32 @@ export class SlasherHandler extends ItemHookHandlerBase {
 
 	startItemCooldown(category: string, duration = 2): void {
 		this.player.startItemCooldown(category, duration);
+	}
+
+	getFaceFrontLocation(): GlVector3 {
+		const headLoc = GlVector3.fromObject(this.player.getHeadLocation());
+		const viewDir = GlVector3.fromObject(this.player.getViewDirection());
+		const faceFrontLoc = vec3.add(vec3.create(), headLoc.v, viewDir.v);
+		return new GlVector3(faceFrontLoc);
+	}
+
+	playSound(opts: mc.PlayerSoundOptions & { soundId_2d?: string; soundId_3d?: string }): void {
+		if (opts.soundId_2d !== undefined) {
+			this.player.playSound(opts.soundId_2d, opts);
+		}
+
+		if (opts.soundId_3d === undefined) return;
+
+		if (opts.soundId_2d === undefined) {
+			this.dimension.playSound(opts.soundId_3d, opts.location ?? this.getFaceFrontLocation());
+			return; // Only 3D sound ID is defined. Exit.
+		}
+
+		const playersInDim = this.dimension.getPlayers();
+
+		for (const player of playersInDim) {
+			if (player === this.player) continue;
+			player.playSound(opts.soundId_3d, opts);
+		}
 	}
 }

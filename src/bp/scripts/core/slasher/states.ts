@@ -122,7 +122,7 @@ class ChargeState extends SlasherState {
 	private ticksUntilNextChargeSoundLoop = 1;
 
 	override onEnter(): void {
-		this.s.startItemCooldown("slasher_charge");
+		this.s.startItemCooldown("slasher_charge", 4);
 	}
 
 	override onTick(_currentItem: mc.ItemStack): void {
@@ -162,6 +162,8 @@ class ChargeState extends SlasherState {
 	}
 
 	private releaseOrCancel(): void {
+		this.s.startItemCooldown("slasher_charge", 0);
+
 		if (this.ticksUntilCompleteCharge <= 0) {
 			this.s.player.onScreenDisplay.setActionBar("§c< X >");
 			this.s.changeState(new PowerSlashState(this.s));
@@ -170,7 +172,6 @@ class ChargeState extends SlasherState {
 
 		// On cancel
 		this.s.player.onScreenDisplay.setActionBar("§8---");
-		this.s.startItemCooldown("slasher_charge", 0);
 		this.s.changeState(new SpeedSlashState(this.s, 0)); // Player can spam speed slash by rapidly clicking RMB
 	}
 }

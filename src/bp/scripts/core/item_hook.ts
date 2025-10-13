@@ -49,10 +49,9 @@ const isItemHookValid = (itemHook: ItemHook, currentItem?: mc.ItemStack): boolea
 	const player = itemHook.ctx.player;
 	if (!player.isValid) return false;
 	if (itemHook.ctx.slotIndex !== player.selectedSlotIndex) return false;
-	if (currentItem) {
-		if (itemHook.ctx.itemStack.typeId !== currentItem.typeId) return false;
-		if (itemHook.ctx.itemStack.nameTag !== currentItem.nameTag) return false;
-	}
+	if (!currentItem) return false;
+	if (itemHook.ctx.itemStack.typeId !== currentItem.typeId) return false;
+	if (itemHook.ctx.itemStack.nameTag !== currentItem.nameTag) return false;
 	if (!itemHook.handler.isValid(currentItem)) return false;
 	return true;
 };

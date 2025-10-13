@@ -1,3 +1,4 @@
+import { calculateFinalDamage } from "@/lib/damage";
 import { calculateRelativeLocation, changeDir, GlVector3 } from "@/lib/vec";
 import * as mc from "@minecraft/server";
 import { vec3 } from "gl-matrix";
@@ -108,7 +109,13 @@ const onPowerSlashBeamHitEntity = (e: mc.ProjectileHitEntityAfterEvent): void =>
 
 	let damaged = false;
 	try {
-		damaged = hitEntity.applyDamage(info.settings.damage, {
+		const damage: number = calculateFinalDamage(
+			hitEntity,
+			info.settings.damage,
+			mc.EntityDamageCause.entityAttack,
+		);
+
+		damaged = hitEntity.applyDamage(damage, {
 			cause: mc.EntityDamageCause.override,
 			damagingEntity: info.source,
 		});

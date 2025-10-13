@@ -72,7 +72,7 @@ class SpeedSlashState extends SlasherState {
 
 		this.s.playSound({
 			soundId_3d: "slasher.speed_slash",
-			pitch: randf(0.96, 1.06),
+			pitch: randf(0.96, 1.1),
 		});
 	}
 
@@ -194,7 +194,12 @@ class PowerSlashState extends SlasherState {
 
 		this.s.startItemCooldown("slasher_charge_dash");
 
-		this.s.playSound({ soundId_3d: "slasher.dash", location: this.s.player.location, volume: 1.2 });
+		this.s.playSound({
+			soundId_3d: "slasher.dash",
+			location: this.s.player.location,
+			volume: 1.2,
+			pitch: randf(0.96, 1.04),
+		});
 
 		this.ticksUntilSlash = this.dashDuration;
 	}
@@ -237,6 +242,7 @@ class PowerSlashState extends SlasherState {
 			soundId_3d: "slasher.power_slash",
 			location: this.s.player.location,
 			volume: 1.4,
+			pitch: randf(0.95, 1.05),
 		});
 
 		shootPowerSlashBeam(this.s.player);

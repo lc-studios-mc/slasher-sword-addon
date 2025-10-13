@@ -76,7 +76,7 @@ export class SlasherHandler extends ItemHookHandlerBase {
 		if (opts.soundId_3d === undefined) return;
 
 		if (opts.soundId_2d === undefined) {
-			this.dimension.playSound(opts.soundId_3d, opts.location ?? this.getFaceFrontLocation());
+			this.dimension.playSound(opts.soundId_3d, opts.location ?? this.getFaceFrontLocation(), opts);
 			return; // Only 3D sound ID is defined. Exit.
 		}
 

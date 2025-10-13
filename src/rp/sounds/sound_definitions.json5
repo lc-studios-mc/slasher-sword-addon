@@ -81,6 +81,16 @@
 			],
 		},
 
+		"slasher.dash.2d": {
+			category: "music",
+			sounds: [
+				{
+					name: "sounds/slasher/dash",
+					volume: 0.9,
+				},
+			],
+		},
+
 		"slasher.hitmarker": {
 			category: "music",
 			sounds: [

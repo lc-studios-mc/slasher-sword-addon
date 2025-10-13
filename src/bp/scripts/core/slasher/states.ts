@@ -1,8 +1,10 @@
 import * as mc from "@minecraft/server";
 import type { SlasherHandler } from "./handler";
 import { randf } from "@/lib/math_utils";
-import { vec2 } from "gl-matrix";
+import { vec2, vec3 } from "gl-matrix";
 import { shootPowerSlashBeam } from "./beam";
+import { calculateRelativeLocation, GlVector3 } from "@/lib/vec";
+import { calculateFinalDamage } from "@/lib/damage";
 
 export abstract class SlasherState {
 	private _currentTick = 0;
@@ -201,6 +203,8 @@ class PowerSlashState extends SlasherState {
 			pitch: randf(0.96, 1.04),
 		});
 
+		this.s.shakeCamera(0.04, 0.04, "rotational");
+
 		this.ticksUntilSlash = this.dashDuration;
 	}
 
@@ -232,8 +236,54 @@ class PowerSlashState extends SlasherState {
 		return movementVector.y > 0.3 && Math.abs(movementVector.x) < 0.3;
 	}
 
+	private getSlashTargets(): Set<mc.Entity> {
+		const headLoc = GlVector3.fromObject(this.s.player.getHeadLocation());
+		const viewDir = GlVector3.fromObject(this.s.player.getViewDirection());
+
+		const locations: vec3[] = [
+			calculateRelativeLocation(vec3.create(), headLoc.v, viewDir.v, {
+				y: 0.4,
+				z: 1.2,
+			}),
+			calculateRelativeLocation(vec3.create(), headLoc.v, viewDir.v, {
+				y: -1,
+				z: 1.3,
+			}),
+			calculateRelativeLocation(vec3.create(), headLoc.v, viewDir.v, {
+				y: 0.1,
+				z: 1.5,
+			}),
+			calculateRelativeLocation(vec3.create(), headLoc.v, viewDir.v, {
+				y: 0.1,
+				z: 3.1,
+			}),
+		];
+
+		const targetCandidates = new Set<mc.Entity>();
+
+		for (const location of locations) {
+			const entities = this.s.dimension.getEntities({
+				location: new GlVector3(location),
+				closest: 30,
+				maxDistance: 2.5,
+				excludeTypes: ["minecraft:item", "minecraft:xp_orb"],
+			});
+
+			for (const entity of entities) {
+				if (entity === this.s.player) continue;
+				if (entity instanceof mc.Player && !mc.world.gameRules.pvp) continue;
+
+				targetCandidates.add(entity);
+			}
+		}
+
+		return targetCandidates;
+	}
+
 	private slash(): void {
 		this.ticksUntilSlash = -1;
+		this.ticksUntilAllowRecharge = this.slashDuration;
+		this.ticksUntilExit = this.slashDurationFull;
 
 		this.s.startItemCooldown("slasher_power_slash");
 
@@ -245,9 +295,49 @@ class PowerSlashState extends SlasherState {
 			pitch: randf(0.95, 1.05),
 		});
 
-		shootPowerSlashBeam(this.s.player);
+		this.s.shakeCamera(0.05, 0.08, "rotational");
 
-		this.ticksUntilAllowRecharge = this.slashDuration;
-		this.ticksUntilExit = this.slashDurationFull;
+		const targets = Array.from(this.getSlashTargets());
+
+		for (let i = 0; i < targets.length; i++) {
+			const target = targets[i]!;
+
+			mc.system.run(() => {
+				const damage = calculateFinalDamage(target, 14, mc.EntityDamageCause.entityAttack);
+				target.applyDamage(damage, {
+					cause: mc.EntityDamageCause.override,
+					damagingEntity: this.s.player,
+				});
+			});
+
+			if (i > 4) continue;
+
+			const headLoc = GlVector3.fromObject(this.s.player.getHeadLocation());
+			const effectLocVec: vec3 = vec3.create();
+			vec3.sub(
+				effectLocVec,
+				GlVector3.fromObject(target.location).v,
+				GlVector3.fromObject(headLoc).v,
+			);
+			vec3.normalize(effectLocVec, effectLocVec);
+			vec3.add(effectLocVec, effectLocVec, headLoc.v);
+			const effectLoc = new GlVector3(effectLocVec);
+
+			const tickDelay = 1 + i;
+
+			mc.system.runTimeout(() => {
+				this.s.playSound({
+					soundId_2d: "slasher.critical.2d",
+					soundId_3d: "slasher.critical",
+					location: effectLoc,
+					volume: 1.5,
+					pitch: randf(0.85, 1.1),
+				});
+
+				this.s.shakeCamera(0.05, 0.06, "rotational");
+			}, tickDelay);
+		}
+
+		shootPowerSlashBeam(this.s.player);
 	}
 }

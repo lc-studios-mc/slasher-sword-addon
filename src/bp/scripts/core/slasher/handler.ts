@@ -87,4 +87,10 @@ export class SlasherHandler extends ItemHookHandlerBase {
 			player.playSound(opts.soundId_3d, opts);
 		}
 	}
+
+	shakeCamera(intensity: number, seconds: number, shakeType: "rotational" | "positional") {
+		this.player.runCommand(
+			`camerashake add @s ${intensity.toFixed(2)} ${seconds.toFixed(2)} ${shakeType}`,
+		);
+	}
 }

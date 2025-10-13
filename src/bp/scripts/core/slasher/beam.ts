@@ -106,6 +106,8 @@ const onPowerSlashBeamHitEntity = (e: mc.ProjectileHitEntityAfterEvent): void =>
 	const hitEntity = e.getEntityHit().entity;
 	if (!hitEntity) return;
 	if (info.alreadyHitEntityIds.includes(hitEntity.id)) return;
+	if (hitEntity === info.source) return;
+	if (hitEntity instanceof mc.Player && !mc.world.gameRules.pvp) return;
 
 	let damaged = false;
 	try {

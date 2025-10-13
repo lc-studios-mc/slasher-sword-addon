@@ -139,3 +139,37 @@ export const changeDir = (out: vec3, vec: vec3, dir: vec3): vec3 => {
 
 	return out;
 };
+
+/**
+ * Generates an array of vec3 points that lie on a straight line segment
+ * between two endpoints, inclusive.
+ *
+ * @param start The starting vec3.
+ * @param end The ending vec3.
+ * @param count The total number of points to generate (must be >= 2).
+ * @returns An array of vec3 points forming the path.
+ */
+export const generateLinePoints = (start: vec3, end: vec3, count: number): vec3[] => {
+	if (count < 2) {
+		// Count must be at least 2. Defaulting to 2 points (start and end).
+		return [vec3.clone(start), vec3.clone(end)];
+	}
+
+	const points: vec3[] = [];
+	// Calculate segment count.
+	const segmentCount = count - 1;
+
+	for (let i = 0; i < count; i++) {
+		const t = i / segmentCount;
+
+		// Use a new vector for each point.
+		const currentPoint = vec3.create();
+
+		// Interpolate using gl-matrix vec3.lerp.
+		vec3.lerp(currentPoint, start, end, t);
+
+		points.push(currentPoint);
+	}
+
+	return points;
+};

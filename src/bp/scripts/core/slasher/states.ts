@@ -3,7 +3,7 @@ import type { SlasherHandler } from "./handler";
 import { randf } from "@/lib/math_utils";
 import { vec2, vec3 } from "gl-matrix";
 import { shootPowerSlashBeam } from "./beam";
-import { calculateRelativeLocation, GlVector3 } from "@/lib/vec";
+import { calculateRelativeLocation, changeDir, generateLinePoints, GlVector3 } from "@/lib/vec";
 import { calculateFinalDamage } from "@/lib/damage";
 
 export abstract class SlasherState {
@@ -180,13 +180,14 @@ class ChargeState extends SlasherState {
 }
 
 class PowerSlashState extends SlasherState {
-	private readonly dashDuration = 3;
 	private readonly slashDuration = 6;
 	private readonly slashDurationFull = 12;
 
-	private ticksUntilSlash = -1;
+	private ticksDashFinish = -1;
 	private ticksUntilAllowRecharge = -1;
 	private ticksUntilExit = -1;
+
+	private headLocationPreDashFinish?: GlVector3;
 
 	override onEnter(): void {
 		if (!this.testDashInput()) {
@@ -194,24 +195,33 @@ class PowerSlashState extends SlasherState {
 			return;
 		}
 
+		// Dash
+
 		this.s.startItemCooldown("slasher_charge_dash");
 
 		this.s.playSound({
+			soundId_2d: "slasher.dash.2d",
 			soundId_3d: "slasher.dash",
 			location: this.s.player.location,
-			volume: 1.2,
+			volume: 1.5,
 			pitch: randf(0.96, 1.04),
 		});
 
 		this.s.shakeCamera(0.04, 0.04, "rotational");
 
-		this.ticksUntilSlash = this.dashDuration;
+		this.ticksDashFinish = this.s.player.isOnGround ? 2 : 3;
+
+		const dashImpulse = this.createDashImpulseVector();
+		this.s.player.applyImpulse(dashImpulse);
 	}
 
 	override onTick(_currentItem: mc.ItemStack): void {
-		if (this.ticksUntilSlash > 0) {
-			this.ticksUntilSlash--;
-		} else if (this.ticksUntilSlash === 0) {
+		if (this.ticksDashFinish > 0) {
+			if (this.ticksDashFinish === 1) {
+				this.headLocationPreDashFinish = GlVector3.fromObject(this.s.player.getHeadLocation());
+			}
+			this.ticksDashFinish--;
+		} else if (this.ticksDashFinish === 0) {
 			this.slash();
 		}
 
@@ -234,6 +244,24 @@ class PowerSlashState extends SlasherState {
 	private testDashInput(): boolean {
 		const movementVector = this.s.player.inputInfo.getMovementVector();
 		return movementVector.y > 0.3 && Math.abs(movementVector.x) < 0.3;
+	}
+
+	private createDashImpulseVector(): GlVector3 {
+		const viewDir = GlVector3.fromObject(this.s.player.getViewDirection());
+		const impulse = vec3.fromValues(0, 0, 1);
+
+		changeDir(impulse, impulse, viewDir.v);
+
+		if (this.s.player.isOnGround) {
+			// Kill vertical force when on ground
+			vec3.mul(impulse, impulse, vec3.fromValues(1, 0, 1));
+			vec3.normalize(impulse, impulse);
+		}
+
+		const impulseScalar = this.s.player.isOnGround ? 7 : 2.5;
+		vec3.scale(impulse, impulse, impulseScalar);
+
+		return new GlVector3(impulse);
 	}
 
 	private getSlashTargets(): Set<mc.Entity> {
@@ -259,6 +287,16 @@ class PowerSlashState extends SlasherState {
 			}),
 		];
 
+		const isFastEnoughForSupport =
+			vec3.len(GlVector3.fromObject(this.s.player.getVelocity()).v) > 0.8;
+
+		if (isFastEnoughForSupport && this.headLocationPreDashFinish) {
+			const start = this.headLocationPreDashFinish;
+			const end = GlVector3.fromObject(this.s.player.getHeadLocation());
+			const linePoints = generateLinePoints(start.v, end.v, 3);
+			locations.push(...linePoints);
+		}
+
 		const targetCandidates = new Set<mc.Entity>();
 
 		for (const location of locations) {
@@ -281,7 +319,7 @@ class PowerSlashState extends SlasherState {
 	}
 
 	private slash(): void {
-		this.ticksUntilSlash = -1;
+		this.ticksDashFinish = -1;
 		this.ticksUntilAllowRecharge = this.slashDuration;
 		this.ticksUntilExit = this.slashDurationFull;
 

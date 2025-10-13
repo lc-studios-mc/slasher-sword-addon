@@ -1,10 +1,11 @@
-import * as mc from "@minecraft/server";
-import type { SlasherHandler } from "./handler";
-import { randf } from "@/lib/math_utils";
-import { vec2, vec3 } from "gl-matrix";
-import { shootPowerSlashBeam } from "./beam";
-import { calculateRelativeLocation, changeDir, generateLinePoints, GlVector3 } from "@/lib/vec";
 import { calculateFinalDamage } from "@/lib/damage";
+import { isVisibleTo } from "@/lib/entity_utils";
+import { randf } from "@/lib/math_utils";
+import { calculateRelativeLocation, changeDir, generateLinePoints, GlVector3 } from "@/lib/vec";
+import * as mc from "@minecraft/server";
+import { vec3 } from "gl-matrix";
+import { shootPowerSlashBeam } from "./beam";
+import type { SlasherHandler } from "./handler";
 
 export abstract class SlasherState {
 	private _currentTick = 0;
@@ -264,7 +265,7 @@ class PowerSlashState extends SlasherState {
 		return new GlVector3(impulse);
 	}
 
-	private getSlashTargets(): Set<mc.Entity> {
+	private getSlashTargets(): mc.Entity[] {
 		const headLoc = GlVector3.fromObject(this.s.player.getHeadLocation());
 		const viewDir = GlVector3.fromObject(this.s.player.getViewDirection());
 
@@ -297,7 +298,7 @@ class PowerSlashState extends SlasherState {
 			locations.push(...linePoints);
 		}
 
-		const targetCandidates = new Set<mc.Entity>();
+		const targetCandidates: mc.Entity[] = [];
 
 		for (const location of locations) {
 			const entities = this.s.dimension.getEntities({
@@ -310,8 +311,12 @@ class PowerSlashState extends SlasherState {
 			for (const entity of entities) {
 				if (entity === this.s.player) continue;
 				if (entity instanceof mc.Player && !mc.world.gameRules.pvp) continue;
+				if (targetCandidates.includes(entity)) continue;
 
-				targetCandidates.add(entity);
+				// Make sure there are no blocks between the player and this entity.
+				if (!isVisibleTo(this.s.player, entity)) continue;
+
+				targetCandidates.push(entity);
 			}
 		}
 

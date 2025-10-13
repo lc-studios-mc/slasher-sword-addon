@@ -54,7 +54,17 @@
 			sounds: [
 				{
 					name: "sounds/slasher/critical",
-					volume: 0.88,
+					volume: 0.9,
+				},
+			],
+		},
+
+		"slasher.critical.2d": {
+			category: "music",
+			sounds: [
+				{
+					name: "sounds/slasher/critical",
+					volume: 0.95,
 				},
 			],
 		},

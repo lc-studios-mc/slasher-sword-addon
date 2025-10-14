@@ -42,7 +42,7 @@
 
 		"components": {
 			"minecraft:type_family": {
-				"family": ["projectile", "slasher_beam"]
+				"family": ["projectile", "slasher_beam", "ignore_slasher_attack"]
 			},
 			"minecraft:projectile": {
 				"on_hit": {

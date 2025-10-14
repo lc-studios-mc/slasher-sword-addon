@@ -294,7 +294,8 @@ class PowerSlashState extends SlasherState {
 		if (isFastEnoughForSupport && this.headLocationPreDashFinish) {
 			const start = this.headLocationPreDashFinish;
 			const end = GlVector3.fromObject(this.s.player.getHeadLocation());
-			const linePoints = generateLinePoints(start.v, end.v, 3);
+			const count = Math.max(4, Math.round(vec3.dist(start.v, end.v)));
+			const linePoints = generateLinePoints(start.v, end.v, count);
 			locations.push(...linePoints);
 		}
 

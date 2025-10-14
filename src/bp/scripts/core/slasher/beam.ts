@@ -92,6 +92,12 @@ mc.world.afterEvents.dataDrivenEntityTrigger.subscribe(
 );
 
 const onPowerSlashBeamHitBlock = (e: mc.ProjectileHitBlockAfterEvent): void => {
+	try {
+		if (!e.getBlockHit().block.isValid) return;
+	} catch {
+		return;
+	}
+
 	const info = BEAM_INFO_BY_ENTITY.get(e.projectile);
 	if (!info) return;
 

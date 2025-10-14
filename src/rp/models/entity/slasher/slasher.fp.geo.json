@@ -22,8 +22,13 @@
 					"pivot": [0, 24, 0]
 				},
 				{
-					"name": "fp_mainhand_g",
+					"name": "fp_arms_sub",
 					"parent": "fp_arms",
+					"pivot": [0, 24, 0]
+				},
+				{
+					"name": "fp_mainhand_g",
+					"parent": "fp_arms_sub",
 					"pivot": [-5, 26, 0]
 				},
 				{
@@ -877,7 +882,7 @@
 				},
 				{
 					"name": "fp_offhand_g",
-					"parent": "fp_arms",
+					"parent": "fp_arms_sub",
 					"pivot": [5, 26, 0]
 				},
 				{

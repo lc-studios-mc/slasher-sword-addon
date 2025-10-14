@@ -12,7 +12,7 @@
 						{ "speed_slash_2": "v.cd_speed_slash_2" },
 						{ "charge_1": "v.cd_charge" },
 						{ "charge_dash": "v.cd_charge_dash" },
-						{ "power_slash": "v.cd_power_slash" }
+						{ "power_slash_start": "v.cd_power_slash_start" }
 					]
 				},
 
@@ -24,7 +24,7 @@
 						{ "speed_slash_2": "v.cd_speed_slash_2" },
 						{ "charge_1": "v.cd_charge" },
 						{ "charge_dash": "v.cd_charge_dash" },
-						{ "power_slash": "v.cd_power_slash" }
+						{ "power_slash_start": "v.cd_power_slash_start" }
 					],
 					"blend_transition": 0.08
 				},
@@ -54,7 +54,7 @@
 						{ "speed_slash_1": "v.cd_speed_slash_1" },
 						{ "speed_slash_2": "v.cd_speed_slash_2" },
 						{ "charge_dash": "v.cd_charge_dash" },
-						{ "power_slash": "v.cd_power_slash" }
+						{ "power_slash_start": "v.cd_power_slash_start" }
 					]
 				},
 
@@ -65,7 +65,7 @@
 						{ "speed_slash_1": "v.cd_speed_slash_1" },
 						{ "speed_slash_2": "v.cd_speed_slash_2" },
 						{ "charge_dash": "v.cd_charge_dash" },
-						{ "power_slash": "v.cd_power_slash" }
+						{ "power_slash_start": "v.cd_power_slash_start" }
 					]
 				},
 
@@ -73,14 +73,44 @@
 					"animations": ["anim.fp.charge_dash"],
 					"transitions": [
 						{ "pick": "v.cd_charge_cancel || v.cd_pick" },
-						{ "power_slash": "v.cd_power_slash" }
+						{ "power_slash_start": "v.cd_power_slash_start" }
 					]
 				},
 
-				"power_slash": {
-					"animations": ["anim.fp.power_slash"],
+				"power_slash_start": {
+					"animations": ["anim.fp.power_slash_start"],
+					"transitions": [
+						{ "pick": "v.cd_pick" },
+						{ "power_slash_finish": "v.cd_power_slash_finish" },
+						{ "sawing_loop": "v.cd_sawing_start" },
+						{ "sawing_release": "v.cd_sawing_release" }
+					],
+					"blend_transition": 0.05
+				},
+
+				"power_slash_finish": {
+					"animations": ["anim.fp.power_slash_finish"],
 					"transitions": [{ "pick": "v.cd_pick" }, { "charge_2": "v.cd_charge" }],
-					"blend_transition": 0.08
+					"blend_transition": 0.05
+				},
+
+				"sawing_loop": {
+					"animations": ["anim.fp.sawing_loop"],
+					"transitions": [
+						{ "pick": "v.cd_pick" },
+						{ "power_slash_finish": "v.cd_power_slash_finish" },
+						{ "sawing_release": "v.cd_sawing_release" }
+					],
+					"blend_transition": 0.11
+				},
+
+				"sawing_release": {
+					"animations": ["anim.fp.sawing_release"],
+					"transitions": [
+						{ "pick": "v.cd_pick" },
+						{ "power_slash_finish": "v.cd_power_slash_finish" }
+					],
+					"blend_transition": 0.11
 				}
 			}
 		}

@@ -249,7 +249,7 @@ class PowerSlashState extends SlasherState {
 			vec3.normalize(impulse, impulse);
 		}
 
-		const impulseScalar = this.s.player.isOnGround ? 5 : 2.33;
+		const impulseScalar = this.s.player.isOnGround ? 5 : this.s.player.isGliding ? 1.7 : 2.33;
 		vec3.scale(impulse, impulse, impulseScalar);
 
 		return new GlVector3(impulse);

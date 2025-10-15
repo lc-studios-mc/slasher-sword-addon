@@ -68,6 +68,12 @@ export class SlasherHandler extends ItemHookHandlerBase {
 		return new GlVector3(faceFrontLoc);
 	}
 
+	getBodyLocation(): GlVector3 {
+		const location = GlVector3.fromObject(this.player.location);
+		vec3.add(location.v, location.v, vec3.fromValues(0, 1, 0));
+		return location;
+	}
+
 	playSound(opts: mc.PlayerSoundOptions & { soundId_2d?: string; soundId_3d?: string }): void {
 		if (opts.soundId_2d !== undefined) {
 			this.player.playSound(opts.soundId_2d, opts);

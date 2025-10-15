@@ -184,48 +184,23 @@ class PowerSlashState extends SlasherState {
 	private readonly slashDuration = 6;
 	private readonly slashDurationFull = 12;
 
-	private ticksDashFinish = -1;
+	private ticksUntilDashFinish = -1;
+	private attackActionBranchingNextTick = false;
 	private ticksUntilAllowRecharge = -1;
 	private ticksUntilExit = -1;
 
-	private headLocationPreDashFinish?: GlVector3;
+	private bodyLocationPreDashFinish?: GlVector3;
 
 	override onEnter(): void {
 		if (!this.testDashInput()) {
-			this.slash();
+			this.slashStart();
 			return;
 		}
 
-		// Dash
-
-		this.s.startItemCooldown("slasher_charge_dash");
-
-		this.s.playSound({
-			soundId_2d: "slasher.dash.2d",
-			soundId_3d: "slasher.dash",
-			location: this.s.player.location,
-			volume: 1.5,
-			pitch: randf(0.96, 1.04),
-		});
-
-		this.s.shakeCamera(0.04, 0.04, "rotational");
-
-		this.ticksDashFinish = this.s.player.isOnGround ? 2 : 3;
-
-		const dashImpulse = this.createDashImpulseVector();
-		this.s.player.applyImpulse(dashImpulse);
+		this.dash();
 	}
 
 	override onTick(_currentItem: mc.ItemStack): void {
-		if (this.ticksDashFinish > 0) {
-			if (this.ticksDashFinish === 1) {
-				this.headLocationPreDashFinish = GlVector3.fromObject(this.s.player.getHeadLocation());
-			}
-			this.ticksDashFinish--;
-		} else if (this.ticksDashFinish === 0) {
-			this.slash();
-		}
-
 		if (this.ticksUntilExit > 0) {
 			this.ticksUntilExit--;
 		} else if (this.ticksUntilExit === 0) {
@@ -233,6 +208,21 @@ class PowerSlashState extends SlasherState {
 
 			this.s.startItemCooldown("slasher_pick");
 			this.s.changeState(new IdleState(this.s));
+		}
+
+		if (this.ticksUntilDashFinish > 0) {
+			if (this.ticksUntilDashFinish === 1) {
+				this.bodyLocationPreDashFinish = this.s.getBodyLocation();
+			}
+			this.ticksUntilDashFinish--;
+		} else if (this.ticksUntilDashFinish === 0) {
+			this.ticksUntilDashFinish = -1;
+			this.slashStart();
+		}
+
+		if (this.attackActionBranchingNextTick) {
+			this.attackActionBranchingNextTick = false;
+			this.attackActionBranching();
 		}
 
 		if (this.ticksUntilAllowRecharge > 0) {
@@ -259,10 +249,29 @@ class PowerSlashState extends SlasherState {
 			vec3.normalize(impulse, impulse);
 		}
 
-		const impulseScalar = this.s.player.isOnGround ? 7 : 2.5;
+		const impulseScalar = this.s.player.isOnGround ? 5 : 2.33;
 		vec3.scale(impulse, impulse, impulseScalar);
 
 		return new GlVector3(impulse);
+	}
+
+	private dash(): void {
+		this.s.startItemCooldown("slasher_charge_dash");
+
+		this.s.playSound({
+			soundId_2d: "slasher.dash.2d",
+			soundId_3d: "slasher.dash",
+			location: this.s.player.location,
+			volume: 1.5,
+			pitch: randf(0.96, 1.04),
+		});
+
+		this.s.shakeCamera(0.04, 0.04, "rotational");
+
+		this.ticksUntilDashFinish = this.s.player.isOnGround ? 2 : 3;
+
+		const dashImpulse = this.createDashImpulseVector();
+		this.s.player.applyImpulse(dashImpulse);
 	}
 
 	private getSlashTargets(): mc.Entity[] {
@@ -286,15 +295,19 @@ class PowerSlashState extends SlasherState {
 				y: 0.1,
 				z: 3.1,
 			}),
+			calculateRelativeLocation(vec3.create(), headLoc.v, viewDir.v, {
+				y: -1,
+				z: 2.9,
+			}),
 		];
 
 		const isFastEnoughForSupport =
 			vec3.len(GlVector3.fromObject(this.s.player.getVelocity()).v) > 0.8;
 
-		if (isFastEnoughForSupport && this.headLocationPreDashFinish) {
-			const start = this.headLocationPreDashFinish;
-			const end = GlVector3.fromObject(this.s.player.getHeadLocation());
-			const count = Math.max(4, Math.round(vec3.dist(start.v, end.v)));
+		if (isFastEnoughForSupport && this.bodyLocationPreDashFinish) {
+			const start = this.bodyLocationPreDashFinish;
+			const end = GlVector3.fromObject(this.s.getBodyLocation());
+			const count = Math.max(4, Math.round(vec3.dist(start.v, end.v) * 1.5));
 			const linePoints = generateLinePoints(start.v, end.v, count);
 			locations.push(...linePoints);
 		}
@@ -307,6 +320,7 @@ class PowerSlashState extends SlasherState {
 				closest: 30,
 				maxDistance: 2.5,
 				excludeTypes: ["minecraft:item", "minecraft:xp_orb"],
+				excludeFamilies: ["ignore_slasher_attack"],
 			});
 
 			for (const entity of entities) {
@@ -324,24 +338,40 @@ class PowerSlashState extends SlasherState {
 		return targetCandidates;
 	}
 
-	private slash(): void {
-		this.ticksDashFinish = -1;
-		this.ticksUntilAllowRecharge = this.slashDuration;
-		this.ticksUntilExit = this.slashDurationFull;
+	private slashStart(): void {
+		this.attackActionBranchingNextTick = true;
 
-		this.s.startItemCooldown("slasher_power_slash");
+		this.s.startItemCooldown("slasher_power_slash_start");
 
 		this.s.playSound({
 			soundId_2d: "slasher.power_slash.2d",
 			soundId_3d: "slasher.power_slash",
 			location: this.s.player.location,
-			volume: 1.4,
+			volume: 1.5,
 			pitch: randf(0.95, 1.05),
 		});
 
 		this.s.shakeCamera(0.05, 0.08, "rotational");
+	}
 
+	private attackActionBranching(): void {
 		const targets = Array.from(this.getSlashTargets());
+
+		const shouldStartSawing = false; // TODO
+
+		if (shouldStartSawing) {
+			this.s.changeState(new SawingState(this.s, targets));
+			return;
+		}
+
+		this.powerSlash(targets);
+	}
+
+	private powerSlash(targets: mc.Entity[]): void {
+		this.s.startItemCooldown("slasher_power_slash_finish");
+
+		this.ticksUntilAllowRecharge = this.slashDuration;
+		this.ticksUntilExit = this.slashDurationFull;
 
 		for (let i = 0; i < targets.length; i++) {
 			const target = targets[i]!;
@@ -367,7 +397,7 @@ class PowerSlashState extends SlasherState {
 			vec3.add(effectLocVec, effectLocVec, headLoc.v);
 			const effectLoc = new GlVector3(effectLocVec);
 
-			const tickDelay = 1 + i;
+			const tickDelay = i;
 
 			mc.system.runTimeout(() => {
 				this.s.playSound({
@@ -384,4 +414,15 @@ class PowerSlashState extends SlasherState {
 
 		shootPowerSlashBeam(this.s.player);
 	}
+}
+
+class SawingState extends SlasherState {
+	constructor(
+		s: SlasherHandler,
+		readonly targets: mc.Entity[],
+	) {
+		super(s);
+	}
+
+	// TODO
 }

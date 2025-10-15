@@ -108,7 +108,8 @@
 					"animations": ["anim.fp.sawing_release"],
 					"transitions": [
 						{ "pick": "v.cd_pick" },
-						{ "power_slash_finish": "v.cd_power_slash_finish" }
+						{ "power_slash_finish": "v.cd_power_slash_finish" },
+						{ "sawing_loop": "q.all_animations_finished" }
 					],
 					"blend_transition": 0.11
 				}

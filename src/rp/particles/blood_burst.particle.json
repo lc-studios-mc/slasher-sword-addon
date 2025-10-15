@@ -58,7 +58,8 @@
 						"1.0": "#00FFFFFF"
 					}
 				}
-			}
+			},
+			"minecraft:particle_appearance_lighting": {}
 		}
 	}
 }

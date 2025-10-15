@@ -20,7 +20,7 @@
 			sounds: [
 				{
 					name: "sounds/slasher/chainsaw_finish",
-					volume: 1.0,
+					volume: 0.86,
 				},
 			],
 		},
@@ -30,7 +30,29 @@
 			sounds: [
 				{
 					name: "sounds/slasher/chainsaw_finish",
-					volume: 1.0,
+					volume: 0.86,
+				},
+			],
+		},
+
+		"slasher.chainsaw_loop": {
+			category: "hostile",
+			max_distance: 15.0,
+			min_distance: null,
+			sounds: [
+				{
+					name: "sounds/slasher/chainsaw_loop",
+					volume: 0.86,
+				},
+			],
+		},
+
+		"slasher.chainsaw_loop.2d": {
+			category: "music",
+			sounds: [
+				{
+					name: "sounds/slasher/chainsaw_loop",
+					volume: 0.86,
 				},
 			],
 		},
@@ -42,7 +64,7 @@
 			sounds: [
 				{
 					name: "sounds/slasher/charge_loop",
-					volume: 1.0,
+					volume: 0.7,
 				},
 			],
 		},
@@ -54,7 +76,7 @@
 			sounds: [
 				{
 					name: "sounds/slasher/critical",
-					volume: 0.9,
+					volume: 0.8,
 				},
 			],
 		},
@@ -64,7 +86,7 @@
 			sounds: [
 				{
 					name: "sounds/slasher/critical",
-					volume: 0.95,
+					volume: 1.0,
 				},
 			],
 		},
@@ -108,7 +130,7 @@
 			sounds: [
 				{
 					name: "sounds/slasher/plunge_impact",
-					volume: 1.0,
+					volume: 0.9,
 				},
 			],
 		},
@@ -120,7 +142,7 @@
 			sounds: [
 				{
 					name: "sounds/slasher/plunge_windup",
-					volume: 0.9,
+					volume: 0.8,
 				},
 			],
 		},
@@ -132,7 +154,7 @@
 			sounds: [
 				{
 					name: "sounds/slasher/power_slash",
-					volume: 1.0,
+					volume: 0.8,
 				},
 			],
 		},
@@ -142,7 +164,7 @@
 			sounds: [
 				{
 					name: "sounds/slasher/power_slash",
-					volume: 1.0,
+					volume: 0.7,
 				},
 			],
 		},
@@ -154,7 +176,7 @@
 			sounds: [
 				{
 					name: "sounds/slasher/speed_slash",
-					volume: 0.9,
+					volume: 0.7,
 				},
 			],
 		},
@@ -166,7 +188,7 @@
 			sounds: [
 				{
 					name: "sounds/slasher/storm_slash_impact",
-					volume: 1.0,
+					volume: 0.9,
 				},
 			],
 		},

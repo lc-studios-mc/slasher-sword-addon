@@ -376,39 +376,52 @@ class PowerSlashState extends SlasherState {
 		for (let i = 0; i < targets.length; i++) {
 			const target = targets[i]!;
 
+			const targetEffectLoc = new GlVector3();
+			vec3.add(
+				targetEffectLoc.v,
+				GlVector3.fromObject(target.getHeadLocation()).v,
+				GlVector3.fromObject(target.location).v,
+			);
+			vec3.scale(targetEffectLoc.v, targetEffectLoc.v, 0.5);
+			vec3.add(targetEffectLoc.v, targetEffectLoc.v, vec3.fromValues(0, 0.35, 0));
+
 			mc.system.run(() => {
-				const damage = calculateFinalDamage(target, 14, mc.EntityDamageCause.entityAttack);
-				target.applyDamage(damage, {
-					cause: mc.EntityDamageCause.override,
-					damagingEntity: this.s.player,
-				});
+				try {
+					const damage = calculateFinalDamage(target, 14, mc.EntityDamageCause.entityAttack);
+					target.applyDamage(damage, {
+						cause: mc.EntityDamageCause.override,
+						damagingEntity: this.s.player,
+					});
+
+					this.s.dimension.spawnParticle("slasher:blood_burst_emitter", targetEffectLoc);
+				} catch {}
 			});
 
 			if (i > 4) continue;
 
-			const headLoc = GlVector3.fromObject(this.s.player.getHeadLocation());
-			const effectLocVec: vec3 = vec3.create();
-			vec3.sub(
-				effectLocVec,
-				GlVector3.fromObject(target.location).v,
-				GlVector3.fromObject(headLoc).v,
-			);
-			vec3.normalize(effectLocVec, effectLocVec);
-			vec3.add(effectLocVec, effectLocVec, headLoc.v);
-			const effectLoc = new GlVector3(effectLocVec);
+			const playerHeadLoc = GlVector3.fromObject(this.s.player.getHeadLocation());
+
+			const dirToTarget = vec3.create();
+			vec3.sub(dirToTarget, targetEffectLoc.v, playerHeadLoc.v);
+			vec3.normalize(dirToTarget, dirToTarget);
+
+			const midEffectLoc = new GlVector3();
+			vec3.add(midEffectLoc.v, playerHeadLoc.v, dirToTarget);
 
 			const tickDelay = i;
 
 			mc.system.runTimeout(() => {
+				this.s.shakeCamera(0.05, 0.06, "rotational");
+
 				this.s.playSound({
 					soundId_2d: "slasher.critical.2d",
 					soundId_3d: "slasher.critical",
-					location: effectLoc,
+					location: midEffectLoc,
 					volume: 1.5,
 					pitch: randf(0.85, 1.1),
 				});
 
-				this.s.shakeCamera(0.05, 0.06, "rotational");
+				this.s.dimension.spawnParticle("slasher:sparkle_particle", midEffectLoc);
 			}, tickDelay);
 		}
 

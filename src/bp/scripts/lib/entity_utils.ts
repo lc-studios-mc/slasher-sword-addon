@@ -57,3 +57,17 @@ export const isVisibleTo = (viewer: mc.Entity, target: mc.Entity): boolean => {
 
 	return false;
 };
+
+export const getEntityBodyLocation = (entity: mc.Entity): GlVector3 => {
+	const location = new GlVector3();
+
+	vec3.add(
+		location.v,
+		GlVector3.fromObject(entity.getHeadLocation()).v,
+		GlVector3.fromObject(entity.location).v,
+	);
+	vec3.scale(location.v, location.v, 0.5);
+	vec3.add(location.v, location.v, vec3.fromValues(0, 0.29, 0));
+
+	return location;
+};

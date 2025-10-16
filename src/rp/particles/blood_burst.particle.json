@@ -5,7 +5,7 @@
 			"identifier": "slasher:blood_burst_emitter",
 			"basic_render_parameters": {
 				"material": "particles_blend",
-				"texture": "textures/slasher/particles/blood_burst"
+				"texture": "textures/slasher/particles/blood_small"
 			}
 		},
 		"components": {

@@ -141,6 +141,29 @@ export class SawingState extends SlasherStateBase {
 		}
 	}
 
+	private exit(): void {
+		this.tryUnstuckPlayer();
+
+		this.s.playSound({
+			soundId_2d: "slasher.power_slash.2d",
+			soundId_3d: "slasher.power_slash",
+			location: this.s.player.location,
+			volume: 1.5,
+			pitch: randf(0.95, 1.05),
+		});
+
+		this.s.playSound({
+			soundId_2d: "slasher.chainsaw_finish.2d",
+			soundId_3d: "slasher.chainsaw_finish",
+			location: this.s.player.location,
+			volume: 1.5,
+		});
+
+		this.s.startItemCooldown("slasher_sawing_start", 0);
+		this.s.startItemCooldown("slasher_sawing_finish", 0);
+		this.s.changeState(new this.s.stateClasses.PowerSlashFinish(this.s, this.targets));
+	}
+
 	private createLockonContext(): SawingLockonContext {
 		const mainTarget = this.targets[0];
 
@@ -188,24 +211,18 @@ export class SawingState extends SlasherStateBase {
 		});
 	}
 
-	private exit(): void {
-		this.s.playSound({
-			soundId_2d: "slasher.power_slash.2d",
-			soundId_3d: "slasher.power_slash",
-			location: this.s.player.location,
-			volume: 1.5,
-			pitch: randf(0.95, 1.05),
-		});
+	private tryUnstuckPlayer(): void {
+		const clippingBlock = this.s.dimension.getBlock(this.s.player.location);
+		if (!clippingBlock) return;
+		if (clippingBlock.isAir) return;
+		if (clippingBlock.isLiquid) return;
 
-		this.s.playSound({
-			soundId_2d: "slasher.chainsaw_finish.2d",
-			soundId_3d: "slasher.chainsaw_finish",
-			location: this.s.player.location,
-			volume: 1.5,
-		});
+		const aboveClipped = clippingBlock.above();
+		if (!aboveClipped) return;
+		if (!aboveClipped.isAir && !aboveClipped.isLiquid) return;
 
-		this.s.startItemCooldown("slasher_sawing_start", 0);
-		this.s.startItemCooldown("slasher_sawing_finish", 0);
-		this.s.changeState(new this.s.stateClasses.PowerSlashFinish(this.s, this.targets));
+		this.s.player.tryTeleport(aboveClipped.bottomCenter(), {
+			checkForBlocks: true,
+		});
 	}
 }

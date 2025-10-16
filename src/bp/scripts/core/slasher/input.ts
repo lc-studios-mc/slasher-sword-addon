@@ -6,7 +6,8 @@ export const testDashInput = (player: mc.Player): boolean => {
 };
 
 export const testSawingInput = (player: mc.Player): boolean => {
-	if (player.inputInfo.lastInputModeUsed === mc.InputMode.Touch) {
+	const inputMode = player.inputInfo.lastInputModeUsed;
+	if (inputMode !== mc.InputMode.KeyboardAndMouse) {
 		return player.isSneaking;
 	}
 	return player.inputInfo.getButtonState(mc.InputButton.Sneak) === mc.ButtonState.Pressed;

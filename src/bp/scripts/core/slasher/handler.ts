@@ -1,12 +1,18 @@
-import * as mc from "@minecraft/server";
 import {
 	ItemHookHandlerBase,
 	registerItemHookProfile,
 	type ItemHookContext,
 } from "@/core/item_hook";
-import { IdleState, type SlasherState } from "./states";
-import { vec3 } from "gl-matrix";
 import { GlVector3 } from "@/lib/vec";
+import * as mc from "@minecraft/server";
+import { vec3 } from "gl-matrix";
+import type { SlasherStateBase } from "./states/base";
+import { ChargeState } from "./states/charge";
+import { IdleState } from "./states/idle";
+import { PowerSlashFinishState } from "./states/power_slash_finish";
+import { PowerSlashInitState } from "./states/power_slash_init";
+import { SawingState } from "./states/sawing";
+import { SpeedSlashState } from "./states/speed_slash";
 
 registerItemHookProfile({
 	itemType: "slasher:slasher",
@@ -14,13 +20,22 @@ registerItemHookProfile({
 });
 
 export class SlasherHandler extends ItemHookHandlerBase {
-	private _state: SlasherState;
+	readonly stateClasses = {
+		Idle: IdleState,
+		SpeedSlash: SpeedSlashState,
+		Charge: ChargeState,
+		PowerSlashInit: PowerSlashInitState,
+		PowerSlashFinish: PowerSlashFinishState,
+		Sawing: SawingState,
+	} as const;
+
+	private currentState: SlasherStateBase;
 
 	constructor(ctx: ItemHookContext) {
 		super(ctx);
 
-		this._state = new IdleState(this);
-		this._state.onEnter();
+		this.currentState = new this.stateClasses.Idle(this);
+		this.currentState.onEnter();
 	}
 
 	override onCreate(): void {
@@ -28,33 +43,33 @@ export class SlasherHandler extends ItemHookHandlerBase {
 	}
 
 	override onTick(currentItem: mc.ItemStack): void {
-		this._state.tick(currentItem);
+		this.currentState.tick(currentItem);
 	}
 
 	override canUse(event: mc.ItemStartUseAfterEvent): boolean {
-		return this._state.canUse(event);
+		return this.currentState.canUse(event);
 	}
 
 	override onStartUse(event: mc.ItemStartUseAfterEvent): void {
-		this._state.onStartUse(event);
+		this.currentState.onStartUse(event);
 	}
 
 	override onStopUse(event: mc.ItemStopUseAfterEvent): void {
-		this._state.onStopUse(event);
+		this.currentState.onStopUse(event);
 	}
 
 	override onHitBlock(event: mc.EntityHitBlockAfterEvent): void {
-		this._state.onHitBlock(event);
+		this.currentState.onHitBlock(event);
 	}
 
 	override onHitEntity(event: mc.EntityHitEntityAfterEvent): void {
-		this._state.onHitEntity(event);
+		this.currentState.onHitEntity(event);
 	}
 
-	changeState(newState: SlasherState): void {
-		this._state?.onExit();
-		this._state = newState;
-		this._state.onEnter();
+	changeState(newState: SlasherStateBase): void {
+		this.currentState?.onExit();
+		this.currentState = newState;
+		this.currentState.onEnter();
 	}
 
 	startItemCooldown(category: string, duration = 2): void {

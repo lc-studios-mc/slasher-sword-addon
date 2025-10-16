@@ -71,3 +71,24 @@ export const getEntityBodyLocation = (entity: mc.Entity): GlVector3 => {
 
 	return location;
 };
+
+export const canHurtEntity = (attacker: mc.Player, target: mc.Entity): boolean => {
+	if (attacker === target) return false;
+
+	if (target instanceof mc.Player) {
+		// Players should not take damage when PvP is disabled
+		if (!mc.world.gameRules.pvp) return false;
+
+		// Creative or Spectator players should not take damage
+		const targetGameMode = target.getGameMode();
+		if (targetGameMode === mc.GameMode.Creative) return false;
+		if (targetGameMode === mc.GameMode.Spectator) return false;
+	}
+
+	// Projectiles should not take damage
+	if (target.hasComponent("projectile")) return false;
+
+	return target.matches({
+		excludeTypes: ["minecraft:xp_orb", "minecraft:item"],
+	});
+};

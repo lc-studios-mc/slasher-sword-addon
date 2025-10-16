@@ -1,4 +1,5 @@
 import { calculateFinalDamage } from "@/lib/damage";
+import { canHurtEntity } from "@/lib/entity_utils";
 import { calculateRelativeLocation, changeDir, GlVector3 } from "@/lib/vec";
 import * as mc from "@minecraft/server";
 import { vec3 } from "gl-matrix";
@@ -36,7 +37,7 @@ export const shootPowerSlashBeam = (source: mc.Player): void => {
 	const origin = vec3.create();
 	calculateRelativeLocation(origin, GlVector3.fromObject(source.getHeadLocation()).v, dir.v, {
 		y: 0.04,
-		z: 0.9,
+		z: 0.6,
 	});
 	vec3.add(origin, origin, GlVector3.fromObject(source.getVelocity()).v);
 
@@ -63,7 +64,9 @@ export const shootPowerSlashBeam = (source: mc.Player): void => {
 	beamEntity.setProperty("slasher:rotation_y", rot.y);
 	beamEntity.setProperty("slasher:rotation_z", -50);
 
-	beamEntity.applyImpulse(new GlVector3(force));
+	const projectileComponent = beamEntity.getComponent("projectile")!;
+
+	projectileComponent.shoot(new GlVector3(force));
 
 	mc.system.runTimeout(() => {
 		if (!beamEntity.isValid) return;
@@ -112,8 +115,7 @@ const onPowerSlashBeamHitEntity = (e: mc.ProjectileHitEntityAfterEvent): void =>
 	const hitEntity = e.getEntityHit().entity;
 	if (!hitEntity) return;
 	if (info.alreadyHitEntityIds.includes(hitEntity.id)) return;
-	if (hitEntity === info.source) return;
-	if (hitEntity instanceof mc.Player && !mc.world.gameRules.pvp) return;
+	if (!canHurtEntity(info.source, hitEntity)) return;
 
 	let damaged = false;
 	try {

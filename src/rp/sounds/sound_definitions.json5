@@ -181,6 +181,28 @@
 			],
 		},
 
+		"slasher.storm_slash_boost": {
+			category: "hostile",
+			max_distance: 20.0,
+			min_distance: null,
+			sounds: [
+				{
+					name: "sounds/slasher/storm_slash_boost",
+					volume: 0.9,
+				},
+			],
+		},
+
+		"slasher.storm_slash_boost.2d": {
+			category: "music",
+			sounds: [
+				{
+					name: "sounds/slasher/storm_slash_boost",
+					volume: 0.9,
+				},
+			],
+		},
+
 		"slasher.storm_slash_impact": {
 			category: "hostile",
 			max_distance: 20.0,
@@ -188,6 +210,28 @@
 			sounds: [
 				{
 					name: "sounds/slasher/storm_slash_impact",
+					volume: 0.9,
+				},
+			],
+		},
+
+		"slasher.storm_slash_start": {
+			category: "hostile",
+			max_distance: 20.0,
+			min_distance: null,
+			sounds: [
+				{
+					name: "sounds/slasher/storm_slash_start",
+					volume: 0.9,
+				},
+			],
+		},
+
+		"slasher.storm_slash_start.2d": {
+			category: "music",
+			sounds: [
+				{
+					name: "sounds/slasher/storm_slash_start",
 					volume: 0.9,
 				},
 			],

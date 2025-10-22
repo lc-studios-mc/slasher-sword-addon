@@ -570,6 +570,9 @@
 				"fp_offhand_g": {
 					"rotation": [-3.21, 28.11, 101.93],
 					"position": [-4.25, -5.25, 3.5]
+				},
+				"fp_arms_sub": {
+					"rotation": ["-math.sin(query.life_time * 4000) * 0.6", "-math.sin(query.life_time * 3000) * 0.6", "math.sin(query.life_time * 2500) * 0.6"]
 				}
 			}
 		},

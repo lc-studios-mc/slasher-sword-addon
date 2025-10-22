@@ -1028,6 +1028,237 @@
 			"timeline": {
 				"0.0": "v.blade_speed_mod = 22;"
 			}
+		},
+		"animation.slasher.slasher.fp.storm_slash_windup": {
+			"loop": "hold_on_last_frame",
+			"animation_length": 1,
+			"blend_weight": "v.fp_anim_blend_weight ?? 1",
+			"bones": {
+				"fp_mainhand_g": {
+					"rotation": [0, 0, -90],
+					"position": [5, -2, 4]
+				},
+				"slasher": {
+					"rotation": [0, 0, 0]
+				},
+				"fp_arms": {
+					"rotation": {
+						"0.0": {
+							"post": [-7.95067, -34.75886, -97.07263],
+							"lerp_mode": "catmullrom"
+						},
+						"0.1458": {
+							"post": [8.15474, -1.88706, -21.8892],
+							"lerp_mode": "catmullrom"
+						},
+						"0.8125": [-25.07432, -2.84783, -7.10204]
+					},
+					"position": {
+						"0.0": {
+							"post": [-12, -9.25, -19.25],
+							"lerp_mode": "catmullrom"
+						},
+						"0.1458": {
+							"post": [-19, -1.25, -19.25],
+							"lerp_mode": "catmullrom"
+						},
+						"0.8125": [-20.25, -0.25, -17.25]
+					}
+				},
+				"fp_mainhand": {
+					"rotation": {
+						"0.0": [35.3, 4.67, 19.56],
+						"0.1458": [-2.2, -48.33, 20.56],
+						"0.8125": [7.8, -48.33, 20.56]
+					},
+					"position": {
+						"0.0": [0.25, 0, 0],
+						"0.1458": [0.25, 0, 0],
+						"0.8125": [0.25, 0, 0]
+					}
+				},
+				"fp_offhand_g": {
+					"rotation": {
+						"0.0": [-3.21, 28.11, 101.93],
+						"0.1458": [46.17563, 48.65437, 125.22044],
+						"0.8125": [33.87109, 38.70586, 114.69903]
+					},
+					"position": {
+						"0.0": [-4.25, -5.25, 3.5],
+						"0.1458": [-3.25, -6.25, 1],
+						"0.8125": [-2.25, -6.25, 2.5]
+					}
+				},
+				"fp_arms_sub": {
+					"rotation": {
+						"0.0": [0, 0, 0],
+						"0.2917": ["-math.sin(query.life_time * 5000) * 1", "-math.sin(query.life_time * 5500) * 0.5", "math.sin(query.life_time * -4000) * 0.3"]
+					},
+					"position": {
+						"0.0": [0, 0, 0],
+						"0.2917": [0, "math.sin(query.life_time * -4000) * 0.05", "math.sin(query.life_time * -4500) * 0.05"]
+					}
+				}
+			},
+			"timeline": {
+				"0.0": "v.blade_speed_mod = 20;"
+			}
+		},
+		"animation.slasher.slasher.fp.storm_slash_strike": {
+			"loop": "hold_on_last_frame",
+			"animation_length": 0.2917,
+			"blend_weight": "v.fp_anim_blend_weight ?? 1",
+			"bones": {
+				"fp_mainhand_g": {
+					"rotation": [0, 0, -90],
+					"position": [5, -2, 4]
+				},
+				"slasher": {
+					"rotation": [0, 0, 0]
+				},
+				"fp_arms": {
+					"rotation": {
+						"0.0": {
+							"post": [-25.07, -2.85, -7.1],
+							"lerp_mode": "catmullrom"
+						},
+						"0.0208": {
+							"post": [12.68969, -12.86133, -42.34172],
+							"lerp_mode": "catmullrom"
+						},
+						"0.0833": {
+							"post": [49.37332, -12.14188, -32.93683],
+							"lerp_mode": "catmullrom"
+						},
+						"0.1667": [54.69165, -14.40506, -34.4357]
+					},
+					"position": {
+						"0.0": {
+							"post": [-20.25, -0.25, -17.25],
+							"lerp_mode": "catmullrom"
+						},
+						"0.0208": {
+							"post": [-5.38, -7.25, -17.25],
+							"lerp_mode": "catmullrom"
+						},
+						"0.0833": {
+							"post": [-3.25, -8.25, -17.25],
+							"lerp_mode": "catmullrom"
+						},
+						"0.1667": [-2.85, -8.65, -17.25]
+					}
+				},
+				"fp_mainhand": {
+					"rotation": {
+						"0.0": [7.8, -48.33, 20.56],
+						"0.0625": [-12.12423, -31.37933, 35.41158]
+					},
+					"position": {
+						"0.0": [0.25, 0, 0],
+						"0.0625": [0.25, 0, -0.75]
+					}
+				},
+				"fp_offhand_g": {
+					"rotation": {
+						"0.0": [33.87, 38.71, 114.7],
+						"0.0625": [50.33255, 52.30369, 130.60653]
+					},
+					"position": {
+						"0.0": [-2.25, -6.25, 2.5],
+						"0.0625": [-2.75, -6.25, 0.5]
+					}
+				},
+				"fp_arms_sub": {
+					"rotation": ["-math.sin(query.life_time * 5000) * 1", "-math.sin(query.life_time * 5500) * 0.5", "math.sin(query.life_time * -4000) * 0.3"],
+					"position": [0, "math.sin(query.life_time * -4000) * 0.05", "math.sin(query.life_time * -4500) * 0.05"]
+				}
+			},
+			"timeline": {
+				"0.0": "v.blade_speed_mod = 21;"
+			}
+		},
+		"animation.slasher.slasher.fp.storm_slash_finish": {
+			"loop": "hold_on_last_frame",
+			"animation_length": 0.5208,
+			"blend_weight": "v.fp_anim_blend_weight ?? 1",
+			"bones": {
+				"fp_mainhand_g": {
+					"rotation": [0, 0, -90],
+					"position": [5, -2, 4]
+				},
+				"slasher": {
+					"rotation": [0, 0, 0]
+				},
+				"fp_arms": {
+					"rotation": {
+						"0.0": {
+							"post": [54.69165, -14.40506, -34.4357],
+							"lerp_mode": "catmullrom"
+						},
+						"0.0625": {
+							"post": [23.44591, -17.25912, -39.43837],
+							"lerp_mode": "catmullrom"
+						},
+						"0.1667": {
+							"post": [17.24599, -12.18128, -34.09245],
+							"lerp_mode": "catmullrom"
+						},
+						"0.375": {
+							"post": [14.62379, -14.45927, -43.74547],
+							"lerp_mode": "catmullrom"
+						},
+						"0.5208": [43.48264, 14.76491, -88.48096]
+					},
+					"position": {
+						"0.0": {
+							"post": [-2.85, -8.65, -17.25],
+							"lerp_mode": "catmullrom"
+						},
+						"0.0625": {
+							"post": [-3.85, -8.4, -18],
+							"lerp_mode": "catmullrom"
+						},
+						"0.2292": {
+							"post": [-4.66, -7.32, -17.34],
+							"lerp_mode": "catmullrom"
+						},
+						"0.375": {
+							"post": [-5.85, -7.9, -18],
+							"lerp_mode": "catmullrom"
+						},
+						"0.5208": [-10.85, -19.9, -18]
+					}
+				},
+				"fp_mainhand": {
+					"rotation": [-12.12423, -31.37933, 35.41158],
+					"position": [0.25, 0, -0.75]
+				},
+				"fp_offhand_g": {
+					"rotation": {
+						"0.0": [50.33255, 52.30369, 130.60653],
+						"0.375": [50.33, 52.3, 130.61],
+						"0.5208": [31.51728, 52.3, 130.61]
+					},
+					"position": {
+						"0.0": [-2.75, -6.25, 0.5],
+						"0.375": [-2.75, -6.25, 0.5],
+						"0.5208": [-3.75, -5.25, 0.5]
+					}
+				},
+				"fp_arms_sub": {
+					"rotation": {
+						"0.0": ["-math.sin(query.life_time * 5000) * 1", "-math.sin(query.life_time * 5500) * 0.5", "math.sin(query.life_time * -4000) * 1"],
+						"0.1042": [0, 0, 0]
+					},
+					"position": {
+						"0.0": [0, "math.sin(query.life_time * -4000) * 0.3", "math.sin(query.life_time * -4500) * 0.3"],
+						"0.1042": [0, 0, 0]
+					}
+				}
+			},
+			"timeline": {
+				"0.0": "v.blade_speed_mod = 0;"
+			}
 		}
 	}
 }

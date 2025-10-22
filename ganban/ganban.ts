@@ -7,6 +7,7 @@ import {
 	type BuildConfig,
 } from "ganban";
 import packageConfig from "../package.json" with { type: "json" };
+import path from "node:path";
 
 const isDevBuild = Boolean(getRequiredEnvWithFallback("DEV", ""));
 const addonVersionArray = parseVersionString(getRequiredEnvWithFallback("ADDON_VERSION", "0.0.1"));
@@ -73,11 +74,12 @@ const resourcePackManifest = {
 	capabilities: ["pbr"],
 };
 
-const buildConfig: BuildConfig = {
+const buildConfigRaw = {
 	behaviorPack: {
 		type: "behavior",
 		srcDir: "src/bp",
-		outDir: isDevBuild ? getRequiredEnv("DEV_BP_OUTDIR") : `dist/${addonVersionForHumans}/bp`,
+		outDir: isDevBuild ? "build/dev/bp" : `build/${addonVersionForHumans}/bp`,
+		targetDirs: [] as string[],
 		manifest: behaviorPackManifest,
 		scripts: {
 			entry: "src/bp/scripts/main.ts",
@@ -90,16 +92,31 @@ const buildConfig: BuildConfig = {
 	resourcePack: {
 		type: "resource",
 		srcDir: "src/rp",
-		outDir: isDevBuild ? getRequiredEnv("DEV_RP_OUTDIR") : `dist/${addonVersionForHumans}/rp`,
+		outDir: isDevBuild ? "build/dev/rp" : `build/${addonVersionForHumans}/rp`,
+		targetDirs: [] as string[],
 		manifest: resourcePackManifest,
 		generateTextureList: true,
 	},
 	watch: Boolean(getRequiredEnvWithFallback("WATCH", "")),
-};
+} satisfies BuildConfig;
+
+const buildConfig: BuildConfig = buildConfigRaw;
+
+if (isDevBuild) {
+	const devBehaviorPacksDir = getRequiredEnv("DEV_BEHAVIOR_PACKS_DIR");
+	const devResourcePacksDir = getRequiredEnv("DEV_RESOURCE_PACKS_DIR");
+
+	buildConfigRaw.behaviorPack.targetDirs = [
+		path.join(devBehaviorPacksDir, "slasher-sword-addon-bp-dev"),
+	];
+	buildConfigRaw.resourcePack.targetDirs = [
+		path.join(devResourcePacksDir, "slasher-sword-addon-rp-dev"),
+	];
+}
 
 // Create archive for release builds
 if (!isDevBuild) {
-	const archiveName = `dist/${addonVersionForHumans}/slasher-sword-addon-${addonVersionForHumans}`;
+	const archiveName = `build/${addonVersionForHumans}/slasher-sword-addon-${addonVersionForHumans}`;
 	buildConfig.archives = [
 		{
 			outFile: `${archiveName}.mcaddon`,

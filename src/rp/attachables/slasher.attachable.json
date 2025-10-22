@@ -30,7 +30,7 @@
 				"anim.fp.sawing_release": "animation.slasher.slasher.fp.sawing_release",
 				"anim.fp.storm_slash_windup": "animation.slasher.slasher.fp.storm_slash_windup",
 				"anim.fp.storm_slash_strike": "animation.slasher.slasher.fp.storm_slash_strike",
-				"anim.fp.storm_slash_finish": "animation.slasher.slasher.fp.storm_slash_finish",
+				"anim.fp.storm_slash_impact": "animation.slasher.slasher.fp.storm_slash_impact",
 
 				"anim.tp.general": "animation.slasher.slasher.tp.general"
 			},
@@ -62,7 +62,7 @@
 					"v.cd_sawing_release = q.cooldown_time_remaining('slasher_sawing_release') > 0;",
 					"v.cd_storm_slash_windup = q.cooldown_time_remaining('slasher_storm_slash_windup') > 0;",
 					"v.cd_storm_slash_strike = q.cooldown_time_remaining('slasher_storm_slash_strike') > 0;",
-					"v.cd_storm_slash_finish = q.cooldown_time_remaining('slasher_storm_slash_finish') > 0;",
+					"v.cd_storm_slash_impact = q.cooldown_time_remaining('slasher_storm_slash_impact') > 0;",
 
 					// Blade cycle
 					"v.blade_speed = Math.lerp(v.blade_speed, v.blade_speed_mod, 3.4 * q.delta_time);",

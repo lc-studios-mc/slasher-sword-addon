@@ -77,7 +77,8 @@
 					"animations": ["anim.fp.charge_dash"],
 					"transitions": [
 						{ "pick": "v.cd_charge_cancel || v.cd_pick" },
-						{ "power_slash_start": "v.cd_power_slash_start" }
+						{ "power_slash_start": "v.cd_power_slash_start" },
+						{ "storm_slash_windup": "v.cd_storm_slash_windup" }
 					]
 				},
 
@@ -131,13 +132,13 @@
 					"animations": ["anim.fp.storm_slash_strike"],
 					"transitions": [
 						{ "pick": "v.cd_pick" },
-						{ "storm_slash_finish": "v.cd_storm_slash_finish" }
+						{ "storm_slash_impact": "v.cd_storm_slash_impact" }
 					],
 					"blend_transition": 0.05
 				},
 
-				"storm_slash_finish": {
-					"animations": ["anim.fp.storm_slash_finish"],
+				"storm_slash_impact": {
+					"animations": ["anim.fp.storm_slash_impact"],
 					"transitions": [{ "pick": "v.cd_pick" }, { "charge_2": "v.cd_charge" }],
 					"blend_transition": 0.05
 				}

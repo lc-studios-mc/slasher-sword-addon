@@ -3,7 +3,9 @@
 	"type": "module",
 	"scripts": {
 		"lint": "tsc -p tsconfig.json && tsc -p ganban/tsconfig.json",
-		"build:dev": "dotenv -v DEV=true -v WATCH=true -- tsx ganban/ganban.ts",
+		"build:dev": "dotenv -v DEV=true -v -- tsx ganban/ganban.ts",
+		"build:dev:watch": "dotenv -v DEV=true -v WATCH=true -- tsx ganban/ganban.ts",
+		"dev": "pnpm run build:dev:watch",
 		"clean": "shx rm -rf dist",
 		"format": "prettier --write ."
 	},

@@ -51,20 +51,20 @@ export class ChargeState extends SlasherStateBase {
 	private readonly stormSlashChargeDuration = 30;
 
 	private chargedTick = 0;
-	private chargeStormSlash = false;
+	private chargingStormSlash = false;
 	private ticksUntilNextChargeSoundLoop = 1;
 
 	override onEnter(): void {
 		if (this.s.player.isGliding) {
-			this.chargeStormSlash = true;
+			this.chargingStormSlash = true;
 		}
 
 		this.s.startItemCooldown("slasher_charge", 4);
 	}
 
 	override onTick(_currentItem: mc.ItemStack): void {
-		if (this.chargeStormSlash && !this.s.player.isGliding) {
-			this.chargeStormSlash = false;
+		if (this.chargingStormSlash && !this.s.player.isGliding) {
+			this.chargingStormSlash = false;
 		}
 
 		this.chargedTick++;
@@ -74,7 +74,12 @@ export class ChargeState extends SlasherStateBase {
 			return;
 		}
 
-		this.updateSound();
+		if (this.chargingStormSlash && this.chargedTick === this.stormSlashChargeDuration - 1) {
+			this.s.playSound({ soundId_2d: "slasher.charged_storm_slash" });
+			this.s.startItemCooldown("slasher_charge_dash");
+		}
+
+		this.updateChargeLoopSound();
 		this.updateActionbar();
 	}
 
@@ -84,7 +89,7 @@ export class ChargeState extends SlasherStateBase {
 		}
 	}
 
-	private updateSound(): void {
+	private updateChargeLoopSound(): void {
 		if (this.ticksUntilNextChargeSoundLoop > 0) {
 			this.ticksUntilNextChargeSoundLoop--;
 		} else {
@@ -103,7 +108,7 @@ export class ChargeState extends SlasherStateBase {
 			return ACTIONBAR_FRAMES.POWER_SLASH.PROGRESS[this.chargedTick]!;
 		}
 
-		if (this.chargeStormSlash) {
+		if (this.chargingStormSlash) {
 			if (this.chargedTick < this.stormSlashChargeDuration) {
 				const index = Math.min(
 					ACTIONBAR_FRAMES.STORM_SLASH.PROGRESS.length - 1,
@@ -128,7 +133,7 @@ export class ChargeState extends SlasherStateBase {
 	private releaseOrCancel(): void {
 		this.s.startItemCooldown("slasher_charge", 0);
 
-		if (this.chargeStormSlash && this.currentTick >= this.stormSlashChargeDuration) {
+		if (this.chargingStormSlash && this.currentTick >= this.stormSlashChargeDuration) {
 			this.s.player.onScreenDisplay.setActionBar("§l§c< < X > >");
 			this.s.changeState(new this.s.stateClasses.StormSlashWindup(this.s));
 			return;

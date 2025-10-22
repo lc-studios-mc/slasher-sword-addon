@@ -1,56 +1,81 @@
 import * as mc from "@minecraft/server";
 import { SlasherStateBase } from "./base";
 
+const ACTIONBAR_FRAMES = {
+	POWER_SLASH: {
+		PROGRESS: [
+			//
+			"§c>     X     <",
+			"§c>    X    <",
+			"§c>   X   <",
+			"§c>  X  <",
+			"§c> X <",
+			"§c>X<",
+		],
+		COMPLETED: [
+			//
+			"§b>X<",
+			"§e>X<",
+		],
+	},
+	STORM_SLASH: {
+		PROGRESS: [
+			"§c>               >X<               <",
+			"§c>              >X<              <",
+			"§c>             >X<             <",
+			"§c>            >X<            <",
+			"§c>           >X<           <",
+			"§c>          >X<          <",
+			"§c>         >X<         <",
+			"§c>        >X<        <",
+			"§c>       >X<       <",
+			"§c>      >X<      <",
+			"§c>     >X<     <",
+			"§c>    >X<    <",
+			"§c>   >X<   <",
+			"§c>  >X<  <",
+			"§c> >X< <",
+			"§c>>X<<",
+		],
+		COMPLETED: [
+			//
+			"§l§b>>X<<",
+			"§l§d>>X<<",
+			"§l§e>>X<<",
+		],
+	},
+} as const;
+
 export class ChargeState extends SlasherStateBase {
-	private readonly actionbarFrames_progress = [
-		"§c>     X     <",
-		"§c>    X    <",
-		"§c>   X   <",
-		"§c>  X  <",
-		"§c> X <",
-	] as const;
+	private readonly powerSlashChargeDuration = 6;
+	private readonly stormSlashChargeDuration = 30;
 
-	private readonly actionbarFrames_completed = [
-		// Flashy
-		"§b>X<",
-		"§e>X<",
-	] as const;
-
-	private ticksUntilCompleteCharge = 6; // Charge duration
+	private chargedTick = 0;
+	private chargeStormSlash = false;
 	private ticksUntilNextChargeSoundLoop = 1;
 
 	override onEnter(): void {
+		if (this.s.player.isGliding) {
+			this.chargeStormSlash = true;
+		}
+
 		this.s.startItemCooldown("slasher_charge", 4);
 	}
 
 	override onTick(_currentItem: mc.ItemStack): void {
-		// Main charge logic
-		if (this.ticksUntilCompleteCharge > 0) {
-			this.ticksUntilCompleteCharge--;
+		if (this.chargeStormSlash && !this.s.player.isGliding) {
+			this.chargeStormSlash = false;
 		}
+
+		this.chargedTick++;
+
 		if (!this.s.isUsing) {
 			this.releaseOrCancel();
 			return;
 		}
 
-		// Sound
-		if (this.ticksUntilNextChargeSoundLoop > 0) {
-			this.ticksUntilNextChargeSoundLoop--;
-		} else {
-			this.s.playSound({ soundId_3d: "slasher.charge_loop" });
-			this.ticksUntilNextChargeSoundLoop = 7;
-		}
-
-		// Actionbar frames
-		if (this.ticksUntilCompleteCharge > 0) {
-			this.s.player.onScreenDisplay.setActionBar(
-				this.actionbarFrames_progress[this.currentTick % this.actionbarFrames_progress.length]!,
-			);
-		} else {
-			this.s.player.onScreenDisplay.setActionBar(
-				this.actionbarFrames_completed[this.currentTick % this.actionbarFrames_completed.length]!,
-			);
-		}
+		this.updateSound();
+		this.updateActionbar();
 	}
 
 	override onStopUse(_event: mc.ItemStopUseAfterEvent): void {
@@ -59,10 +84,57 @@ export class ChargeState extends SlasherStateBase {
 		}
 	}
 
+	private updateSound(): void {
+		if (this.ticksUntilNextChargeSoundLoop > 0) {
+			this.ticksUntilNextChargeSoundLoop--;
+		} else {
+			this.s.playSound({ soundId_3d: "slasher.charge_loop" });
+			this.ticksUntilNextChargeSoundLoop = 7;
+		}
+	}
+
+	private updateActionbar(): void {
+		const frame = this.getAppropriateActionbarFrame();
+		this.s.player.onScreenDisplay.setActionBar(frame);
+	}
+
+	private getAppropriateActionbarFrame(): string {
+		if (this.chargedTick < this.powerSlashChargeDuration) {
+			return ACTIONBAR_FRAMES.POWER_SLASH.PROGRESS[this.chargedTick]!;
+		}
+
+		if (this.chargeStormSlash) {
+			if (this.chargedTick < this.stormSlashChargeDuration) {
+				const index = Math.min(
+					ACTIONBAR_FRAMES.STORM_SLASH.PROGRESS.length - 1,
+					Math.floor(
+						(this.currentTick / this.stormSlashChargeDuration) *
+							ACTIONBAR_FRAMES.STORM_SLASH.PROGRESS.length,
+					),
+				);
+				return ACTIONBAR_FRAMES.STORM_SLASH.PROGRESS[index]!;
+			} else {
+				return ACTIONBAR_FRAMES.STORM_SLASH.COMPLETED[
+					this.chargedTick % ACTIONBAR_FRAMES.STORM_SLASH.COMPLETED.length
+				]!;
+			}
+		}
+
+		return ACTIONBAR_FRAMES.POWER_SLASH.COMPLETED[
+			this.chargedTick % ACTIONBAR_FRAMES.POWER_SLASH.COMPLETED.length
+		]!;
+	}
+
 	private releaseOrCancel(): void {
 		this.s.startItemCooldown("slasher_charge", 0);
 
-		if (this.ticksUntilCompleteCharge <= 0) {
+		if (this.chargeStormSlash && this.currentTick >= this.stormSlashChargeDuration) {
+			this.s.player.onScreenDisplay.setActionBar("§l§c< < X > >");
+			this.s.changeState(new this.s.stateClasses.StormSlashWindup(this.s));
+			return;
+		}
+
+		if (this.currentTick >= this.powerSlashChargeDuration) {
 			this.s.player.onScreenDisplay.setActionBar("§c< X >");
 			this.s.changeState(new this.s.stateClasses.PowerSlashInit(this.s));
 			return;

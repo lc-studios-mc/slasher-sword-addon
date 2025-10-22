@@ -13,6 +13,11 @@ import { PowerSlashFinishState } from "./states/power_slash_finish";
 import { PowerSlashInitState } from "./states/power_slash_init";
 import { SawingState } from "./states/sawing";
 import { SpeedSlashState } from "./states/speed_slash";
+import {
+	StormSlashFinishState,
+	StormSlashStrikeState,
+	StormSlashWindupState,
+} from "./states/storm_slash";
 
 registerItemHookProfile({
 	itemType: "slasher:slasher",
@@ -27,6 +32,9 @@ export class SlasherHandler extends ItemHookHandlerBase {
 		PowerSlashInit: PowerSlashInitState,
 		PowerSlashFinish: PowerSlashFinishState,
 		Sawing: SawingState,
+		StormSlashWindup: StormSlashWindupState,
+		StormSlashStrike: StormSlashStrikeState,
+		StormSlashFinish: StormSlashFinishState,
 	} as const;
 
 	private currentState: SlasherStateBase;

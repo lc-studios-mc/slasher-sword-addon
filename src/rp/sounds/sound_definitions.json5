@@ -193,12 +193,12 @@
 
 		"slasher.storm_slash_strike": {
 			category: "hostile",
-			max_distance: 20.0,
+			max_distance: 15.0,
 			min_distance: null,
 			sounds: [
 				{
 					name: "sounds/slasher/storm_slash_strike",
-					volume: 0.9,
+					volume: 0.8,
 				},
 			],
 		},
@@ -208,7 +208,7 @@
 			sounds: [
 				{
 					name: "sounds/slasher/storm_slash_strike",
-					volume: 0.9,
+					volume: 0.8,
 				},
 			],
 		},
@@ -238,12 +238,12 @@
 
 		"slasher.storm_slash_windup": {
 			category: "hostile",
-			max_distance: 20.0,
+			max_distance: 15.0,
 			min_distance: null,
 			sounds: [
 				{
 					name: "sounds/slasher/storm_slash_windup",
-					volume: 0.9,
+					volume: 0.8,
 				},
 			],
 		},
@@ -253,7 +253,7 @@
 			sounds: [
 				{
 					name: "sounds/slasher/storm_slash_windup",
-					volume: 0.9,
+					volume: 0.8,
 				},
 			],
 		},

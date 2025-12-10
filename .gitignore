@@ -1,3 +1,6 @@
-dist/
 node_modules/
+build/
 private/
+*.env
+*.mcaddon
+*.mcpack

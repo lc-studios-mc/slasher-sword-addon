@@ -1,45 +1,111 @@
-<div align="center">
+# Slasher Sword Add-on
 
-# :chains: Slasher Sword Addon :carpentry_saw:
+A Minecraft Bedrock add-on that contains a chainsaw-sword named _Slasher_.
 
-Adds a chainsaw-sword named _Slasher_ with a spectacle combat experience to Minecraft Bedrock.
+## Installation (for users)
 
-<img
-  src="./media/slasher-swords.webp"
-  width="800"
-  alt="Beautiful image"
-  title="The Slasher Swords">
+### Standard
 
-</div>
+1. Download an archive file with the `.mcaddon` extension for the version you want.
+2. Open your file explorer app and find the file you downloaded in step 1.
+3. Open the file to install. You should see a prompt like "Open with Minecraft".
+4. Add the installed pack(s) to your (new) world.
+5. Done!
 
-## :information_source: About
+### Manually
 
-Slasher is a cool melee weapon that _was_ a part of [another addon by me](https://github.com/lc-studios-mc/scp-dystopia).
+1. Download an archive file with the `.zip` extension for the version you want.
 
-**Compatible with other addons that modify player.json, including most gun addons!**
+   ⚠️ Zip file may not be available. In that case, download the file the `.mcaddon` extension and
+   change its file extension to `.zip`.
 
-With the sacrifice of first-person player arm skin, I've achieved a 99% compatibility.
+2. Open your file explorer app and find the file you downloaded in step 1.
+3. Extract the zip file.
+4. Copy and paste the extracted pack folder(s) into appropriate locations.
 
-> "THERES NOT A SINGLE MELEE WEAPON PACK THAT HAS ANIMATIONS THAT GOES ALONG WITH GUN PACKS 😭"
+   You need to know where the `com.mojang` folder is. It heavily depends on what platform
+   your device is on.
 
-**No experiments required!**
+   On Windows:
 
-<ins>No Upcoming Creator Features. No Beta APIs. This addon will likely remain stable for a long time.</ins>
-By "stable", I mean it shouldn't be destroyed by a Minecraft update.
+   ```
+   C:\Users\%username%\AppData\Roaming\Minecraft Bedrock\Users\Shared\games\com.mojang
+   ```
 
-## :green_book: Learning Material
+   > For other platforms, find other resources online.
 
-This addon is also meant to be a learning material for people who want to make cool animated melee weapons with complex mechanics without using player.json, or addon development in general.
+   Behavior pack must be copied into either `behavior_packs` or `development_behavior_packs`.
 
-You're expected to have at least some basic addon development knowledge before diving into this addon's source code, because it's definetely confusing for absolute beginners!
+   Resource pack must be copied into either `resource_packs` or `development_resource_packs`.
 
-Useful resources:
+5. Add the installed pack(s) to your (new) world.
+6. Done!
 
-- Amazing website: [Bedrock Wiki](https://wiki.bedrock.dev/)
-- If you don't know Git: [Git Tutorial For Dummies](https://www.youtube.com/watch?v=mJ-qvsxPHpY)
+## Installation (for developers)
 
-Feel free to copy some stuff!
+> [!IMPORTANT]
+> Mobile platforms are not supported.
 
-## :balance_scale: License
+Cheatsheet for developers can be found [here](./CHEATSHEET.md).
 
-[CC0 1.0 Universal](./LICENSE) - No copyright, public domain!
+### Prerequisites
+
+Please install these software on your system before proceeding:
+
+- [Git](https://git-scm.com/install/)
+- [Node.js](https://nodejs.org/) (v22 or later)
+- [pnpm](https://pnpm.io/installation)
+
+### Setup
+
+1.  Clone this repository (or your fork) locally
+
+2.  Install dependencies
+
+    Run the following command:
+
+    ```
+    pnpm install
+    ```
+
+3.  Create the `.env` file
+
+    Create a new file named `.env` at top-level, and paste the text below to the file.
+    Don't forget to replace `{USERNAME}` with your actual username!
+
+    ```env
+    # Default paths on Windows. You can specify any directory paths.
+    DEV_BEHAVIOR_PACKS_DIR="C:\Users\{USERNAME}\AppData\Roaming\Minecraft Bedrock\Users\Shared\games\com.mojang\development_behavior_packs"
+    DEV_RESOURCE_PACKS_DIR="C:\Users\{USERNAME}\AppData\Roaming\Minecraft Bedrock\Users\Shared\games\com.mojang\development_resource_packs"
+    ```
+
+### Build
+
+After a build operation is complete, you can find the output in the `build/` folder.
+
+- Development build
+
+  Processed packs will be copied into the locations you specified in `.env`.
+
+  ```bash
+  pnpm run build:dev
+  ```
+
+- Development build + watch
+
+  Processed packs will be copied into the locations you specified in `.env`.
+
+  The build script will keep watching for file changes in the background until terminated.
+  When any file changes are detected, it will automatically rebuild.
+
+  ```bash
+  pnpm run build:dev:watch
+  ```
+
+- Non-development build
+
+  Create a non-development build version _0.6.9_.
+
+  ```bash
+  pnpm dotenv -v VERSION=0.6.9 -- pnpm run build
+  ```

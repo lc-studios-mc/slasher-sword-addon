@@ -1,14 +1,15 @@
 {
-  "version": "0.3.0",
-  "configurations": [
-    {
-      "type": "minecraft-js",
-      "request": "attach",
-      "name": "Debug with Minecraft",
-      "mode": "listen",
-      "targetModuleUuid": "f54996d6-0bb5-44e7-9374-e985dacab070",
-      "localRoot": "${workspaceFolder}/src/bp/scripts/",
-      "port": 19144
-    }
-  ]
+	"version": "0.3.0",
+	"configurations": [
+		{
+			"type": "minecraft-js",
+			"request": "attach",
+			"name": "Debug with Minecraft",
+			"mode": "listen",
+			"targetModuleUuid": "50b1ef37-c8d5-4304-afac-626973037e7d",
+			"sourceMapRoot": "${workspaceFolder}/build/dev/bp/scripts/",
+			"generatedSourceRoot": "${workspaceFolder}/build/dev/bp/scripts/",
+			"port": 19144
+		}
+	]
 }

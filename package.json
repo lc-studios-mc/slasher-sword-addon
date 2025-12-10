@@ -5,6 +5,7 @@
 	},
 	"type": "module",
 	"dependencies": {
+		"@mcbe-toolbox-lc/sukuriputils": "^0.3.0",
 		"@minecraft/server": "2.4.0"
 	},
 	"devDependencies": {

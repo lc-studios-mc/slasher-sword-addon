@@ -1,0 +1,78 @@
+{
+	"format_version": "1.10.0",
+	"minecraft:attachable": {
+		"description": {
+			"identifier": "slasher:slasher",
+			"materials": {
+				"default": "entity_emissive_alpha"
+			},
+			"textures": {
+				"default": "textures/slasher/slasher/slasher"
+			},
+			"geometry": {
+				"fp": "geometry.slasher.slasher.fp",
+				"tp": "geometry.slasher.slasher.tp"
+			},
+			"animations": {
+				"ctrl.fp": "controller.animation.slasher.slasher.fp",
+
+				"anim.fp.general": "animation.slasher.slasher.fp.general",
+				"anim.fp.pick": "animation.slasher.slasher.fp.pick",
+				"anim.fp.blade_cycle": "animation.slasher.slasher.fp.blade_cycle",
+				"anim.fp.speed_slash_1": "animation.slasher.slasher.fp.speed_slash_1",
+				"anim.fp.speed_slash_2": "animation.slasher.slasher.fp.speed_slash_2",
+				"anim.fp.charge_1": "animation.slasher.slasher.fp.charge_1",
+				"anim.fp.charge_2": "animation.slasher.slasher.fp.charge_2",
+				"anim.fp.charge_dash": "animation.slasher.slasher.fp.charge_dash",
+				"anim.fp.power_slash_start": "animation.slasher.slasher.fp.power_slash_start",
+				"anim.fp.power_slash_finish": "animation.slasher.slasher.fp.power_slash_finish",
+				"anim.fp.sawing_loop": "animation.slasher.slasher.fp.sawing_loop",
+				"anim.fp.sawing_release": "animation.slasher.slasher.fp.sawing_release",
+				"anim.fp.storm_slash_windup": "animation.slasher.slasher.fp.storm_slash_windup",
+				"anim.fp.storm_slash_strike": "animation.slasher.slasher.fp.storm_slash_strike",
+				"anim.fp.storm_slash_impact": "animation.slasher.slasher.fp.storm_slash_impact",
+
+				"anim.tp.general": "animation.slasher.slasher.tp.general"
+			},
+			"scripts": {
+				// prettier-ignore
+				"animate": [
+					"ctrl.fp",
+					"anim.fp.blade_cycle",
+					{ "anim.tp.general": "!c.is_first_person" }
+				],
+				"initialize": [
+					"v.blade_speed = 0;",
+					"v.blade_speed_mod = 0;", // This should be modified by animations
+					"v.blade_cycle_anim_time = 0;"
+				],
+				"pre_animation": [
+					"v.fp_anim_blend_weight = c.is_first_person ? 1 : 0.01;",
+
+					// Cooldowns used to trigger animations
+					"v.cd_pick = q.cooldown_time_remaining('slasher_pick') > 0;",
+					"v.cd_speed_slash_1 = q.cooldown_time_remaining('slasher_speed_slash_1') > 0;",
+					"v.cd_speed_slash_2 = q.cooldown_time_remaining('slasher_speed_slash_2') > 0;",
+					"v.cd_charge = q.cooldown_time_remaining('slasher_charge') > 0;",
+					"v.cd_charge_cancel = q.cooldown_time_remaining('slasher_charge_cancel') > 0;",
+					"v.cd_charge_dash = q.cooldown_time_remaining('slasher_charge_dash') > 0;",
+					"v.cd_power_slash_start = q.cooldown_time_remaining('slasher_power_slash_start') > 0;",
+					"v.cd_power_slash_finish = q.cooldown_time_remaining('slasher_power_slash_finish') > 0;",
+					"v.cd_sawing_start = q.cooldown_time_remaining('slasher_sawing_start') > 0;",
+					"v.cd_sawing_release = q.cooldown_time_remaining('slasher_sawing_release') > 0;",
+					"v.cd_storm_slash_windup = q.cooldown_time_remaining('slasher_storm_slash_windup') > 0;",
+					"v.cd_storm_slash_strike = q.cooldown_time_remaining('slasher_storm_slash_strike') > 0;",
+					"v.cd_storm_slash_impact = q.cooldown_time_remaining('slasher_storm_slash_impact') > 0;",
+
+					// Blade cycle
+					"v.blade_speed = Math.lerp(v.blade_speed, v.blade_speed_mod, 3.4 * q.delta_time);",
+					"v.blade_cycle_anim_time = v.blade_cycle_anim_time + (q.delta_time * v.blade_speed);"
+				]
+			},
+			"render_controllers": [
+				{ "controller.render.slasher.slasher_attachable.fp": "c.is_first_person" },
+				{ "controller.render.slasher.slasher_attachable.tp": "!c.is_first_person" }
+			]
+		}
+	}
+}

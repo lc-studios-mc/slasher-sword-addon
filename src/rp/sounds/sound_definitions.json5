@@ -1,0 +1,261 @@
+{
+	format_version: "1.20.20",
+	sound_definitions: {
+		"slasher.beam_woosh": {
+			category: "hostile",
+			max_distance: null,
+			min_distance: null,
+			sounds: [
+				{
+					name: "sounds/slasher/beam_woosh",
+					volume: 1.0,
+				},
+			],
+		},
+
+		"slasher.chainsaw_finish": {
+			category: "hostile",
+			max_distance: 15.0,
+			min_distance: null,
+			sounds: [
+				{
+					name: "sounds/slasher/chainsaw_finish",
+					volume: 0.86,
+				},
+			],
+		},
+
+		"slasher.chainsaw_finish.2d": {
+			category: "music",
+			sounds: [
+				{
+					name: "sounds/slasher/chainsaw_finish",
+					volume: 0.86,
+				},
+			],
+		},
+
+		"slasher.chainsaw_loop": {
+			category: "hostile",
+			max_distance: 15.0,
+			min_distance: null,
+			sounds: [
+				{
+					name: "sounds/slasher/chainsaw_loop",
+					volume: 0.86,
+				},
+			],
+		},
+
+		"slasher.chainsaw_loop.2d": {
+			category: "music",
+			sounds: [
+				{
+					name: "sounds/slasher/chainsaw_loop",
+					volume: 0.86,
+				},
+			],
+		},
+
+		"slasher.charge_loop": {
+			category: "hostile",
+			max_distance: 15.0,
+			min_distance: null,
+			sounds: [
+				{
+					name: "sounds/slasher/charge_loop",
+					volume: 0.7,
+				},
+			],
+		},
+
+		"slasher.charged_storm_slash": {
+			category: "music",
+			sounds: [
+				{
+					name: "sounds/slasher/charged_storm_slash",
+					volume: 0.8,
+				},
+			],
+		},
+
+		"slasher.critical": {
+			category: "hostile",
+			max_distance: 15.0,
+			min_distance: null,
+			sounds: [
+				{
+					name: "sounds/slasher/critical",
+					volume: 0.8,
+				},
+			],
+		},
+
+		"slasher.critical.2d": {
+			category: "music",
+			sounds: [
+				{
+					name: "sounds/slasher/critical",
+					volume: 1.0,
+				},
+			],
+		},
+
+		"slasher.dash": {
+			category: "hostile",
+			max_distance: 8.0,
+			min_distance: null,
+			sounds: [
+				{
+					name: "sounds/slasher/dash",
+					volume: 1.0,
+				},
+			],
+		},
+
+		"slasher.dash.2d": {
+			category: "music",
+			sounds: [
+				{
+					name: "sounds/slasher/dash",
+					volume: 0.9,
+				},
+			],
+		},
+
+		"slasher.hitmarker": {
+			category: "music",
+			sounds: [
+				{
+					name: "sounds/slasher/hitmarker",
+					volume: 1.0,
+				},
+			],
+		},
+
+		"slasher.plunge_impact": {
+			category: "hostile",
+			max_distance: 20.0,
+			min_distance: null,
+			sounds: [
+				{
+					name: "sounds/slasher/plunge_impact",
+					volume: 0.9,
+				},
+			],
+		},
+
+		"slasher.plunge_windup": {
+			category: "hostile",
+			max_distance: 20.0,
+			min_distance: null,
+			sounds: [
+				{
+					name: "sounds/slasher/plunge_windup",
+					volume: 0.8,
+				},
+			],
+		},
+
+		"slasher.power_slash": {
+			category: "hostile",
+			max_distance: 15.0,
+			min_distance: null,
+			sounds: [
+				{
+					name: "sounds/slasher/power_slash",
+					volume: 0.8,
+				},
+			],
+		},
+
+		"slasher.power_slash.2d": {
+			category: "music",
+			sounds: [
+				{
+					name: "sounds/slasher/power_slash",
+					volume: 0.7,
+				},
+			],
+		},
+
+		"slasher.speed_slash": {
+			category: "hostile",
+			max_distance: 8.0,
+			min_distance: null,
+			sounds: [
+				{
+					name: "sounds/slasher/speed_slash",
+					volume: 0.7,
+				},
+			],
+		},
+
+		"slasher.storm_slash_strike": {
+			category: "hostile",
+			max_distance: 15.0,
+			min_distance: null,
+			sounds: [
+				{
+					name: "sounds/slasher/storm_slash_strike",
+					volume: 0.8,
+				},
+			],
+		},
+
+		"slasher.storm_slash_strike.2d": {
+			category: "music",
+			sounds: [
+				{
+					name: "sounds/slasher/storm_slash_strike",
+					volume: 0.8,
+				},
+			],
+		},
+
+		"slasher.storm_slash_impact": {
+			category: "hostile",
+			max_distance: 20.0,
+			min_distance: null,
+			sounds: [
+				{
+					name: "sounds/slasher/storm_slash_impact",
+					volume: 0.9,
+				},
+			],
+		},
+
+		"slasher.storm_slash_impact.2d": {
+			category: "music",
+			sounds: [
+				{
+					load_on_low_memory: true,
+					name: "sounds/slasher/storm_slash_impact",
+					volume: 0.9,
+				},
+			],
+		},
+
+		"slasher.storm_slash_windup": {
+			category: "hostile",
+			max_distance: 15.0,
+			min_distance: null,
+			sounds: [
+				{
+					name: "sounds/slasher/storm_slash_windup",
+					volume: 0.8,
+				},
+			],
+		},
+
+		"slasher.storm_slash_windup.2d": {
+			category: "music",
+			sounds: [
+				{
+					name: "sounds/slasher/storm_slash_windup",
+					volume: 0.8,
+				},
+			],
+		},
+	},
+}

@@ -1,0 +1,40 @@
+{
+	"format_version": "1.10.0",
+	"minecraft:client_entity": {
+		"description": {
+			"identifier": "slasher:power_slash_beam",
+			"materials": {
+				"default": "entity_emissive_alpha"
+			},
+			"textures": {
+				"default": "textures/slasher/beam/power_slash_beam"
+			},
+			"geometry": {
+				"default": "geometry.slasher.power_slash_beam"
+			},
+			"animations": {
+				"anim.base_rotation": "animation.slasher.power_slash_beam.base_rotation",
+				"anim.spin": "animation.slasher.power_slash_beam.spin",
+				"anim.trail": "animation.slasher.power_slash_beam.trail"
+			},
+			"scripts": {
+				"scale": "v.is_visible ? 1 : 0",
+				"animate": [
+					"anim.base_rotation",
+					{ "anim.spin": "v.is_visible" },
+					{ "anim.trail": "v.is_visible" }
+				],
+				"pre_animation": [
+					"v.is_visible = q.property('slasher:is_visible');",
+					"v.rotation_x = q.property('slasher:rotation_x');",
+					"v.rotation_y = q.property('slasher:rotation_y');",
+					"v.rotation_z = q.property('slasher:rotation_z');"
+				]
+			},
+			"particle_effects": {
+				"trail": "slasher:beam_trail_emitter"
+			},
+			"render_controllers": ["controller.render.slasher.beam"]
+		}
+	}
+}

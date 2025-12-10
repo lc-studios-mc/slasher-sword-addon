@@ -1,0 +1,148 @@
+{
+	"format_version": "1.10.0",
+	"animation_controllers": {
+		"controller.animation.slasher.slasher.fp": {
+			"initial_state": "pick",
+			"states": {
+				"pick": {
+					"animations": ["anim.fp.pick"],
+					"transitions": [
+						{ "general": "q.all_animations_finished" },
+						{ "speed_slash_1": "v.cd_speed_slash_1" },
+						{ "speed_slash_2": "v.cd_speed_slash_2" },
+						{ "charge_1": "v.cd_charge" },
+						{ "charge_dash": "v.cd_charge_dash" },
+						{ "power_slash_start": "v.cd_power_slash_start" },
+						{ "storm_slash_windup": "v.cd_storm_slash_windup" }
+					]
+				},
+
+				"general": {
+					"animations": ["anim.fp.general"],
+					"transitions": [
+						{ "pick": "v.cd_pick" },
+						{ "speed_slash_1": "v.cd_speed_slash_1" },
+						{ "speed_slash_2": "v.cd_speed_slash_2" },
+						{ "charge_1": "v.cd_charge" },
+						{ "charge_dash": "v.cd_charge_dash" },
+						{ "power_slash_start": "v.cd_power_slash_start" },
+						{ "storm_slash_windup": "v.cd_storm_slash_windup" }
+					],
+					"blend_transition": 0.08
+				},
+
+				"speed_slash_1": {
+					"animations": ["anim.fp.speed_slash_1"],
+					"transitions": [
+						{ "pick": "v.cd_pick" },
+						{ "speed_slash_2": "v.cd_speed_slash_2" },
+						{ "charge_2": "v.cd_charge" }
+					]
+				},
+
+				"speed_slash_2": {
+					"animations": ["anim.fp.speed_slash_2"],
+					"transitions": [
+						{ "pick": "v.cd_pick" },
+						{ "speed_slash_1": "v.cd_speed_slash_1" },
+						{ "charge_2": "v.cd_charge" }
+					]
+				},
+
+				"charge_1": {
+					"animations": ["anim.fp.charge_1"],
+					"transitions": [
+						{ "pick": "v.cd_charge_cancel || v.cd_pick" },
+						{ "speed_slash_1": "v.cd_speed_slash_1" },
+						{ "speed_slash_2": "v.cd_speed_slash_2" },
+						{ "charge_dash": "v.cd_charge_dash" },
+						{ "power_slash_start": "v.cd_power_slash_start" },
+						{ "storm_slash_windup": "v.cd_storm_slash_windup" }
+					]
+				},
+
+				"charge_2": {
+					"animations": ["anim.fp.charge_2"],
+					"transitions": [
+						{ "pick": "v.cd_charge_cancel || v.cd_pick" },
+						{ "speed_slash_1": "v.cd_speed_slash_1" },
+						{ "speed_slash_2": "v.cd_speed_slash_2" },
+						{ "charge_dash": "v.cd_charge_dash" },
+						{ "power_slash_start": "v.cd_power_slash_start" },
+						{ "storm_slash_windup": "v.cd_storm_slash_windup" }
+					]
+				},
+
+				"charge_dash": {
+					"animations": ["anim.fp.charge_dash"],
+					"transitions": [
+						{ "pick": "v.cd_charge_cancel || v.cd_pick" },
+						{ "power_slash_start": "v.cd_power_slash_start" },
+						{ "storm_slash_windup": "v.cd_storm_slash_windup" }
+					]
+				},
+
+				"power_slash_start": {
+					"animations": ["anim.fp.power_slash_start"],
+					"transitions": [
+						{ "pick": "v.cd_pick" },
+						{ "power_slash_finish": "v.cd_power_slash_finish" },
+						{ "sawing_loop": "v.cd_sawing_start" },
+						{ "sawing_release": "v.cd_sawing_release" }
+					],
+					"blend_transition": 0.05
+				},
+
+				"power_slash_finish": {
+					"animations": ["anim.fp.power_slash_finish"],
+					"transitions": [{ "pick": "v.cd_pick" }, { "charge_2": "v.cd_charge" }],
+					"blend_transition": 0.05
+				},
+
+				"sawing_loop": {
+					"animations": ["anim.fp.sawing_loop"],
+					"transitions": [
+						{ "pick": "v.cd_pick" },
+						{ "power_slash_finish": "v.cd_power_slash_finish" },
+						{ "sawing_release": "v.cd_sawing_release" }
+					],
+					"blend_transition": 0.11
+				},
+
+				"sawing_release": {
+					"animations": ["anim.fp.sawing_release"],
+					"transitions": [
+						{ "pick": "v.cd_pick" },
+						{ "power_slash_finish": "v.cd_power_slash_finish" },
+						{ "sawing_loop": "q.all_animations_finished" }
+					],
+					"blend_transition": 0.11
+				},
+
+				"storm_slash_windup": {
+					"animations": ["anim.fp.storm_slash_windup"],
+					"transitions": [
+						{ "pick": "v.cd_pick" },
+						{ "storm_slash_strike": "v.cd_storm_slash_strike" }
+					],
+					"blend_transition": 0.05
+				},
+
+				"storm_slash_strike": {
+					"animations": ["anim.fp.storm_slash_strike"],
+					"transitions": [
+						{ "pick": "v.cd_pick" },
+						{ "storm_slash_impact": "v.cd_storm_slash_impact" }
+					],
+					"blend_transition": 0.05
+				},
+
+				"storm_slash_impact": {
+					"animations": ["anim.fp.storm_slash_impact"],
+					"transitions": [{ "pick": "v.cd_pick" }, { "charge_2": "v.cd_charge" }],
+					"blend_transition": 0.05
+				}
+			}
+		}
+	}
+}

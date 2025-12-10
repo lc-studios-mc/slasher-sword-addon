@@ -1,0 +1,15 @@
+{
+	"format_version": "1.8.0",
+	"animations": {
+		"animation.slasher.beam.woosh_sound": {
+			"animation_length": 0.2,
+			"loop": true,
+			"timeline": {
+				"0.00": ["/playsound slasher.beam_woosh @a[r=10] ~~~ 2.0 1.0"],
+				"0.05": ["/playsound slasher.beam_woosh @a[r=10] ~~~ 2.0 1.0"],
+				"0.10": ["/playsound slasher.beam_woosh @a[r=10] ~~~ 2.0 1.0"],
+				"0.15": ["/playsound slasher.beam_woosh @a[r=10] ~~~ 2.0 1.0"]
+			}
+		}
+	}
+}

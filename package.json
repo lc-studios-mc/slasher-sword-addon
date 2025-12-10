@@ -1,19 +1,19 @@
 {
-  "name": "slasher-sword-addon",
-  "private": true,
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "node tasks/dev.js",
-    "clean": "node tasks/clean.js",
-    "fmt": "prettier --write ."
-  },
-  "type": "module",
-  "dependencies": {
-    "@minecraft/server": "2.4.0"
-  },
-  "devDependencies": {
-    "@types/node": "^22.15.0",
-    "prettier": "^3.7.4",
-    "typescript": "^5.9.3"
-  }
+	"name": "slasher-sword-addon",
+	"private": true,
+	"scripts": {
+		"test": "echo \"Error: no test specified\" && exit 1",
+		"dev": "node tasks/dev.js",
+		"clean": "node tasks/clean.js",
+		"fmt": "prettier --write ."
+	},
+	"type": "module",
+	"dependencies": {
+		"@minecraft/server": "2.4.0"
+	},
+	"devDependencies": {
+		"@types/node": "^22.15.0",
+		"prettier": "^3.7.4",
+		"typescript": "^5.9.3"
+	}
 }

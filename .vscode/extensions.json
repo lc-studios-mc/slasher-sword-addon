@@ -1,6 +1,7 @@
 {
-  "recommendations": [
-    "esbenp.prettier-vscode",
-    "mojang-studios.minecraft-debugger"
-  ]
+	"recommendations": [
+		"mojang-studios.minecraft-debugger",
+		"blueglassblock.better-json5",
+		"esbenp.prettier-vscode"
+	]
 }

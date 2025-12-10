@@ -1,5 +1,4 @@
 {
-	"name": "slasher-sword-addon",
 	"private": true,
 	"scripts": {
 		"format": "prettier --write ."

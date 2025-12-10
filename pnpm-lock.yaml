@@ -17,6 +17,9 @@ importers:
       '@minecraft/server':
         specifier: 2.4.0
         version: 2.4.0(@minecraft/common@1.2.0)(@minecraft/vanilla-data@1.21.111)
+      gl-matrix:
+        specifier: ^3.4.4
+        version: 3.4.4
     devDependencies:
       '@types/node':
         specifier: ^22.15.0
@@ -53,6 +56,9 @@ packages:
   '@types/node@22.18.8':
     resolution: {integrity: sha512-pAZSHMiagDR7cARo/cch1f3rXy0AEXwsVsVH09FcyeJVAzCnGgmYis7P3JidtTUjyadhTeSo8TgRPswstghDaw==}
 
+  gl-matrix@3.4.4:
+    resolution: {integrity: sha512-latSnyDNt/8zYUB6VIJ6PCh2jBjJX6gnDsoCZ7LyW7GkqrD51EWwa9qCoGixj8YqBtETQK/xY7OmpTF8xz1DdQ==}
+
   prettier@3.7.4:
     resolution: {integrity: sha512-v6UNi1+3hSlVvv8fSaoUbggEM5VErKmmpGA7Pl3HF8V6uKY7rvClBOJlH6yNwQtfTueNkGVpOv/mtWL9L4bgRA==}
     engines: {node: '>=14'}
@@ -86,6 +92,8 @@ snapshots:
   '@types/node@22.18.8':
     dependencies:
       undici-types: 6.21.0
+
+  gl-matrix@3.4.4: {}
 
   prettier@3.7.4: {}
 

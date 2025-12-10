@@ -1,13 +1,32 @@
 {
-  "editor.defaultFormatter": "esbenp.prettier-vscode",
-  "editor.formatOnSave": true,
-  "editor.insertSpaces": true,
-  "editor.tabSize": 2,
-  "files.eol": "\n",
-  "files.associations": {
-    "*.json": "jsonc"
-  },
-  "search.exclude": {
-    "**/dist": true
-  }
+	"files.associations": {
+		"package.json": "json",
+		"*.json": "jsonc"
+	},
+	"files.eol": "\n", // LF is more common in the context of Minecraft add-ons
+	"files.trimTrailingWhitespace": true,
+	"search.exclude": {
+		"**/node_modules": true,
+		"**/*.code-search": true,
+		"build": true
+	},
+
+	"editor.defaultFormatter": "esbenp.prettier-vscode",
+	"editor.formatOnSave": true,
+	"editor.insertSpaces": false, // Tab-based indentation for most file types
+	"editor.rulers": [100],
+
+	// PNPM as a Node.js package manager: // https://pnpm.io/
+	"npm.packageManager": "pnpm",
+
+	// JSON5 is awesome: https://json5.org/
+	// Highly recommend installing the "Better JSON5" extension
+	"json5.validate.enable": true,
+	"json5.format.enable": false,
+
+	// Override settings for markdown files
+	"[markdown]": {
+		"editor.insertSpaces": true, // Space-based indentation for markdown files
+		"editor.tabSize": 2
+	}
 }

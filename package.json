@@ -1,6 +1,11 @@
 {
 	"private": true,
 	"scripts": {
+		"build": "tsx scripts/build.ts",
+		"build:dev": "dotenv -v DEV=1 -- tsx scripts/build.ts",
+		"build:dev:watch": "dotenv -v DEV=1 -v WATCH=1 -- tsx scripts/build.ts",
+		"clean": "shx rm -rf build",
+		"typecheck": "tsc && tsc -p scripts/tsconfig.json",
 		"format": "prettier --write ."
 	},
 	"type": "module",

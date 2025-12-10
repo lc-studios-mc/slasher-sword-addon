@@ -42,6 +42,8 @@ export class StormSlashStrikeState extends SlasherStateBase {
 	private ticksUntilForcedFinish = 20;
 
 	override onEnter(): void {
+		this.applyConstantEffect();
+
 		const force = this.createInitialStrikeForceVector();
 
 		this.s.player.applyImpulse(force);
@@ -70,6 +72,8 @@ export class StormSlashStrikeState extends SlasherStateBase {
 			return;
 		}
 
+		this.applyConstantEffect();
+
 		const force = this.createContinuousForwardForceVector();
 
 		this.s.player.applyImpulse(force);
@@ -96,6 +100,11 @@ export class StormSlashStrikeState extends SlasherStateBase {
 		changeDir(finalVec, finalVec, GlVector3.fromObject(viewDir).v);
 
 		return new GlVector3(finalVec);
+	}
+
+	private applyConstantEffect(): void {
+		this.s.player.addEffect("resistance", 12, { amplifier: 255, showParticles: false });
+		this.s.player.addEffect("weakness", 12, { amplifier: 255, showParticles: false });
 	}
 
 	private finish(): void {
@@ -128,7 +137,7 @@ export class StormSlashStrikeState extends SlasherStateBase {
 }
 
 export class StormSlashFinishState extends SlasherStateBase {
-	private ticksUntilForcedExit = 10;
+	private ticksUntilForcedExit = 20;
 
 	override onEnter(): void {
 		this.s.playSound({
@@ -156,7 +165,7 @@ export class StormSlashFinishState extends SlasherStateBase {
 }
 
 export class StormSlashImpactState extends SlasherStateBase {
-	private ticksUntilForcedExit = 15;
+	private ticksUntilForcedExit = 20;
 
 	override onEnter(): void {
 		this.s.startItemCooldown("slasher_storm_slash_impact");
@@ -177,7 +186,7 @@ export class StormSlashImpactState extends SlasherStateBase {
 		}
 
 		if (this.currentTick === 1) {
-			this.s.player.clearVelocity();
+			this.s.player.tryTeleport(this.s.player.location);
 		}
 	}
 

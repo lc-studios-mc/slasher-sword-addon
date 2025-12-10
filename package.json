@@ -9,7 +9,7 @@
   },
   "type": "module",
   "dependencies": {
-    "@minecraft/server": "1.18.0"
+    "@minecraft/server": "2.4.0"
   },
   "devDependencies": {
     "@types/node": "^22.15.0",

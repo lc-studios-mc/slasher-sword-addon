@@ -9,8 +9,8 @@ importers:
   .:
     dependencies:
       '@minecraft/server':
-        specifier: 1.18.0
-        version: 1.18.0(@minecraft/vanilla-data@1.21.111)
+        specifier: 2.4.0
+        version: 2.4.0(@minecraft/common@1.2.0)(@minecraft/vanilla-data@1.21.111)
     devDependencies:
       '@types/node':
         specifier: ^22.15.0
@@ -27,9 +27,10 @@ packages:
   '@minecraft/common@1.2.0':
     resolution: {integrity: sha512-JdmEq4P3Z/FtoBzhLijFgMSVFnFRrUoLwY8DHHrgtFo0mfLTOLTB1RErYjLMsA6b7BGVNxkX/pfFRiH7QZ0XwQ==}
 
-  '@minecraft/server@1.18.0':
-    resolution: {integrity: sha512-X3HKKezj3ZeUCBay6FJOtUq56rq8fnYRpgKaW7PgRcOJyIaLatuq/Ml01mQdUtxlKdMxZdkDS3w0SnENVfaudA==}
+  '@minecraft/server@2.4.0':
+    resolution: {integrity: sha512-xd9dOWQ4RhPQBCt2aui9tp/GCnjvXpi6ZHVxaUr0SPDHfh/GkMRWnyf2Ud6D3pEThp/0giOEtHY1sx2HN9Qd+A==}
     peerDependencies:
+      '@minecraft/common': ^1.2.0
       '@minecraft/vanilla-data': '>=1.20.70'
 
   '@minecraft/vanilla-data@1.21.111':
@@ -55,7 +56,7 @@ snapshots:
 
   '@minecraft/common@1.2.0': {}
 
-  '@minecraft/server@1.18.0(@minecraft/vanilla-data@1.21.111)':
+  '@minecraft/server@2.4.0(@minecraft/common@1.2.0)(@minecraft/vanilla-data@1.21.111)':
     dependencies:
       '@minecraft/common': 1.2.0
       '@minecraft/vanilla-data': 1.21.111

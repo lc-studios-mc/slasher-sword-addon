@@ -1,0 +1,20 @@
+// This tsconfig is for behavior pack scripts
+{
+	"extends": "./tsconfig.base.json",
+	"compilerOptions": {
+		"types": [], // Don't automatically include @types/node
+		"rootDir": "src/bp/scripts",
+		"paths": {
+			"@/*": ["./src/bp/scripts/*"] // Aliases imports starting with `@/` to look inside `./src/bp/scripts/`
+		},
+
+		// Minecraft Bedrock uses the QuickJS JavaScript engine, which supports up to ES2023
+		"target": "es2023",
+		"lib": ["es2023"],
+
+		// BP scripts will be bundled by a bundler, not the standard tsc compiler
+		"module": "preserve",
+		"moduleResolution": "bundler"
+	},
+	"include": ["src/bp/scripts/**/*"]
+}

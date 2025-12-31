@@ -1,0 +1,19 @@
+{
+	"format_version": "1.8.0",
+	"animations": {
+		"animation.ground_impact_particle_spawner.general": {
+			"loop": false,
+			"animation_length": 0.5,
+			"particle_effects": {
+				"0.0": {
+          "effect": "smash_1",
+          "pre_effect_script": "v.surface_particle_texture_coordinate = q.surface_particle_texture_coordinate; v.surface_particle_texture_size = q.surface_particle_texture_size; v.surface_particle_tint = q.surface_particle_color;"
+				},
+				"0.02": {
+          "effect": "smash_2",
+          "pre_effect_script": "v.surface_particle_texture_coordinate = q.surface_particle_texture_coordinate; v.surface_particle_texture_size = q.surface_particle_texture_size; v.surface_particle_tint = q.surface_particle_color;"
+				}
+			}
+		}
+	}
+}

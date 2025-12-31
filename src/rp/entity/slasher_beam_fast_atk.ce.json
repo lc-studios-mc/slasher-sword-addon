@@ -1,0 +1,56 @@
+{
+  "format_version": "1.10.0",
+  "minecraft:client_entity": {
+    "description": {
+      "identifier": "lc:slasher_beam_fast_atk",
+      "materials": {
+        "default": "entity_emissive_alpha"
+      },
+      "textures": {
+        "default": "textures/slasher/beam_fast_atk"
+      },
+      "geometry": {
+        "default": "geometry.slasher_beam_fast_atk"
+      },
+      "animations": {
+        // Animations
+        "anim.general": "animation.slasher_beam_fast_atk.general",
+        "anim.bits": "animation.slasher_beam_fast_atk.bits",
+        "anim.trail_left": "animation.slasher_beam_fast_atk.trail_left",
+        "anim.trail_right": "animation.slasher_beam_fast_atk.trail_right"
+      },
+      "scripts": {
+        "scale": "1",
+        "animate": [
+          "anim.general",
+          "anim.bits",
+          {
+            "anim.trail_left": "v.is_visible && v.bit == 0"
+          },
+          {
+            "anim.trail_right": "v.is_visible && v.bit == 2"
+          }
+        ],
+        "initialize": [
+          "v.is_visible = false;",
+          "v.bit = 0;",
+          "v.rotation_x = 0;",
+          "v.rotation_y = 0;",
+          "v.rotation_z = 0;"
+        ],
+        "pre_animation": [
+          "v.is_visible = q.property('lc:is_visible');",
+          "v.bit = q.property('lc:bit');",
+          "v.rotation_x = q.property('lc:rotation_x');",
+          "v.rotation_y = q.property('lc:rotation_y');",
+          "v.rotation_z = q.property('lc:rotation_z');"
+        ],
+        "should_update_effects_offscreen": "1.0"
+      },
+      "particle_effects": {
+        "trail": "lc:slasher_beam_trail_emitter"
+      },
+      "render_controllers": ["controller.render.slasher_beam"]
+    }
+  }
+}

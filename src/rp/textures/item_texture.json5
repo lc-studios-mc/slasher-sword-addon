@@ -1,9 +1,0 @@
-{
-	resource_pack_name: "slasher",
-	texture_name: "atlas.items",
-	texture_data: {
-		"slasher:slasher": {
-			textures: "textures/slasher/slasher/slasher_icon",
-		},
-	},
-}

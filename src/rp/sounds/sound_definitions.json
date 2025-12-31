@@ -1,0 +1,148 @@
+{
+  "format_version": "1.20.20",
+  "sound_definitions": {
+    "slasher.charge_loop": {
+      "category": "hostile",
+      "max_distance": 10.0,
+      "min_distance": null,
+      "sounds": [
+        {
+          "name": "sounds/slasher/charge_loop",
+          "volume": 0.6
+        }
+      ]
+    },
+    "slasher.critical": {
+      "category": "hostile",
+      "max_distance": 18.0,
+      "min_distance": null,
+      "sounds": [
+        {
+          "name": "sounds/slasher/critical",
+          "volume": 0.85
+        }
+      ]
+    },
+    "slasher.fast_atk": {
+      "category": "hostile",
+      "max_distance": 11.0,
+      "min_distance": null,
+      "sounds": [
+        {
+          "name": "sounds/slasher/fast_atk",
+          "volume": 0.5
+        }
+      ]
+    },
+    "slasher.dash": {
+      "category": "hostile",
+      "max_distance": 10.0,
+      "min_distance": null,
+      "sounds": [
+        {
+          "name": "sounds/slasher/dash",
+          "volume": 0.8
+        }
+      ]
+    },
+    "slasher.dash.2d": {
+      "category": "music",
+      "sounds": [
+        {
+          "name": "sounds/slasher/dash",
+          "volume": 0.75
+        }
+      ]
+    },
+    "slasher.charged_atk": {
+      "category": "hostile",
+      "max_distance": 20.0,
+      "min_distance": null,
+      "sounds": [
+        {
+          "name": "sounds/slasher/charged_atk",
+          "volume": 0.6
+        }
+      ]
+    },
+    "slasher.charged_atk.2d": {
+      "category": "music",
+      "sounds": [
+        {
+          "name": "sounds/slasher/charged_atk",
+          "volume": 0.6
+        }
+      ]
+    },
+    "slasher.chainsaw.loop": {
+      "category": "hostile",
+      "max_distance": 20.0,
+      "min_distance": null,
+      "sounds": [
+        {
+          "name": "sounds/slasher/chainsaw_loop",
+          "volume": 0.95
+        }
+      ]
+    },
+    "slasher.chainsaw.loop.2d": {
+      "category": "music",
+      "sounds": [
+        {
+          "name": "sounds/slasher/chainsaw_loop",
+          "volume": 0.95
+        }
+      ]
+    },
+    "slasher.chainsaw.finish": {
+      "category": "hostile",
+      "max_distance": 20.0,
+      "min_distance": null,
+      "sounds": [
+        {
+          "name": "sounds/slasher/chainsaw_finish",
+          "volume": 0.95
+        }
+      ]
+    },
+    "slasher.chainsaw.finish.2d": {
+      "category": "music",
+      "sounds": [
+        {
+          "name": "sounds/slasher/chainsaw_finish",
+          "volume": 0.95
+        }
+      ]
+    },
+    "slasher.plunge_windup": {
+      "category": "hostile",
+      "max_distance": 10.0,
+      "min_distance": null,
+      "sounds": [{ "name": "sounds/slasher/plunge_windup", "volume": 0.72 }]
+    },
+    "slasher.plunge_windup.2d": {
+      "category": "music",
+      "sounds": [{ "name": "sounds/slasher/plunge_windup", "volume": 0.72 }]
+    },
+    "slasher.plunge_impact": {
+      "category": "hostile",
+      "max_distance": 10.0,
+      "min_distance": null,
+      "sounds": [{ "name": "sounds/slasher/plunge_impact", "volume": 0.86 }]
+    },
+    "slasher.plunge_impact.2d": {
+      "category": "music",
+      "sounds": [{ "name": "sounds/slasher/plunge_impact", "volume": 0.86 }]
+    },
+    "slasher.beam.hitmarker": {
+      "category": "neutral",
+      "sounds": [{ "name": "sounds/slasher/beam/hitmarker", "volume": 0.6 }]
+    },
+    "slasher.beam.woosh": {
+      "category": "hostile",
+      "max_distance": 10.0,
+      "min_distance": null,
+      "sounds": [{ "name": "sounds/slasher/beam/woosh", "volume": 0.79 }]
+    }
+  }
+}

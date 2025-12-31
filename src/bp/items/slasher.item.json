@@ -1,39 +1,53 @@
 {
-	"format_version": "1.21.110",
-	"minecraft:item": {
-		"description": {
-			"identifier": "slasher:slasher",
-			"menu_category": {
-				"category": "equipment"
-			}
-		},
-		"components": {
-			"minecraft:icon": "slasher:slasher",
-			"minecraft:rarity": "epic",
-			"minecraft:display_name": {
-				"value": "slasher:slasher"
-			},
-			"minecraft:allow_off_hand": false,
-			"minecraft:hand_equipped": true,
-			"minecraft:can_destroy_in_creative": false,
-			"minecraft:max_stack_size": 1,
-			"minecraft:damage": 6,
-			"minecraft:durability": {
-				"damage_chance": {
-					"min": 0,
-					"max": 100
-				},
-				"max_durability": 450
-			},
-			"minecraft:fire_resistant": {
-				"value": true
-			},
-			"minecraft:should_despawn": false,
-			"minecraft:use_animation": "none",
-			"minecraft:use_modifiers": {
-				"movement_modifier": 1.0,
-				"use_duration": 3600.0
-			}
-		}
-	}
+  "format_version": "1.21.50",
+  "minecraft:item": {
+    "description": {
+      "identifier": "lc:slasher",
+      "menu_category": {
+        "category": "equipment",
+        "is_hidden_in_commands": false
+      }
+    },
+    "components": {
+      "minecraft:icon": {
+        "textures": {
+          "default": "slasher_icon"
+        }
+      },
+      "minecraft:glint": false,
+      "minecraft:rarity": "epic",
+      "minecraft:display_name": {
+        "value": "item.lc:slasher.name"
+      },
+      "minecraft:max_stack_size": 1,
+      "minecraft:damage": {
+        "value": 5
+      },
+      "minecraft:can_destroy_in_creative": {
+        "value": false
+      },
+      "minecraft:durability": {
+        "damage_chance": {
+          "min": 0,
+          "max": 0
+        },
+        "max_durability": 900
+      },
+      "minecraft:repairable": {
+        "repair_items": [
+          {
+            "items": ["lc:slasher_blade"],
+            "repair_amount": 150
+          }
+        ]
+      },
+      "minecraft:hand_equipped": true,
+      "minecraft:allow_off_hand": false,
+      "minecraft:use_modifiers": {
+        // This component makes usage detection smoother in scripts
+        "movement_modifier": 1.0,
+        "use_duration": 3600
+      }
+    }
+  }
 }

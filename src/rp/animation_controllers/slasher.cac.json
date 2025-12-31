@@ -1,0 +1,152 @@
+{
+  "format_version": "1.10.0",
+  "animation_controllers": {
+    "controller.animation.slasher.fp.main": {
+      "initial_state": "pick",
+      "states": {
+        "pick": {
+          "animations": ["anim.fp.pick"],
+          "transitions": [
+            { "general": "q.all_animations_finished" },
+            { "fast_atk_1": "v.fast_atk_1_cd" },
+            { "fast_atk_2": "v.fast_atk_2_cd" },
+            { "charging_start": "v.charging_start" }
+          ]
+        },
+        "general": {
+          "animations": ["anim.fp.general"],
+          "transitions": [
+            { "pick": "v.pick" },
+            { "fast_atk_1": "v.fast_atk_1_cd" },
+            { "fast_atk_2": "v.fast_atk_2_cd" },
+            { "charging_start": "v.charging_start" }
+          ],
+          "blend_transition": 0.05
+        },
+        "fast_atk_1": {
+          "animations": ["anim.fp.fast_atk_1"],
+          "transitions": [
+            { "pick": "!v.fast_atk_1_cd || v.pick" },
+            { "fast_atk_2": "v.fast_atk_2_cd" },
+            { "charging_start": "v.charging_start" }
+          ]
+        },
+        "fast_atk_2": {
+          "animations": ["anim.fp.fast_atk_2"],
+          "transitions": [
+            { "pick": "!v.fast_atk_2_cd || v.pick" },
+            { "fast_atk_1": "v.fast_atk_1_cd" },
+            { "charging_start": "v.charging_start" }
+          ]
+        },
+        "charging_start": {
+          "animations": ["anim.fp.charging_start"],
+          "transitions": [
+            { "pick": "v.charging_cancel || v.pick" },
+            { "fast_atk_1": "v.fast_atk_1_cd" },
+            { "fast_atk_2": "v.fast_atk_2_cd" },
+            { "charging_hold": "q.all_animations_finished" },
+            { "dash": "v.dash" },
+            { "charged_atk_start": "v.charged_atk_start" },
+            { "plunge_windup": "v.plunge_windup" }
+          ],
+          "blend_transition": 0.04
+        },
+        "charging_hold": {
+          "animations": ["anim.fp.charging_hold"],
+          "transitions": [
+            { "pick": "v.charging_cancel || v.pick" },
+            { "fast_atk_1": "v.fast_atk_1_cd" },
+            { "fast_atk_2": "v.fast_atk_2_cd" },
+            { "dash": "v.dash" },
+            { "charged_atk_start": "v.charged_atk_start" },
+            { "plunge_windup": "v.plunge_windup" }
+          ],
+          "blend_transition": 0.03
+        },
+        "dash": {
+          "animations": ["anim.fp.dash"],
+          "transitions": [
+            { "pick": "v.pick" },
+            { "dash_charged_atk_start": "v.charged_atk_start" }
+          ]
+        },
+        "dash_charged_atk_start": {
+          "animations": ["anim.fp.dash_charged_atk_start"],
+          "transitions": [
+            { "pick": "v.pick" },
+            { "charging_start": "v.charging_start" },
+            {
+              "charged_atk_hold": "q.all_animations_finished && v.charged_atk_hold"
+            },
+            {
+              "charged_atk_end": "q.all_animations_finished && v.charged_atk_continue"
+            }
+          ]
+        },
+        "charged_atk_start": {
+          "animations": ["anim.fp.charged_atk_start"],
+          "transitions": [
+            { "pick": "v.pick" },
+            { "charging_start": "v.charging_start" },
+            {
+              "charged_atk_hold": "q.all_animations_finished && v.charged_atk_hold"
+            },
+            {
+              "charged_atk_end": "q.all_animations_finished && v.charged_atk_continue"
+            },
+            { "fast_atk_2": "v.fast_atk_1_cd" },
+            { "fast_atk_2": "v.fast_atk_2_cd" }
+          ]
+        },
+        "charged_atk_hold": {
+          "animations": ["anim.fp.charged_atk_hold"],
+          "transitions": [
+            { "pick": "v.pick" },
+            { "charging_start": "v.charging_start" },
+            { "charged_atk_end": "v.charged_atk_end" },
+            { "fast_atk_2": "v.fast_atk_1_cd" },
+            { "fast_atk_2": "v.fast_atk_2_cd" }
+          ]
+        },
+        "charged_atk_end": {
+          "animations": ["anim.fp.charged_atk_end"],
+          "transitions": [
+            { "charging_start": "v.charging_start" },
+            { "pick": "q.all_animations_finished || v.pick" },
+            { "fast_atk_2": "v.fast_atk_1_cd" },
+            { "fast_atk_2": "v.fast_atk_2_cd" }
+          ],
+          "blend_transition": 0.15
+        },
+        "plunge_windup": {
+          "animations": ["anim.fp.plunge_windup"],
+          "transitions": [
+            { "plunge_fall": "v.plunge_fall" },
+            { "plunge_impact": "v.plunge_impact" },
+            { "pick": "v.pick" }
+          ],
+          "blend_transition": 0.02
+        },
+        "plunge_fall": {
+          "animations": ["anim.fp.plunge_fall"],
+          "transitions": [
+            { "plunge_impact": "v.plunge_impact" },
+            { "pick": "v.pick" }
+          ],
+          "blend_transition": 0.02
+        },
+        "plunge_impact": {
+          "animations": ["anim.fp.plunge_impact"],
+          "transitions": [
+            { "pick": "q.all_animations_finished || v.pick" },
+            { "fast_atk_1": "v.fast_atk_1_cd" },
+            { "fast_atk_2": "v.fast_atk_2_cd" },
+            { "charging_start": "v.charging_start" }
+          ],
+          "blend_transition": 0.06
+        }
+      }
+    }
+  }
+}

@@ -19,7 +19,14 @@
 
 				"ctrl.fp": "controller.animation.shr.slasher.fp",
 				"anim.fp.base_pose_reference": "animation.shr.slasher.fp.base_pose_reference",
+				"anim.fp.charged_pose_reference": "animation.shr.slasher.fp.charged_pose_reference",
 				"anim.fp.hidden": "animation.shr.slasher.fp.hidden",
+				"anim.fp.pick": "animation.shr.slasher.fp.pick",
+				"anim.fp.idle": "animation.shr.slasher.fp.idle",
+				"anim.fp.quick_slash_1": "animation.shr.slasher.fp.quick_slash_1",
+				"anim.fp.quick_slash_2": "animation.shr.slasher.fp.quick_slash_2",
+				"anim.fp.charge": "animation.shr.slasher.fp.charge",
+				"anim.fp.dash": "animation.shr.slasher.fp.dash",
 
 				"anim.tp.offset": "animation.shr.slasher.tp.offset"
 			},

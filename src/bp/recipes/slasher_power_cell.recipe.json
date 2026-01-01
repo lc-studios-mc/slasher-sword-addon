@@ -1,0 +1,38 @@
+{
+	"format_version": "1.21.80",
+	"minecraft:recipe_shaped": {
+		"description": {
+			"identifier": "shr:slasher_power_cell"
+		},
+		"tags": ["crafting_table"],
+		"pattern": [
+			// Recipe shape
+			"C C",
+			"IRI",
+			"III"
+		],
+		"key": {
+			"C": {
+				"item": "minecraft:copper_ingot"
+			},
+			"I": {
+				"item": "minecraft:iron_ingot"
+			},
+			"R": {
+				"item": "minecraft:redstone_block"
+			}
+		},
+		"unlock": [
+			{ "item": "shr:slasher" },
+			{ "item": "shr:slasher_core" },
+			{ "item": "shr:slasher_power_cell" },
+			{ "item": "minecraft:copper_ingot" },
+			{ "item": "minecraft:iron_ingot" },
+			{ "item": "minecraft:redstone_block" }
+		],
+		"result": {
+			"item": "shr:slasher_power_cell",
+			"count": 2
+		}
+	}
+}

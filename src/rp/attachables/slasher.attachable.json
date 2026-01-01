@@ -15,10 +15,9 @@
 				"tp": "geometry.shr.slasher.tp"
 			},
 			"animations": {
-				"ctrl.fp": "controller.animation.shr.slasher.fp",
-
 				"anim.blade_rotation": "animation.shr.slasher.blade_rotation",
 
+				"ctrl.fp": "controller.animation.shr.slasher.fp",
 				"anim.fp.base_pose_reference": "animation.shr.slasher.fp.base_pose_reference",
 				"anim.fp.hidden": "animation.shr.slasher.fp.hidden",
 

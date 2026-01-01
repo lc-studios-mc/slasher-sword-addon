@@ -1,0 +1,44 @@
+{
+	"format_version": "1.21.80",
+	"minecraft:recipe_shaped": {
+		"description": {
+			"identifier": "shr:slasher_core"
+		},
+		"tags": ["crafting_table"],
+		"pattern": [
+			// Recipe shape
+			"IPI",
+			"RXR",
+			"ICI"
+		],
+		"key": {
+			"C": {
+				"item": "shr:slasher_power_cell"
+			},
+			"D": {
+				"item": "minecraft:dispenser"
+			},
+			"I": {
+				"item": "minecraft:iron_ingot"
+			},
+			"P": {
+				"item": "minecraft:piston"
+			},
+			"R": {
+				"item": "minecraft:redstone_block"
+			},
+			"X": {
+				"item": "minecraft:netherstar"
+			}
+		},
+		"unlock": [
+			{ "item": "shr:slasher" },
+			{ "item": "shr:slasher_core" },
+			{ "item": "shr:slasher_power_cell" },
+			{ "item": "minecraft:netherstar" }
+		],
+		"result": {
+			"item": "shr:slasher_core"
+		}
+	}
+}

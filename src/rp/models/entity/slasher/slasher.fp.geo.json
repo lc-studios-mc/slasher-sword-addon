@@ -6,9 +6,9 @@
 				"identifier": "geometry.shr.slasher.fp",
 				"texture_width": 258,
 				"texture_height": 291,
-				"visible_bounds_width": 5,
-				"visible_bounds_height": 5,
-				"visible_bounds_offset": [0, 1.5, 0]
+				"visible_bounds_width": 8,
+				"visible_bounds_height": 6,
+				"visible_bounds_offset": [0, 1, 0]
 			},
 			"bones": [
 				{

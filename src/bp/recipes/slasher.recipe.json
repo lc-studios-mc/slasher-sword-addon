@@ -1,0 +1,43 @@
+{
+	"format_version": "1.21.80",
+	"minecraft:recipe_shaped": {
+		"description": {
+			"identifier": "shr:slasher"
+		},
+		"tags": ["crafting_table"],
+		"pattern": [
+			// Recipe shape
+			"I S",
+			" CN",
+			"MN "
+		],
+		"key": {
+			"C": {
+				"item": "shr:slasher_core"
+			},
+			"I": {
+				"item": "minecraft:iron_ingot"
+			},
+			"M": {
+				"item": "minecraft:mace"
+			},
+			"N": {
+				"item": "minecraft:netherite_ingot"
+			},
+			"S": {
+				"item": "minecraft:iron_spear"
+			}
+		},
+		"unlock": [
+			{
+				"item": "shr:slasher"
+			},
+			{
+				"item": "shr:slasher_core"
+			}
+		],
+		"result": {
+			"item": "shr:slasher"
+		}
+	}
+}

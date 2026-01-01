@@ -1,0 +1,24 @@
+{
+	"format_version": "1.21.130",
+	"minecraft:item": {
+		"description": {
+			"identifier": "shr:slasher",
+			"menu_category": {
+				"category": "equipment"
+			}
+		},
+		"components": {
+			"minecraft:icon": "shr:slasher",
+			"minecraft:display_name": {
+				"value": "shr:slasher.main_item_display_name"
+			},
+			"minecraft:rarity": "epic",
+			"minecraft:damage": 6,
+			"minecraft:can_destroy_in_creative": false,
+			"minecraft:use_modifiers": {
+				"movement_modifier": 1.0,
+				"use_duration": 3600
+			}
+		}
+	}
+}

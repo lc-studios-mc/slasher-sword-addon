@@ -1,0 +1,48 @@
+{
+	"format_version": "1.10.0",
+	"minecraft:attachable": {
+		"description": {
+			"identifier": "shr:slasher",
+			"materials": {
+				"default": "entity_emissive_alpha"
+			},
+			"textures": {
+				"fp": "textures/shr/slasher/slasher_with_fp_arms",
+				"tp": "textures/shr/slasher/slasher"
+			},
+			"geometry": {
+				"fp": "geometry.shr.slasher.fp",
+				"tp": "geometry.shr.slasher.tp"
+			},
+			"animations": {
+				"ctrl.fp": "controller.animation.shr.slasher.fp",
+
+				"anim.blade_rotation": "animation.shr.slasher.blade_rotation",
+
+				"anim.fp.base_pose_reference": "animation.shr.slasher.fp.base_pose_reference",
+				"anim.fp.hidden": "animation.shr.slasher.fp.hidden",
+
+				"anim.tp.offset": "animation.shr.slasher.tp.offset"
+			},
+			"scripts": {
+				"animate": [
+					"anim.blade_rotation",
+					{ "ctrl.fp": "c.is_first_person" },
+					{ "anim.tp.offset": "!c.is_first_person" }
+				],
+				"initialize": [
+					"v.blade_speed_mod = 0;" // Modify this variable to change the blade rotation speed
+				],
+				"pre_animation": [
+					// Blade rotation
+					"v.blade_speed = Math.lerp(v.blade_speed ?? 0, v.blade_speed_mod, 3.4 * q.delta_time);",
+					"v.blade_rotation_anim_time = (v.blade_rotation_anim_time ?? 0) + (q.delta_time * v.blade_speed);"
+				]
+			},
+			"render_controllers": [
+				{ "controller.render.shr.slasher.fp": "c.is_first_person" },
+				{ "controller.render.shr.slasher.tp": "!c.is_first_person" }
+			]
+		}
+	}
+}

@@ -1,0 +1,17 @@
+{
+	"format_version": "1.8.0",
+	"animations": {
+		"animation.shr.slasher.tp.offset": {
+			"loop": true,
+			"bones": {
+				"item": {
+					"rotation": [-3, 0.89099, -3.49762],
+					"position": [0.25, 22.625, -0.65]
+				},
+				"slasher": {
+					"scale": 0.88
+				}
+			}
+		}
+	}
+}

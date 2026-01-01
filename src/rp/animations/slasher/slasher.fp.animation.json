@@ -1,0 +1,36 @@
+{
+	"format_version": "1.8.0",
+	"animations": {
+		"animation.shr.slasher.fp.base_pose_reference": {
+			"loop": true,
+			"bones": {
+				"fp_arms": {
+					"rotation": [-82.5, -2.5, -2.5],
+					"position": [-13.25, -8, -19]
+				},
+				"fp_mainhand_g": {
+					"position": [5, -2, 2]
+				},
+				"fp_mainhand": {
+					"rotation": [67.50817, 85.49829, -29.40198],
+					"position": [-0.5, 0, 3.25]
+				},
+				"fp_offhand_g": {
+					"position": [0, 0, 0]
+				},
+				"fp_offhand": {
+					"rotation": [9.86, -80.58775, 115.59775],
+					"position": [-3.75, -2, 7.75]
+				}
+			}
+		},
+		"animation.shr.slasher.fp.hidden": {
+			"loop": true,
+			"bones": {
+				"fp_base": {
+					"scale": 0
+				}
+			}
+		}
+	}
+}

@@ -1,0 +1,158 @@
+{
+	format_version: "1.20.20",
+	sound_definitions: {
+		"shr.arc.hitmarker": {
+			category: "music",
+			sounds: [
+				{
+					name: "sounds/shr/arc/hitmarker",
+					volume: 0.8,
+				},
+			],
+		},
+
+		"shr.arc.woosh": {
+			category: "hostile",
+			max_distance: 8.0,
+			min_distance: null,
+			sounds: [
+				{
+					name: "sounds/shr/arc/hitmarker",
+					volume: 1.05,
+				},
+			],
+		},
+
+		"shr.slasher.charging.complete": {
+			category: "hostile",
+			max_distance: 15.0,
+			min_distance: null,
+			sounds: [
+				{
+					name: "sounds/shr/slasher/charging/complete",
+					volume: 1.0,
+				},
+			],
+		},
+
+		"shr.slasher.charging.loop": {
+			category: "hostile",
+			max_distance: 15.0,
+			min_distance: null,
+			sounds: [
+				{
+					name: "sounds/shr/slasher/charging/loop",
+					volume: 0.9,
+				},
+			],
+		},
+
+		"shr.slasher.charging.start": {
+			category: "hostile",
+			max_distance: 15.0,
+			min_distance: null,
+			sounds: [
+				{
+					name: "sounds/shr/slasher/charging/start",
+					volume: 1.0,
+				},
+			],
+		},
+
+		"shr.slasher.plunge.impact": {
+			category: "hostile",
+			max_distance: 25.0,
+			min_distance: null,
+			sounds: [
+				{
+					name: "sounds/shr/slasher/plunge/impact",
+					volume: 1.0,
+				},
+			],
+		},
+
+		"shr.slasher.plunge.windup": {
+			category: "hostile",
+			max_distance: 25.0,
+			min_distance: null,
+			sounds: [
+				{
+					name: "sounds/shr/slasher/plunge/windup",
+					volume: 0.9,
+				},
+			],
+		},
+
+		"shr.slasher.sawing.finish": {
+			category: "hostile",
+			max_distance: 15.0,
+			min_distance: null,
+			sounds: [
+				{
+					name: "sounds/shr/slasher/sawing/finish",
+					volume: 0.75,
+				},
+			],
+		},
+
+		"shr.slasher.sawing.loop": {
+			category: "hostile",
+			max_distance: 15.0,
+			min_distance: null,
+			sounds: [
+				{
+					name: "sounds/shr/slasher/sawing/loop",
+					volume: 0.8,
+				},
+			],
+		},
+
+		"shr.slasher.crack": {
+			category: "hostile",
+			max_distance: 8.0,
+			min_distance: null,
+			sounds: [
+				{
+					name: "sounds/shr/slasher/crack",
+					volume: 0.96,
+				},
+			],
+		},
+
+		"shr.slasher.dash": {
+			category: "hostile",
+			max_distance: 12.0,
+			min_distance: null,
+			sounds: [
+				{
+					name: "sounds/shr/slasher/dash",
+					volume: 1.05,
+				},
+			],
+		},
+
+		"shr.slasher.power_slash": {
+			category: "hostile",
+			max_distance: 15.0,
+			min_distance: null,
+			sounds: [
+				{
+					name: "sounds/shr/slasher/power_slash",
+					volume: 0.85,
+				},
+			],
+		},
+
+		"shr.slasher.quick_slash": {
+			category: "hostile",
+			max_distance: 15.0,
+			min_distance: null,
+			sounds: [
+				{
+					name: "sounds/shr/slasher/quick_slash",
+					volume: 0.7,
+				},
+			],
+		},
+	},
+}

@@ -8,6 +8,9 @@ importers:
 
   .:
     dependencies:
+      '@mcbe-toolbox-lc/sukuriputils':
+        specifier: ^0.3.0
+        version: 0.3.0(@minecraft/server@2.4.0(@minecraft/common@1.2.0)(@minecraft/vanilla-data@1.21.124))
       '@mcbe-toolbox-lc/vecarr':
         specifier: ^0.1.3
         version: 0.1.3
@@ -216,6 +219,11 @@ packages:
   '@mcbe-toolbox-lc/builder@0.1.1':
     resolution: {integrity: sha512-8rKSLYi/WPx8iXBjPFTcnAYH00DiJNHan5umjc1UG6GiwJnmG0+bpfyHrk2/VL85SuNVTl4npAr48p9cXh3/Mg==}
     engines: {node: '>= 22'}
+
+  '@mcbe-toolbox-lc/sukuriputils@0.3.0':
+    resolution: {integrity: sha512-cEYolT0CJ4Kf+i9l+oPKQpahGL/Njs/M1V7l96sx3yYNSqOdvwEkpPpbDAay4Ql5+49QQlxOZT42tza/IRJtUQ==}
+    peerDependencies:
+      '@minecraft/server': ^2.3.0
 
   '@mcbe-toolbox-lc/vecarr@0.1.3':
     resolution: {integrity: sha512-+XE+LJ5mQROJ8w3M+/ccpRFARNwMCJbdXLMr5rB/2kDY4usBCQpbz3/eI77V+85MZAjmmwGfRY7q3whS+Yy2PQ==}
@@ -891,6 +899,10 @@ snapshots:
     transitivePeerDependencies:
       - bare-abort-controller
       - react-native-b4a
+
+  '@mcbe-toolbox-lc/sukuriputils@0.3.0(@minecraft/server@2.4.0(@minecraft/common@1.2.0)(@minecraft/vanilla-data@1.21.124))':
+    dependencies:
+      '@minecraft/server': 2.4.0(@minecraft/common@1.2.0)(@minecraft/vanilla-data@1.21.124)
 
   '@mcbe-toolbox-lc/vecarr@0.1.3': {}
 

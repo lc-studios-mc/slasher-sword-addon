@@ -10,7 +10,7 @@
 		"components": {
 			"minecraft:icon": "shr:slasher",
 			"minecraft:display_name": {
-				"value": "shr:slasher.main_item_display_name"
+				"value": "shr:slasher.item.display_name"
 			},
 			"minecraft:rarity": "epic",
 			"minecraft:damage": 6,

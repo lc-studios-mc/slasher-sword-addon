@@ -302,7 +302,7 @@
 				"0.375": "v.blade_speed_mod = 10;"
 			}
 		},
-		"animation.shr.slasher.fp.dash": {
+		"animation.shr.slasher.fp.lunge": {
 			"loop": "hold_on_last_frame",
 			"animation_length": 0.5,
 			"bones": {

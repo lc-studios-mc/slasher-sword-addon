@@ -26,7 +26,7 @@
 				"anim.fp.quick_slash_1": "animation.shr.slasher.fp.quick_slash_1",
 				"anim.fp.quick_slash_2": "animation.shr.slasher.fp.quick_slash_2",
 				"anim.fp.charge": "animation.shr.slasher.fp.charge",
-				"anim.fp.dash": "animation.shr.slasher.fp.dash",
+				"anim.fp.lunge": "animation.shr.slasher.fp.lunge",
 
 				"anim.tp.offset": "animation.shr.slasher.tp.offset"
 			},

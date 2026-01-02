@@ -10,7 +10,7 @@
 		"components": {
 			"minecraft:icon": "shr:slasher_core",
 			"minecraft:display_name": {
-				"value": "shr:slasher_core.item.display_name"
+				"value": "shr:slasher_core.item"
 			},
 			"minecraft:rarity": "rare",
 			"minecraft:max_stack_size": 1

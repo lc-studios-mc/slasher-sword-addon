@@ -11,7 +11,7 @@
 			"shr:slasher": {},
 			"minecraft:icon": "shr:slasher",
 			"minecraft:display_name": {
-				"value": "shr:slasher.item.display_name"
+				"value": "shr:slasher.item"
 			},
 			"minecraft:rarity": "epic",
 			"minecraft:max_stack_size": 1,

@@ -116,7 +116,7 @@
 			sounds: [
 				{
 					name: "sounds/shr/slasher/heave_slash",
-					volume: 0.85,
+					volume: 0.81,
 				},
 			],
 		},

@@ -97,18 +97,6 @@
 			],
 		},
 
-		"shr.slasher.dash": {
-			category: "hostile",
-			max_distance: 12.0,
-			min_distance: null,
-			sounds: [
-				{
-					name: "sounds/shr/slasher/dash",
-					volume: 1.05,
-				},
-			],
-		},
-
 		"shr.slasher.heave_slash": {
 			category: "hostile",
 			max_distance: 15.0,
@@ -117,6 +105,18 @@
 				{
 					name: "sounds/shr/slasher/heave_slash",
 					volume: 0.81,
+				},
+			],
+		},
+
+		"shr.slasher.lunge": {
+			category: "hostile",
+			max_distance: 12.0,
+			min_distance: null,
+			sounds: [
+				{
+					name: "sounds/shr/slasher/lunge",
+					volume: 1.05,
 				},
 			],
 		},

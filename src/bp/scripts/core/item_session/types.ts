@@ -1,24 +1,33 @@
 import type * as mc from "@minecraft/server";
 
+export type ItemSessionConfig = {
+	itemType: string;
+	createHandler: (ctx: ItemSessionContext) => ItemSessionHandler;
+};
+
 export type ItemSessionContext = {
+	readonly config: ItemSessionConfig;
 	readonly actor: mc.Player;
-	currentTick(): number;
-	isUsing(): boolean;
+	readonly actorEquippable: mc.EntityEquippableComponent;
+	readonly actorHealth: mc.EntityHealthComponent;
+	readonly initialSlotIndex: number;
+	readonly initialItemStack: mc.ItemStack;
+	currentTick: () => number;
+	isUsing: () => boolean;
 };
 
 export type ItemSessionHandler = {
 	readonly ctx: ItemSessionContext;
-	isValid(mainhandItem: mc.ItemStack): boolean;
-	onTick(mainhandItem: mc.ItemStack): void;
-	onRemove(): void;
-	canStartUse(e: mc.ItemStartUseAfterEvent): boolean;
-	onStartUse(e: mc.ItemStartUseAfterEvent): void;
-	onStopUse(e: mc.ItemStopUseAfterEvent): void;
-	onActorHealthChanged(e: mc.EntityHealthChangedAfterEvent): void;
-	onActorDie(e: mc.EntityDieAfterEvent): void;
-	onActorHurt(e: mc.EntityHurtAfterEvent): void;
-	onActorHitBlock(e: mc.EntityHitBlockAfterEvent): void;
-	onActorHitEntity(e: mc.EntityHitEntityAfterEvent): void;
+	isValid: (currentItemStack: mc.ItemStack) => boolean;
+	onStartSession: () => void;
+	onStopSession: () => void;
+	onTick: (currentItemStack: mc.ItemStack) => void;
+	canStartUseItem: (e: mc.ItemStartUseAfterEvent) => boolean;
+	onStartUseItem: (e: mc.ItemStartUseAfterEvent) => void;
+	onStopUseItem: (e: mc.ItemStopUseAfterEvent) => void;
+	onHealthChanged: (e: mc.EntityHealthChangedAfterEvent) => void;
+	onDie: (e: mc.EntityDieAfterEvent) => void;
+	onHurt: (e: mc.EntityHurtAfterEvent) => void;
+	onHitBlock: (e: mc.EntityHitBlockAfterEvent) => void;
+	onHitEntity: (e: mc.EntityHitEntityAfterEvent) => void;
 };
-
-export type ItemSessionHandlerFactory = (ctx: ItemSessionContext) => ItemSessionHandler;

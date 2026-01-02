@@ -9,7 +9,7 @@
 			// Recipe shape
 			"C C",
 			"IRI",
-			"III"
+			"SIS"
 		],
 		"key": {
 			"C": {
@@ -19,7 +19,10 @@
 				"item": "minecraft:iron_ingot"
 			},
 			"R": {
-				"item": "minecraft:redstone_block"
+				"item": "minecraft:redstone"
+			},
+			"S": {
+				"item": "minecraft:iron_nugget"
 			}
 		},
 		"unlock": [
@@ -28,7 +31,8 @@
 			{ "item": "shr:slasher_power_cell" },
 			{ "item": "minecraft:copper_ingot" },
 			{ "item": "minecraft:iron_ingot" },
-			{ "item": "minecraft:redstone_block" }
+			{ "item": "minecraft:iron_nugget" },
+			{ "item": "minecraft:redstone" }
 		],
 		"result": {
 			"item": "shr:slasher_power_cell",

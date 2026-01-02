@@ -109,13 +109,13 @@
 			],
 		},
 
-		"shr.slasher.power_slash": {
+		"shr.slasher.heave_slash": {
 			category: "hostile",
 			max_distance: 15.0,
 			min_distance: null,
 			sounds: [
 				{
-					name: "sounds/shr/slasher/power_slash",
+					name: "sounds/shr/slasher/heave_slash",
 					volume: 0.85,
 				},
 			],

@@ -8,7 +8,6 @@
 			}
 		},
 		"components": {
-			"shr:slasher_power_cell": {},
 			"minecraft:icon": "shr:slasher_power_cell",
 			"minecraft:display_name": {
 				"value": "shr:slasher_power_cell.item.display_name"

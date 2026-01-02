@@ -1,28 +1,6 @@
 {
 	format_version: "1.20.20",
 	sound_definitions: {
-		"shr.arc.hitmarker": {
-			category: "music",
-			sounds: [
-				{
-					name: "sounds/shr/arc/hitmarker",
-					volume: 0.8,
-				},
-			],
-		},
-
-		"shr.arc.woosh": {
-			category: "hostile",
-			max_distance: 8.0,
-			min_distance: null,
-			sounds: [
-				{
-					name: "sounds/shr/arc/hitmarker",
-					volume: 1.05,
-				},
-			],
-		},
-
 		"shr.slasher.charging.complete": {
 			category: "hostile",
 			max_distance: 15.0,
@@ -151,6 +129,28 @@
 				{
 					name: "sounds/shr/slasher/quick_slash",
 					volume: 0.7,
+				},
+			],
+		},
+
+		"shr.misc.arc_woosh": {
+			category: "hostile",
+			max_distance: 8.0,
+			min_distance: null,
+			sounds: [
+				{
+					name: "sounds/shr/misc/arc_woosh",
+					volume: 1.05,
+				},
+			],
+		},
+
+		"shr.misc.hitmarker": {
+			category: "music",
+			sounds: [
+				{
+					name: "sounds/shr/misc/hitmarker",
+					volume: 0.9,
 				},
 			],
 		},

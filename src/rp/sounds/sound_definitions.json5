@@ -37,30 +37,6 @@
 			],
 		},
 
-		"shr.slasher.plunge.impact": {
-			category: "hostile",
-			max_distance: 25.0,
-			min_distance: null,
-			sounds: [
-				{
-					name: "sounds/shr/slasher/plunge/impact",
-					volume: 1.0,
-				},
-			],
-		},
-
-		"shr.slasher.plunge.windup": {
-			category: "hostile",
-			max_distance: 25.0,
-			min_distance: null,
-			sounds: [
-				{
-					name: "sounds/shr/slasher/plunge/windup",
-					volume: 0.9,
-				},
-			],
-		},
-
 		"shr.slasher.sawing.finish": {
 			category: "hostile",
 			max_distance: 15.0,
@@ -81,6 +57,30 @@
 				{
 					name: "sounds/shr/slasher/sawing/loop",
 					volume: 0.8,
+				},
+			],
+		},
+
+		"shr.slasher.slam.impact": {
+			category: "hostile",
+			max_distance: 25.0,
+			min_distance: null,
+			sounds: [
+				{
+					name: "sounds/shr/slasher/slam/impact",
+					volume: 1.0,
+				},
+			],
+		},
+
+		"shr.slasher.slam.windup": {
+			category: "hostile",
+			max_distance: 25.0,
+			min_distance: null,
+			sounds: [
+				{
+					name: "sounds/shr/slasher/slam/windup",
+					volume: 0.9,
 				},
 			],
 		},

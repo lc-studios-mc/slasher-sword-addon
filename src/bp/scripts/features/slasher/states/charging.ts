@@ -3,7 +3,7 @@ import type { SlasherHandler } from "../handler";
 import { SlasherStateBase } from "./base";
 import { getEntityForwardLocation } from "@mcbe-toolbox-lc/sukuriputils/server";
 
-const FULL_CHARGE_THRESHOLD = 10;
+const FULL_CHARGE_THRESHOLD = 8;
 const MIN_TICK_TO_START_SOUNDS = 1;
 
 export class ChargingState extends SlasherStateBase {

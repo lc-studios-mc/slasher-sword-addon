@@ -2,13 +2,11 @@
 	format_version: "1.20.20",
 	sound_definitions: {
 		"shr.slasher.charging.complete": {
-			category: "hostile",
-			max_distance: 15.0,
-			min_distance: null,
+			category: "music",
 			sounds: [
 				{
 					name: "sounds/shr/slasher/charging/complete",
-					volume: 1.0,
+					volume: 0.8,
 				},
 			],
 		},
@@ -20,7 +18,7 @@
 			sounds: [
 				{
 					name: "sounds/shr/slasher/charging/loop",
-					volume: 0.9,
+					volume: 0.56,
 				},
 			],
 		},
@@ -32,7 +30,7 @@
 			sounds: [
 				{
 					name: "sounds/shr/slasher/charging/start",
-					volume: 1.0,
+					volume: 0.65,
 				},
 			],
 		},

@@ -5,6 +5,7 @@ import { ModifiedDamageCalculator } from "@mcbe-toolbox-lc/sukuriputils/server";
 import * as mc from "@minecraft/server";
 import type { SlasherStateBase } from "./states/base";
 import { IdleState } from "./states/idle";
+import { QuickSlashState } from "./states/quick_slash";
 
 registerItemSession({
 	itemType: "shr:slasher",
@@ -14,6 +15,7 @@ registerItemSession({
 export class SlasherHandler extends ItemSessionHandlerBase {
 	readonly stateClasses = {
 		IdleState,
+		QuickSlashState,
 	} as const;
 	readonly damageCalculator: ModifiedDamageCalculator;
 
@@ -33,6 +35,10 @@ export class SlasherHandler extends ItemSessionHandlerBase {
 		this.currentState.onExit();
 		this.currentState = newState;
 		this.currentState.onEnter();
+	}
+
+	startItemCooldown(category: string, duration = 2): void {
+		this.actor.startItemCooldown(category, duration);
 	}
 
 	// Let the current state do work

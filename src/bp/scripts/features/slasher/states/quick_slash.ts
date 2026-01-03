@@ -4,6 +4,8 @@ import { SlasherStateBase } from "./base";
 import { addCameraShake, getEntityForwardLocation } from "@mcbe-toolbox-lc/sukuriputils/server";
 import { randomFloat } from "@mcbe-toolbox-lc/sukuriputils/math";
 
+const CHARGE_ALLOW_THRESHOLD = 10;
+
 export class QuickSlashState extends SlasherStateBase {
 	private ticksUntilExit = 15;
 
@@ -42,12 +44,22 @@ export class QuickSlashState extends SlasherStateBase {
 	}
 
 	protected override onTick(_currentItemStack: mc.ItemStack): void {
+		if (this.slasher.isUsing && this.currentTick >= CHARGE_ALLOW_THRESHOLD) {
+			this.slasher.changeState(new this.slasher.stateClasses.ChargingState(this.slasher));
+			return;
+		}
+
 		if (this.ticksUntilExit > 0) {
 			this.ticksUntilExit--;
 			return;
 		}
 
 		this.slasher.changeState(new this.slasher.stateClasses.IdleState(this.slasher));
+	}
+
+	override onStopUseItem(e: mc.ItemStopUseAfterEvent): void {
+		if (this.currentTick >= CHARGE_ALLOW_THRESHOLD) return;
+		this.redo();
 	}
 
 	override onHitBlock(_e: mc.EntityHitBlockAfterEvent): void {

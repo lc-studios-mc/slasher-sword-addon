@@ -6,6 +6,7 @@ import * as mc from "@minecraft/server";
 import type { SlasherStateBase } from "./states/base";
 import { IdleState } from "./states/idle";
 import { QuickSlashState } from "./states/quick_slash";
+import { ChargingState } from "./states/charging";
 
 registerItemSession({
 	itemType: "shr:slasher",
@@ -16,6 +17,7 @@ export class SlasherHandler extends ItemSessionHandlerBase {
 	readonly stateClasses = {
 		IdleState,
 		QuickSlashState,
+		ChargingState,
 	} as const;
 	readonly damageCalculator: ModifiedDamageCalculator;
 

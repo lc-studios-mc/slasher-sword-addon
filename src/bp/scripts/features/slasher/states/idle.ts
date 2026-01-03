@@ -11,12 +11,26 @@ export class IdleState extends SlasherStateBase {
 		}
 	}
 
-	override onHitBlock(e: mc.EntityHitBlockAfterEvent): void {
+	protected override onTick(_currentItemStack: mc.ItemStack): void {
+		if (this.slasher.isUsing) {
+			this.startCharging();
+		}
+	}
+
+	override onStartUseItem(e: mc.ItemStartUseAfterEvent): void {
+		this.startCharging();
+	}
+
+	override onHitBlock(_e: mc.EntityHitBlockAfterEvent): void {
 		this.quickSlash();
 	}
 
-	override onHitEntity(e: mc.EntityHitEntityAfterEvent): void {
+	override onHitEntity(_e: mc.EntityHitEntityAfterEvent): void {
 		this.quickSlash();
+	}
+
+	private startCharging(): void {
+		this.slasher.changeState(new this.slasher.stateClasses.ChargingState(this.slasher));
 	}
 
 	private quickSlash(): void {

@@ -13,6 +13,8 @@ export class HeaveSlashFinishState extends SlasherStateBase {
 	) {
 		super(slasher);
 
+		this.slasher.actor.addEffect("weakness", 5, { amplifier: 255, showParticles: false });
+
 		if (targets.length <= 0) {
 			this.slasher.startItemCooldown("slasher_heave_slash_miss");
 			return;

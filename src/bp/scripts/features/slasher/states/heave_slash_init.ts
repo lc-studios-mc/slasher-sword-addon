@@ -20,11 +20,15 @@ export class HeaveSlashInitState extends SlasherStateBase {
 			return;
 		}
 
+		this.slasher.actor.addEffect("weakness", 3, { amplifier: 255, showParticles: false });
+
 		this.lunging = true;
 		this.lunge();
 	}
 
 	protected override onTick(_currentItemStack: mc.ItemStack): void {
+		this.slasher.actor.addEffect("weakness", 3, { amplifier: 255, showParticles: false });
+
 		if (this.shouldTransitionToAttackStateNextTick) {
 			this.transitionToAttackState();
 			return;

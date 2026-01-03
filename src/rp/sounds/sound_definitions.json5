@@ -108,13 +108,11 @@
 		},
 
 		"shr.slasher.lunge": {
-			category: "hostile",
-			max_distance: 12.0,
-			min_distance: null,
+			category: "music",
 			sounds: [
 				{
 					name: "sounds/shr/slasher/lunge",
-					volume: 1.05,
+					volume: 0.77,
 				},
 			],
 		},

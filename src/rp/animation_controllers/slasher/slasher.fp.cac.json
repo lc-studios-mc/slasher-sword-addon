@@ -19,7 +19,7 @@
 						{ "quick_slash_1": "v.cd_quick_slash_1" },
 						{ "quick_slash_2": "v.cd_quick_slash_2" }
 					],
-					"blend_transition": 0.15
+					"blend_transition": 0.08
 				},
 				"quick_slash_1": {
 					"animations": ["anim.fp.quick_slash_1"],

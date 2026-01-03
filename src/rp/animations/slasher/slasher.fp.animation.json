@@ -182,7 +182,7 @@
 				}
 			},
 			"timeline": {
-				"0.0": "v.blade_speed_mod = 8;"
+				"0.0": "v.blade_speed_mod = 15;"
 			}
 		},
 		"animation.shr.slasher.fp.quick_slash_2": {
@@ -221,7 +221,7 @@
 				}
 			},
 			"timeline": {
-				"0.0": "v.blade_speed_mod = 8;"
+				"0.0": "v.blade_speed_mod = 15;"
 			}
 		},
 		"animation.shr.slasher.fp.charge": {
@@ -296,10 +296,7 @@
 				}
 			},
 			"timeline": {
-				"0.0": "v.blade_speed_mod = 1;",
-				"0.0833": "v.blade_speed_mod = 4;",
-				"0.2083": "v.blade_speed_mod = 8;",
-				"0.375": "v.blade_speed_mod = 10;"
+				"0.0": "v.blade_speed_mod = 15;"
 			}
 		},
 		"animation.shr.slasher.fp.lunge": {
@@ -332,7 +329,7 @@
 				}
 			},
 			"timeline": {
-				"0.0": "v.blade_speed_mod = 10;"
+				"0.0": "v.blade_speed_mod = 15;"
 			}
 		},
 		"animation.shr.slasher.fp.heave_slash.start": {
@@ -377,7 +374,7 @@
 				}
 			},
 			"timeline": {
-				"0.0": "v.blade_speed_mod = 10;"
+				"0.0": "v.blade_speed_mod = 15;"
 			}
 		},
 		"animation.shr.slasher.fp.heave_slash.miss": {
@@ -455,7 +452,7 @@
 				}
 			},
 			"timeline": {
-				"0.0": "v.blade_speed_mod = 10;"
+				"0.0": "v.blade_speed_mod = 15;"
 			}
 		},
 		"animation.shr.slasher.fp.heave_slash.hit": {
@@ -535,7 +532,7 @@
 				}
 			},
 			"timeline": {
-				"0.0": "v.blade_speed_mod = 10;"
+				"0.0": "v.blade_speed_mod = 15;"
 			}
 		}
 	}

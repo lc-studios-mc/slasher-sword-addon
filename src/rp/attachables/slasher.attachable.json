@@ -43,6 +43,16 @@
 					"v.blade_speed_mod = 0;" // Modify this variable to change the blade rotation speed
 				],
 				"pre_animation": [
+					// Cooldowns to trigger animation state transitions
+					"v.cd_pick = q.cooldown_time_remaining('slasher_pick');",
+					"v.cd_quick_slash_1 = q.cooldown_time_remaining('slasher_quick_slash_1');",
+					"v.cd_quick_slash_2 = q.cooldown_time_remaining('slasher_quick_slash_2');",
+					"v.cd_charge = q.cooldown_time_remaining('slasher_charge');",
+					"v.cd_lunge = q.cooldown_time_remaining('slasher_lunge');",
+					"v.cd_heave_slash_start = q.cooldown_time_remaining('slasher_heave_slash_start');",
+					"v.cd_heave_slash_miss = q.cooldown_time_remaining('slasher_heave_slash_miss');",
+					"v.cd_heave_slash_hit = q.cooldown_time_remaining('slasher_heave_slash_hit');",
+
 					// Blade rotation
 					"v.blade_speed = Math.lerp(v.blade_speed ?? 0, v.blade_speed_mod, 3.4 * q.delta_time);",
 					"v.blade_rotation_anim_time = (v.blade_rotation_anim_time ?? 0) + (q.delta_time * v.blade_speed);"

@@ -2,10 +2,32 @@
 	"format_version": "1.10.0",
 	"animation_controllers": {
 		"controller.animation.shr.slasher.fp": {
-			"initial_state": "default",
+			"initial_state": "pick",
 			"states": {
-				"default": {
-					"animations": ["anim.fp.hidden"]
+				"pick": {
+					"animations": ["anim.fp.pick"],
+					"transitions": [
+						{ "idle": "q.all_animations_finished" },
+						{ "quick_slash_1": "v.cd_quick_slash_1" },
+						{ "quick_slash_2": "v.cd_quick_slash_2" }
+					]
+				},
+				"idle": {
+					"animations": ["anim.fp.idle"],
+					"transitions": [
+						{ "pick": "v.cd_pick" },
+						{ "quick_slash_1": "v.cd_quick_slash_1" },
+						{ "quick_slash_2": "v.cd_quick_slash_2" }
+					],
+					"blend_transition": 0.15
+				},
+				"quick_slash_1": {
+					"animations": ["anim.fp.quick_slash_1"],
+					"transitions": [{ "pick": "v.cd_pick" }, { "quick_slash_2": "v.cd_quick_slash_2" }]
+				},
+				"quick_slash_2": {
+					"animations": ["anim.fp.quick_slash_2"],
+					"transitions": [{ "pick": "v.cd_pick" }, { "quick_slash_1": "v.cd_quick_slash_1" }]
 				}
 			}
 		}

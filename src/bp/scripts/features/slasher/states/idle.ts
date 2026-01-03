@@ -30,10 +30,12 @@ export class IdleState extends SlasherStateBase {
 	}
 
 	private startCharging(): void {
+		this.slasher.clearItemCooldown("slasher_pick");
 		this.slasher.changeState(new this.slasher.stateClasses.ChargingState(this.slasher));
 	}
 
 	private quickSlash(): void {
+		this.slasher.clearItemCooldown("slasher_pick");
 		this.slasher.changeState(new this.slasher.stateClasses.QuickSlashState(this.slasher));
 	}
 }

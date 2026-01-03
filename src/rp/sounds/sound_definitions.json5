@@ -128,7 +128,7 @@
 			sounds: [
 				{
 					name: "sounds/shr/slasher/quick_slash",
-					volume: 0.7,
+					volume: 0.5,
 				},
 			],
 		},

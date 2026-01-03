@@ -7,6 +7,8 @@ import type { SlasherStateBase } from "./states/base";
 import { IdleState } from "./states/idle";
 import { QuickSlashState } from "./states/quick_slash";
 import { ChargingState } from "./states/charging";
+import { HeaveSlashInitState } from "./states/heave_slash_init";
+import { HeaveSlashFinishState } from "./states/heave_slash_finish";
 
 registerItemSession({
 	itemType: "shr:slasher",
@@ -18,6 +20,8 @@ export class SlasherHandler extends ItemSessionHandlerBase {
 		IdleState,
 		QuickSlashState,
 		ChargingState,
+		HeaveSlashInitState,
+		HeaveSlashFinishState,
 	} as const;
 	readonly damageCalculator: ModifiedDamageCalculator;
 

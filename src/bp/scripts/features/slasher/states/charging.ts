@@ -59,6 +59,6 @@ export class ChargingState extends SlasherStateBase {
 			return;
 		}
 
-		// TODO: State transition
+		this.slasher.changeState(new this.slasher.stateClasses.HeaveSlashInitState(this.slasher));
 	}
 }

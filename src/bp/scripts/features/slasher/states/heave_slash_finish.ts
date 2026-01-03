@@ -50,6 +50,6 @@ export class HeaveSlashFinishState extends SlasherStateBase {
 	}
 
 	private quickSlash(): void {
-		this.slasher.changeState(new this.slasher.stateClasses.QuickSlashState(this.slasher, 1));
+		this.slasher.changeState(new this.slasher.stateClasses.QuickSlashState(this.slasher, 0));
 	}
 }

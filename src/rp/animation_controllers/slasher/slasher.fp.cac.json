@@ -73,7 +73,8 @@
 						{ "charge": "v.cd_charge" },
 						{ "quick_slash_1": "v.cd_quick_slash_1" },
 						{ "quick_slash_2": "v.cd_quick_slash_2" }
-					]
+					],
+					"blend_transition": 0.08
 				},
 				"heave_slash_hit": {
 					"animations": ["anim.fp.heave_slash.hit"],
@@ -82,7 +83,8 @@
 						{ "charge": "v.cd_charge" },
 						{ "quick_slash_1": "v.cd_quick_slash_1" },
 						{ "quick_slash_2": "v.cd_quick_slash_2" }
-					]
+					],
+					"blend_transition": 0.08
 				}
 			}
 		}

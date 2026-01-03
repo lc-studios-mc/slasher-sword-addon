@@ -27,6 +27,9 @@
 				"anim.fp.quick_slash_2": "animation.shr.slasher.fp.quick_slash_2",
 				"anim.fp.charge": "animation.shr.slasher.fp.charge",
 				"anim.fp.lunge": "animation.shr.slasher.fp.lunge",
+				"anim.fp.heave_slash.start": "animation.shr.slasher.fp.heave_slash.start",
+				"anim.fp.heave_slash.miss": "animation.shr.slasher.fp.heave_slash.miss",
+				"anim.fp.heave_slash.hit": "animation.shr.slasher.fp.heave_slash.hit",
 
 				"anim.tp.offset": "animation.shr.slasher.tp.offset"
 			},

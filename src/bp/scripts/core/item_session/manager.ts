@@ -132,7 +132,7 @@ mc.world.afterEvents.itemStopUse.subscribe((e) => {
 	const session = sessionsByPlayer.get(e.source);
 	if (!session) return;
 
-	session.state.isUsing = true;
+	session.state.isUsing = false;
 	session.handler.onStopUseItem(e);
 });
 

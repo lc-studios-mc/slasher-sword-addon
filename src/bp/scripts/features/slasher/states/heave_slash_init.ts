@@ -63,7 +63,7 @@ export class HeaveSlashInitState extends SlasherStateBase {
 	}
 
 	private onTickLunge(): void {
-		if (this.currentTick == 2 && this.slasher.actor.isOnGround) {
+		if (this.currentTick == 2) {
 			this.slasher.actor.clearVelocity();
 		}
 

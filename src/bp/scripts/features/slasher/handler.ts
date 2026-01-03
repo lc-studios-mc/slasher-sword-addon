@@ -41,6 +41,10 @@ export class SlasherHandler extends ItemSessionHandlerBase {
 		this.actor.startItemCooldown(category, duration);
 	}
 
+	clearItemCooldown(category: string): void {
+		this.actor.startItemCooldown(category, 0);
+	}
+
 	// Let the current state do work
 
 	override onTick(currentItemStack: mc.ItemStack): void {

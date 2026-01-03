@@ -3,10 +3,12 @@ import type { SlasherHandler } from "../handler";
 import { SlasherStateBase } from "./base";
 
 export class IdleState extends SlasherStateBase {
-	constructor(slasher: SlasherHandler) {
+	constructor(slasher: SlasherHandler, playPickAnim = true) {
 		super(slasher);
 
-		this.slasher.startItemCooldown("slasher_pick");
+		if (playPickAnim) {
+			this.slasher.startItemCooldown("slasher_pick");
+		}
 	}
 
 	override onHitBlock(e: mc.EntityHitBlockAfterEvent): void {

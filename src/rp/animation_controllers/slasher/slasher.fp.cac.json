@@ -9,7 +9,8 @@
 					"transitions": [
 						{ "idle": "q.all_animations_finished" },
 						{ "quick_slash_1": "v.cd_quick_slash_1" },
-						{ "quick_slash_2": "v.cd_quick_slash_2" }
+						{ "quick_slash_2": "v.cd_quick_slash_2" },
+						{ "charge": "v.cd_charge" }
 					]
 				},
 				"idle": {
@@ -17,17 +18,63 @@
 					"transitions": [
 						{ "pick": "v.cd_pick" },
 						{ "quick_slash_1": "v.cd_quick_slash_1" },
-						{ "quick_slash_2": "v.cd_quick_slash_2" }
+						{ "quick_slash_2": "v.cd_quick_slash_2" },
+						{ "charge": "v.cd_charge" }
 					],
 					"blend_transition": 0.08
 				},
 				"quick_slash_1": {
 					"animations": ["anim.fp.quick_slash_1"],
-					"transitions": [{ "pick": "v.cd_pick" }, { "quick_slash_2": "v.cd_quick_slash_2" }]
+					"transitions": [
+						{ "pick": "v.cd_pick" },
+						{ "quick_slash_2": "v.cd_quick_slash_2" },
+						{ "charge": "v.cd_charge" }
+					]
 				},
 				"quick_slash_2": {
 					"animations": ["anim.fp.quick_slash_2"],
-					"transitions": [{ "pick": "v.cd_pick" }, { "quick_slash_1": "v.cd_quick_slash_1" }]
+					"transitions": [
+						{ "pick": "v.cd_pick" },
+						{ "quick_slash_1": "v.cd_quick_slash_1" },
+						{ "charge": "v.cd_charge" }
+					]
+				},
+				"charge": {
+					"animations": ["anim.fp.charge"],
+					"transitions": [
+						{ "pick": "v.cd_pick" },
+						{ "quick_slash_1": "v.cd_quick_slash_1" },
+						{ "quick_slash_2": "v.cd_quick_slash_2" },
+						{ "heave_slash_start": "v.cd_heave_slash_start" },
+						{ "lunge": "v.cd_lunge" }
+					],
+					"blend_transition": 0.08
+				},
+				"lunge": {
+					"animations": ["anim.fp.lunge"],
+					"transitions": [
+						{ "pick": "v.cd_pick" },
+						{ "heave_slash_start": "v.cd_heave_slash_start" }
+					],
+					"blend_transition": 0.05
+				},
+				"heave_slash_start": {
+					"animations": ["anim.fp.heave_slash.start"],
+					"transitions": [
+						{ "pick": "v.cd_pick" },
+						{ "heave_slash_miss": "v.cd_heave_slash_miss" },
+						{ "heave_slash_hit": "v.cd_heave_slash_hit" }
+					]
+				},
+				"heave_slash_miss": {
+					"animations": ["anim.fp.heave_slash.miss"],
+					"transitions": [{ "pick": "v.cd_pick" }, { "charge": "v.cd_charge" }],
+					"blend_transition": 0.1
+				},
+				"heave_slash_hit": {
+					"animations": ["anim.fp.heave_slash.hit"],
+					"transitions": [{ "pick": "v.cd_pick" }, { "charge": "v.cd_charge" }],
+					"blend_transition": 0.1
 				}
 			}
 		}
